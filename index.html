@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio-Trek</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background-color: #0a0d36;
+            color: #f5f5f5;
+        }
+
+        header {
+            padding: 1rem 1rem 0.5rem;
+            text-align: center;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 1.5rem 1rem 2.5rem;
+        }
+
+        .series-wrapper {
+            width: 100%;
+            max-width: 1400px;
+        }
+
+        .title-main {
+            font-family: "Orbitron", sans-serif;
+            font-size: 42pt;
+            color: #ffd700;
+            margin: 0 0 0.25rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-shadow:
+                0 0 4px #000000,
+                0 0 10px rgba(255, 215, 0, 0.8);
+        }
+
+        .subtitle-main {
+            font-family: "Orbitron", sans-serif;
+            font-size: 30pt;
+            color: #ffd700;
+            margin: 0;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-shadow:
+                0 0 3px #000000,
+                0 0 8px rgba(255, 215, 0, 0.7);
+        }
+
+        .series-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .button-row + .button-row {
+            margin-top: 75px;
+        }
+
+        .series-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 999px;
+            border: 1px solid #ffffff;
+            font-size: 12pt;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            background-image: linear-gradient(135deg, #011926 0%, #003E5C 100%);
+            color: #B29433;
+            box-shadow:
+                0 4px 0 #000000,
+                0 16px 30px rgba(0, 0, 0, 0.95),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                inset 0 -3px 10px rgba(0, 0, 0, 0.95);
+            cursor: pointer;
+            transition:
+                transform 160ms ease-out,
+                box-shadow 160ms ease-out,
+                border-color 160ms ease-out;
+            text-align: center;
+            white-space: normal;
+            line-height: 1.3;
+        }
+
+        .series-btn:hover {
+            box-shadow:
+                0 6px 0 #000000,
+                0 22px 38px rgba(0, 0, 0, 0.98),
+                0 0 18px rgba(211, 175, 55, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                inset 0 -3px 12px rgba(0, 0, 0, 0.98);
+            transform: translateY(-2px) scale(1.02);
+            border-color: #f9fafb;
+        }
+
+        .series-btn:active {
+            box-shadow:
+                0 2px 0 #000000,
+                0 10px 18px rgba(0, 0, 0, 0.98),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06),
+                inset 0 -2px 6px rgba(0, 0, 0, 0.98);
+            transform: translateY(1px) scale(0.99);
+        }
+
+        .cards-grid {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+
+        .cards-row {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .character-card {
+            flex: 1;
+            max-width: 320px;
+            padding: 1.5rem 1.75rem;
+            border-radius: 18px;
+            background-image: linear-gradient(135deg, #011926 0%, #003E5C 100%);
+            border: 1px solid #ffffff;
+            color: #B29433;
+            font-size: 12pt;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            text-align: center;
+            box-shadow:
+                0 4px 0 #000000,
+                0 16px 30px rgba(0, 0, 0, 0.95),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08),
+                inset 0 -3px 10px rgba(0, 0, 0, 0.95);
+            cursor: pointer;
+            transition:
+                transform 160ms ease-out,
+                box-shadow 160ms ease-out,
+                border-color 160ms ease-out;
+        }
+
+        .character-card:hover {
+            box-shadow:
+                0 6px 0 #000000,
+                0 22px 38px rgba(0, 0, 0, 0.98),
+                0 0 18px rgba(211, 175, 55, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                inset 0 -3px 12px rgba(0, 0, 0, 0.98);
+            transform: translateY(-2px) scale(1.02);
+            border-color: #f9fafb;
+        }
+
+        .character-card:active {
+            box-shadow:
+                0 2px 0 #000000,
+                0 10px 18px rgba(0, 0, 0, 0.98),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06),
+                inset 0 -2px 6px rgba(0, 0, 0, 0.98);
+            transform: translateY(1px) scale(0.99);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="title-main">Bio Trek</h1>
+        <h2 class="subtitle-main">Star Trek Biographies</h2>
+    </header>
+
+    <main>
+        <div class="series-wrapper">
+            <div class="series-grid">
+                <div class="button-row">
+                    <button class="series-btn" onclick="openSeries('The Original Series')">The Original Series</button>
+                    <button class="series-btn" onclick="openSeries('The Next Generation')">The Next Generation</button>
+                    <button class="series-btn" onclick="openSeries('Deep Space Nine')">Deep Space Nine</button>
+                </div>
+                <div class="button-row">
+                    <button class="series-btn" onclick="openSeries('Voyager')">Voyager</button>
+                    <button class="series-btn" onclick="openSeries('Enterprise')">Enterprise</button>
+                    <button class="series-btn" onclick="openSeries('Discovery')">Discovery</button>
+                </div>
+                <div class="button-row">
+                    <button class="series-btn" onclick="openSeries('Picard')">Picard</button>
+                    <button class="series-btn" onclick="openSeries('Lower Decks')">Lower Decks</button>
+                    <button class="series-btn" onclick="openSeries('Strange New Worlds')">Strange New Worlds</button>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="cards-row">
+                    <div class="character-card" id="card-1"></div>
+                    <div class="character-card" id="card-2"></div>
+                    <div class="character-card" id="card-3"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const characterMap = {
+            "The Original Series": [
+                "James T. Kirk",
+                "Spock",
+                "Leonard McCoy"
+            ],
+            "The Next Generation": [
+                "Jean-Luc Picard",
+                "William Riker",
+                "Data"
+            ],
+            "Deep Space Nine": [
+                "Benjamin Sisko",
+                "Kira Nerys",
+                "Odo"
+            ],
+            "Voyager": [
+                "Kathryn Janeway",
+                "Chakotay",
+                "Tuvok"
+            ],
+            "Enterprise": [
+                "Jonathan Archer",
+                "T'Pol",
+                "Trip Tucker"
+            ],
+            "Discovery": [
+                "Michael Burnham",
+                "Saru",
+                "Paul Stamets"
+            ],
+            "Picard": [
+                "Jean-Luc Picard",
+                "Raffi Musiker",
+                "Seven of Nine"
+            ],
+            "Lower Decks": [
+                "Beckett Mariner",
+                "Brad Boimler",
+                "Tendi"
+            ],
+            "Strange New Worlds": [
+                "Christopher Pike",
+                "Una Chin-Riley",
+                "Spock"
+            ]
+        };
+
+        function openSeries(seriesName) {
+            const title = document.querySelector(".title-main");
+            const subtitle = document.querySelector(".subtitle-main");
+            const seriesGrid = document.querySelector(".series-grid");
+            const cardsGrid = document.querySelector(".cards-grid");
+
+            title.textContent = "Star Trek";
+            subtitle.textContent = seriesName;
+
+            seriesGrid.style.display = "none";
+            cardsGrid.style.display = "flex";
+
+            const names = characterMap[seriesName] || ["Character 1", "Character 2", "Character 3"];
+
+            document.getElementById("card-1").textContent = names[0];
+            document.getElementById("card-2").textContent = names[1];
+            document.getElementById("card-3").textContent = names[2];
+        }
+    </script>
+</body>
+</html>
