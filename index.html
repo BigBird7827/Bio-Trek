@@ -944,5 +944,46 @@ document.addEventListener("click", async (event) => {
   else start();
 })();
 </script>
+<script>
+// --- Updated JSON Bio Loader (Integrated) ---
+document.addEventListener("click", async (event) => {
+    const link = event.target.closest("a.character-name");
+    if (!link) return;
+    event.preventDefault();
+
+    const name = link.textContent.trim();
+    const container = document.querySelector(".series-wrapper");
+    container.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
+
+    try {
+        const res = await fetch("Bio-Crew-TOS.json");
+        const data = await res.json();
+        const bios = data.bios[name] || data.bios[name.replace(/\./g, '')] || data.bios[name.replace(/[^A-Za-z ]/g, '')];
+
+        if (!bios) {
+            container.innerHTML = "<p style='text-align:center;color:tomato;'>Biography not found.</p>";
+            return;
+        }
+
+        let bioHTML = `<h1 style='font-family:Orbitron,sans-serif;color:gold;text-align:center;font-size:1.5rem;'>${name}</h1>`;
+        bios.forEach(section => {
+            bioHTML += `<h3 style='color:gold;font-weight:bold;margin-top:1.5rem;'>${section.header}</h3>`;
+            bioHTML += `<p style='color:white;line-height:1.6;'>${section.text}</p>`;
+        });
+
+        bioHTML += `<div style='text-align:center;margin-top:2rem;'>
+                        <button id='backToMenu' style='padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;'>Return to Crew</button>
+                    </div>`;
+
+        container.style.background = "linear-gradient(135deg, #000010, #001a33)";
+        container.innerHTML = bioHTML;
+
+        document.getElementById("backToMenu").addEventListener("click", () => location.reload());
+    } catch (err) {
+        container.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
+        console.error(err);
+    }
+});
+</script>
 </body>
 </html>
