@@ -559,7 +559,7 @@ document.addEventListener('click', function(e) {
         e.preventDefault();
         const characterName = e.target.textContent.trim();
 
-        fetch('https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json')
+        fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json")
             .then(response => response.json())
             .then(data => {
                 const character = data.find(c => c.name.trim() === characterName);
@@ -819,7 +819,7 @@ document.addEventListener("click", async (event) => {
     }
 });
 </script>
-<script id="bio-loader">(function(){function $(sel,ctx){return (ctx||document).querySelector(sel);}function create(tag,cls){var el=document.createElement(tag); if(cls) el.className=cls; return el;}function renderLegacy(items, container){  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    var parts=(it.bio||'').replace(/\r\n?/g,'\n').split(/\n\n+/).filter(Boolean);    if(parts.length){      var h=create('p','bio-header'); h.textContent=parts[0]; card.appendChild(h);      for(var i=1;i<parts.length;i++){ var p=create('p'); p.textContent=parts[i]; card.appendChild(p);}    }    container.appendChild(card);  });}function renderStructured(obj, container){  var items = Array.isArray(obj.crew)? obj.crew : obj;  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    if(it.header){ var h=create('p','bio-header'); h.textContent=it.header; card.appendChild(h);}    (it.paragraphs||[]).forEach(function(text){ var p=create('p'); p.textContent=text; card.appendChild(p); });    container.appendChild(card);  });}function load(){  var container = document.querySelector('#crew, .crew, main, body');  if(!container){ container=document.body; }  fetch('Bio-Crew-TOS.json').then(function(r){return r.json();}).then(function(data){    var isLegacy = Array.isArray(data) && data.length && typeof data[0].bio === 'string';    var isStructured = (Array.isArray(data.crew) && data.crew.length && ('header' in data.crew[0]));    if(isStructured){ renderStructured(data, container);}    else if(isLegacy){ renderLegacy(data, container);}    else {      var msg=create('p'); msg.textContent='Unsupported JSON format.'; container.appendChild(msg);    }  }).catch(function(err){    var msg=create('p'); msg.textContent='Failed to load bios: '+err; document.body.appendChild(msg);  });}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded', load);} else {load();}})();</script>
+<script id="bio-loader">(function(){function $(sel,ctx){return (ctx||document).querySelector(sel);}function create(tag,cls){var el=document.createElement(tag); if(cls) el.className=cls; return el;}function renderLegacy(items, container){  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    var parts=(it.bio||'').replace(/\r\n?/g,'\n').split(/\n\n+/).filter(Boolean);    if(parts.length){      var h=create('p','bio-header'); h.textContent=parts[0]; card.appendChild(h);      for(var i=1;i<parts.length;i++){ var p=create('p'); p.textContent=parts[i]; card.appendChild(p);}    }    container.appendChild(card);  });}function renderStructured(obj, container){  var items = Array.isArray(obj.crew)? obj.crew : obj;  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    if(it.header){ var h=create('p','bio-header'); h.textContent=it.header; card.appendChild(h);}    (it.paragraphs||[]).forEach(function(text){ var p=create('p'); p.textContent=text; card.appendChild(p); });    container.appendChild(card);  });}function load(){  var container = document.querySelector('#crew, .crew, main, body');  if(!container){ container=document.body; }  fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json").then(function(r){return r.json();}).then(function(data){    var isLegacy = Array.isArray(data) && data.length && typeof data[0].bio === 'string';    var isStructured = (Array.isArray(data.crew) && data.crew.length && ('header' in data.crew[0]));    if(isStructured){ renderStructured(data, container);}    else if(isLegacy){ renderLegacy(data, container);}    else {      var msg=create('p'); msg.textContent='</script>
 <!-- Build 304: minimal diagnostic + gold enforcement -->
 <div id="build304-status" style="font:14px system-ui, sans-serif; padding:8px 12px;"></div>
 <script id="build304">
@@ -930,20 +930,7 @@ document.addEventListener("click", async (event) => {
       }
       const headers = getHeadersFromData(data);
       if (!headers.length) {
-        show('Loaded JSON, but no headers detected. Check source formatting.', true);
-        return;
-      }
-      applyGold(headers);
-      show('Loaded ' + headers.length + ' headers. Gold applied.', false);
-    } catch (err) {
-      show('Network error: ' + err, true);
-    }
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
-  else start();
-})();
-</script>
+        show('</script>
 <script>
 // --- Updated JSON Bio Loader (Correct Remote URL) ---
 document.addEventListener("click", async (event) => {
@@ -982,6 +969,45 @@ document.addEventListener("click", async (event) => {
     } catch (err) {
         container.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
         console.error(err);
+    }
+});
+</script>
+<script>
+document.addEventListener("click", async (event) => {
+    const link = event.target.closest("a.character-name");
+    if (!link) return;
+    event.preventDefault();
+
+    const name = link.textContent.trim();
+    const container = document.querySelector(".series-wrapper");
+    container.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
+
+    try {
+        const res = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json");
+        const data = await res.json();
+        const bios = data.bios[name] || data.bios[name.replace(/\./g, '')] || data.bios[name.replace(/[^A-Za-z ]/g, '')];
+
+        if (!bios) {
+            container.innerHTML = "<p style='text-align:center;color:tomato;'>Biography not found.</p>";
+            return;
+        }
+
+        let bioHTML = `<h1 style='font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:1.5rem;'>${name}</h1>`;
+        bios.forEach(section => {
+            bioHTML += `<h3 style='color:gold;font-weight:bold;margin-top:1.5rem;max-width:70%;margin-left:auto;margin-right:auto;text-align:left;'>${section.header}</h3>`;
+            bioHTML += `<p style='color:white;line-height:1.6;max-width:70%;margin-left:auto;margin-right:auto;'>${section.text}</p>`;
+        });
+
+        bioHTML += `<div style='text-align:center;margin-top:2rem;'>
+                        <button id='backToMenu' style='padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;'>Return to Crew</button>
+                    </div>`;
+
+        container.style.background = "linear-gradient(135deg, #000010, #001a33)";
+        container.innerHTML = bioHTML;
+
+        document.getElementById("backToMenu").addEventListener("click", () => location.reload());
+    } catch (err) {
+        container.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
     }
 });
 </script>
