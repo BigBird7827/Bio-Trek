@@ -615,7 +615,7 @@ document.addEventListener("click", async (event) => {
 
         container.style.background = "linear-gradient(135deg, #000010, #001a33)";
     container.innerHTML = `
-            <div style="padding:2rem;max-width:900px;margin:auto;">
+            <div style="padding:2rem 7.5rem;max-width:550px;margin:50px auto;padding-left:75px;padding-right:75px;">
                 <h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:13pt;">${person.name}</h1>
                 <div style="white-space:pre-wrap;line-height:1.6;font-size:13pt;color:white;">${person.bio}</div>
                 <div style="text-align:center;margin-top:2rem;">
@@ -668,8 +668,8 @@ document.addEventListener("click", async (event) => {
 
         container.style.background = "linear-gradient(135deg, #000010, #001a33)";
         container.innerHTML = `
-            <div style="padding:2rem;max-width:900px;margin:auto;">
-                <h1 style="font-family:Orbitron,sans-serif;color:gold;text-align:center;font-size:13pt;">${person.name}</h1>
+            <div style="padding:2rem 7.5rem;max-width:550px;margin:50px auto;padding-left:75px;padding-right:75px;">
+                <h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:13pt;">${person.name}</h1>
                 <div style="white-space:pre-wrap;line-height:1.6;font-size:13pt;color:white;">${formatBioText(person.bio)}</div>
                 <div style="text-align:center;margin-top:2rem;">
                     <button id="backToMenu" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button>
@@ -716,8 +716,8 @@ document.addEventListener("click", async (event) => {
 
         container.style.background = "linear-gradient(135deg, #000010, #001a33)";
         container.innerHTML = `
-            <div style="padding:2rem;max-width:900px;margin:auto;">
-                <h1 style="font-family:Orbitron,sans-serif;color:gold;text-align:center;font-size:18pt;">${person.name}</h1>
+            <div style="padding:2rem 7.5rem;max-width:550px;margin:50px auto;padding-left:75px;padding-right:75px;">
+                <h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:18pt;">${person.name}</h1>
                 <div style="white-space:pre-wrap;line-height:1.6;font-size:13pt;color:white;">${formatBioText(person.bio)}</div>
                 <div style="text-align:center;margin-top:2rem;">
                     <button id="backToMenu" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button>
@@ -760,8 +760,8 @@ document.addEventListener("click", async (event) => {
 
         container.style.background = "linear-gradient(135deg, #000010, #001a33)";
         container.innerHTML = `
-            <div style="padding:2rem;max-width:900px;margin:auto;">
-                <h1 style="font-family:Orbitron,sans-serif;color:gold;text-align:center;font-size:18pt;">${person.name}</h1>
+            <div style="padding:2rem 7.5rem;max-width:550px;margin:50px auto;padding-left:75px;padding-right:75px;">
+                <h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:18pt;">${person.name}</h1>
                 <div style="white-space:pre-wrap;line-height:1.6;font-size:13pt;color:white;">${formatBioText(person.bio)}</div>
                 <div style="text-align:center;margin-top:2rem;">
                     <button id="backToMenu" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button>
@@ -804,8 +804,8 @@ document.addEventListener("click", async (event) => {
 
         container.style.background = "linear-gradient(135deg, #000010, #001a33)";
         container.innerHTML = `
-            <div style="padding:2rem;max-width:900px;margin:auto;">
-                <h1 style="font-family:Orbitron,sans-serif;color:gold;text-align:center;font-size:18pt;">${person.name}</h1>
+            <div style="padding:2rem 7.5rem;max-width:550px;margin:50px auto;padding-left:75px;padding-right:75px;">
+                <h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:18pt;">${person.name}</h1>
                 <div style="white-space:pre-wrap;line-height:1.6;font-size:13pt;color:white;">${formatBioText(person.bio)}</div>
                 <div style="text-align:center;margin-top:2rem;">
                     <button id="backToMenu" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button>
@@ -945,7 +945,7 @@ document.addEventListener("click", async (event) => {
 })();
 </script>
 <script>
-// --- Updated JSON Bio Loader (Integrated) ---
+// --- Updated JSON Bio Loader (Correct Remote URL) ---
 document.addEventListener("click", async (event) => {
     const link = event.target.closest("a.character-name");
     if (!link) return;
@@ -956,7 +956,7 @@ document.addEventListener("click", async (event) => {
     container.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
 
     try {
-        const res = await fetch("Bio-Crew-TOS.json");
+        const res = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json");
         const data = await res.json();
         const bios = data.bios[name] || data.bios[name.replace(/\./g, '')] || data.bios[name.replace(/[^A-Za-z ]/g, '')];
 
@@ -965,10 +965,10 @@ document.addEventListener("click", async (event) => {
             return;
         }
 
-        let bioHTML = `<h1 style='font-family:Orbitron,sans-serif;color:gold;text-align:center;font-size:1.5rem;'>${name}</h1>`;
+        let bioHTML = `<h1 style='font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:1.5rem;'>${name}</h1>`;
         bios.forEach(section => {
-            bioHTML += `<h3 style='color:gold;font-weight:bold;margin-top:1.5rem;'>${section.header}</h3>`;
-            bioHTML += `<p style='color:white;line-height:1.6;'>${section.text}</p>`;
+            bioHTML += `<h3 style='color:gold;font-weight:bold;margin-top:1.5rem;max-width:70%;margin-left:auto;margin-right:auto;text-align:left;'>${section.header}</h3>`;
+            bioHTML += `<p style='color:white;line-height:1.6;max-width:70%;margin-left:auto;margin-right:auto;'>${section.text}</p>`;
         });
 
         bioHTML += `<div style='text-align:center;margin-top:2rem;'>
