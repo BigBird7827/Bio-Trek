@@ -247,7 +247,6 @@
     font-size: 1.1em !important;
     -webkit-text-stroke: 0.5px black !important; text-stroke: 0.5px black !important; }
 
-
 .character-card a.character-name { color: white !important; }
 .character-card p.character-title { color: gold !important; }
 .character-card a.character-actor { color: limegreen !important; -webkit-text-stroke: 0.5px black !important; text-stroke: 0.5px black !important; }
@@ -317,699 +316,197 @@
 </div>
 </div>
 </main>
-<script>
-        const characterMap = {
-            "The Original Series": [
-                "James T. Kirk",
-                "Spock",
-                "Leonard McCoy"
-            ],
-            "The Next Generation": [
-                "Jean-Luc Picard",
-                "William Riker",
-                "Data"
-            ],
-            "Deep Space Nine": [
-                "Benjamin Sisko",
-                "Kira Nerys",
-                "Odo"
-            ],
-            "Voyager": [
-                "Kathryn Janeway",
-                "Chakotay",
-                "Tuvok"
-            ],
-            "Enterprise": [
-                "Jonathan Archer",
-                "T'Pol",
-                "Trip Tucker"
-            ],
-            "Discovery": [
-                "Michael Burnham",
-                "Saru",
-                "Gabriel Lorca"
-            ],
-            "Picard": [
-                "Jean-Luc Picard",
-                "Raffi Musiker",
-                "Seven of Nine"
-            ],
-            "Strange New Worlds": [
-                "Christopher Pike",
-                "Una Chin-Riley",
-                "Spock"
-            ]
-        };
-
-        function openSeries(seriesName) {
-            const title = document.querySelector(".title-main");
-            const subtitle = document.querySelector(".subtitle-main");
-            const seriesGrid = document.querySelector(".series-grid");
-            const cardsGrid = document.querySelector(".cards-grid");
-            const returnLink = document.getElementById("return-menu");
-
-            const card1Text = document.getElementById("card-1-text");
-            const card2Text = document.getElementById("card-2-text");
-            const card3Text = document.getElementById("card-3-text");
-
-            const card1Img = document.getElementById("card-1-img");
-            const card2Img = document.getElementById("card-2-img");
-            const card3Img = document.getElementById("card-3-img");
-
-            title.textContent = "Star Trek";
-            subtitle.textContent = seriesName;
-
-            seriesGrid.style.display = "none";
-            cardsGrid.style.display = "flex";
-            returnLink.style.display = "block";
-
-            if (seriesName === "The Original Series") {
-                const bioUrl = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json";
-
-                card1Text.innerHTML = `<a href="${bioUrl}" class="character-name">James T. Kirk</a><br><p class="character-title">Captain</p><br><a href="#" class="character-actor">William Shatner</a>`;
-                card2Text.innerHTML = `<a href="${bioUrl}" class="character-name">Spock</a><br><p class="character-title">Lt. Commander</p><br><a href="#" class="character-actor">Leonard Nimoy</a>`;
-                card3Text.innerHTML = `<a href="${bioUrl}" class="character-name">Leonard (Bones) McCoy</a><br><p class="character-title">Doctor</p><br><a href="#" class="character-actor">DeForest Kelley</a>`;
-
-                card1Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/James%20Kirk%20(TOS).png";
-                card2Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Spock%20(TOS).png";
-                card3Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20McCoy%20(TOS).png";
-
-                card1Img.style.display = "block";
-                card2Img.style.display = "block";
-                card3Img.style.display = "block";
-
-                document.querySelectorAll(".character-card.tos-only").forEach(c => c.style.display = "flex");
-            } else if (seriesName === "The Next Generation") {
-                document.querySelectorAll(".character-card.tos-only").forEach(c => c.style.display = "none");
-                card1Text.innerHTML = "Jean-Luc Picard<br>Captain";
-                card2Text.innerHTML = "William T. Riker<br>Commander";
-                card3Text.innerHTML = "Data<br>Lt. Commander";
-
-                card1Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Jean-Luc%20Picard%20(TNG).png";
-                card2Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/William%20T%20Riker%20(TNG).png";
-                card3Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Data%20(TNG).png";
-
-                card1Img.style.display = "block";
-                card2Img.style.display = "block";
-                card3Img.style.display = "block";
-            } else if (seriesName === "Deep Space Nine") {
-                card1Text.innerHTML = "Benjamin Sisko<br>Captain";
-                card2Text.innerHTML = "Kira Nerys<br>Colonel";
-                card3Text.innerHTML = "Odo<br>Security Chief";
-
-                card1Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Benjamin%20Sisko%20(DS9).png";
-                card2Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Major%20Kira%20(DS9).png";
-                card3Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Odo%20(DS9).png";
-
-                card1Img.style.display = "block";
-                card2Img.style.display = "block";
-                card3Img.style.display = "block";
-            } else if (seriesName === "Voyager") {
-                card1Text.innerHTML = "Kathryn Janeway<br>Captain";
-                card2Text.innerHTML = "Chakotay<br>1st Officer";
-                card3Text.innerHTML = "Tuvok<br>Chief Security Officer";
-
-                card1Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Kathry%20Janeway%20(Voy).png";
-                card2Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Chakotay%20(Voy).png";
-                card3Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Tuvok%20(Voy).png";
-
-                card1Img.style.display = "block";
-                card2Img.style.display = "block";
-                card3Img.style.display = "block";
-            } else if (seriesName === "Enterprise") {
-                card1Text.innerHTML = "Jonathan Archer<br>Captain";
-                card2Text.innerHTML = "T'Pol<br>Sub-Commander";
-                card3Text.innerHTML = "Charles \"Trip\" Tucker III<br>Commander";
-
-                card1Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Jonathan%20Archer%20(Ent).png";
-                card2Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/TPol%20(Ent).png";
-                card3Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Trip%20Tucker%20(Ent).png";
-
-                card1Img.style.display = "block";
-                card2Img.style.display = "block";
-                card3Img.style.display = "block";
-            } else if (seriesName === "Discovery") {
-                card1Text.innerHTML = "Michael Burnham<br>Captain";
-                card2Text.innerHTML = "Saru<br>Captain";
-                card3Text.innerHTML = "Gabriel Lorca<br>Captain";
-
-                card1Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Burnham%20(Dis).png";
-                card2Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Saru%20(Dis).png";
-                card3Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Lorca%20(Dis).png";
-
-                card1Img.style.display = "block";
-                card2Img.style.display = "block";
-                card3Img.style.display = "block";
-            } else if (seriesName === "Picard") {
-                card1Text.innerHTML = "Jean-Luc Picard<br>Picard";
-                card2Text.innerHTML = "Will Riker<br>Riker";
-                card3Text.innerHTML = "Raffi Musiker<br>Raffi";
-
-                card1Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Picard%20(Pic).png";
-                card2Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Riker%20(Pic).png";
-                card3Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Raffi%20(Pic).png";
-
-                card1Img.style.display = "block";
-                card2Img.style.display = "block";
-                card3Img.style.display = "block";
-            } else if (seriesName === "Strange New Worlds") {
-                card1Text.innerHTML = "Christopher Pike<br>Captain";
-                card2Text.innerHTML = "Una Chin Riley<br>Number One";
-                card3Text.innerHTML = "Spock<br>Lieutenant";
-
-                card1Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Pike%20(SNW).png";
-                card2Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Una%20Chin%20Riley%20(SNW).png";
-                card3Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Spock%20(SNW).png";
-
-                card1Img.style.display = "block";
-                card2Img.style.display = "block";
-                card3Img.style.display = "block";
-            } else {
-                const names = characterMap[seriesName] || ["Character 1", "Character 2", "Character 3"];
-
-                card1Text.textContent = names[0];
-                card2Text.textContent = names[1];
-                card3Text.textContent = names[2];
-
-                card1Img.src = "";
-                card2Img.src = "";
-                card3Img.src = "";
-
-                card1Img.style.display = "none";
-                card2Img.style.display = "none";
-                card3Img.style.display = "none";
-            }
-        }
-
-        function returnToMenu() {
-            const title = document.querySelector(".title-main");
-            const subtitle = document.querySelector(".subtitle-main");
-            const seriesGrid = document.querySelector(".series-grid");
-            const cardsGrid = document.querySelector(".cards-grid");
-            const returnLink = document.getElementById("return-menu");
-
-            title.textContent = "Bio Trek";
-            subtitle.textContent = "Star Trek Biographies";
-
-            cardsGrid.style.display = "none";
-            seriesGrid.style.display = "flex";
-            returnLink.style.display = "none";
-        }
-
-        document.querySelectorAll(".series-btn").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const series = btn.getAttribute("data-series");
-                openSeries(series);
-            });
-        });
-
-        document.getElementById("return-menu").addEventListener("click", returnToMenu);
-
-// Add click handlers for character and actor links only
-document.addEventListener("click", function(e) {
-    if (e.target.classList.contains("character-name")) {
-        e.preventDefault();
-        // Restore original in-page bio display logic
-        const bioContainer = document.getElementById("bio-container");
-        const characterName = e.target.textContent.trim();
-        fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json")
-            .then(response => response.json())
-            .then(data => {
-                const character = data.find(c => c.name === characterName);
-                if (character) {
-                    bioContainer.innerHTML = `
-                        <h2 style="color: ${character.color || 'white'}">${character.name}</h2>
-                        <p style="color: ${character.textColor || 'white'}">${character.bio}</p>`;
-                    bioContainer.style.display = "block";
-                }
-            })
-            .catch(err => console.error("Error loading bio:", err));
-    } else if (e.target.classList.contains("character-actor")) {
-        e.preventDefault();
-        alert("Actor bio coming soon!");
-    }
-});
-
-    
-
-
-
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('character-name')) {
-        e.preventDefault();
-        const characterName = e.target.textContent.trim();
-
-        fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json")
-            .then(response => response.json())
-            .then(data => {
-                const character = data.find(c => c.name.trim() === characterName);
-                if (character) {
-                    document.getElementById('cards-page').style.display = 'none';
-                    document.getElementById('bio-page').style.display = 'block';
-                    const bioContainer = document.getElementById('bio-container');
-                    bioContainer.innerHTML = `
-                        <h2 class="bio-name">${character.name}</h2>
-                        <h3 class="bio-title">${character.rank}</h3>
-                        <p class="bio-text">${character.bio}</p>`;
-                } else {
-                    console.error('Character not found in JSON:', characterName);
-                }
-            })
-            .catch(err => console.error('Error loading bio:', err));
-    } else if (e.target.classList.contains('character-actor')) {
-        e.preventDefault();
-        alert('Actor bio coming soon!');
-    }
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    const returnSeriesBtn = document.getElementById('return-series');
-    if (returnSeriesBtn) {
-        returnSeriesBtn.addEventListener('click', () => {
-            document.getElementById('bio-page').style.display = 'none';
-            document.getElementById('cards-page').style.display = 'block';
-        });
-    }
-});
-
-
-// --- Dynamic Bio Viewer ---
-document.addEventListener("click", async (event) => {
-    const link = event.target.closest("a.character-name");
-    if (!link) return;
-    event.preventDefault();
-
-    const name = link.textContent.trim();
-    const container = document.querySelector(".series-wrapper");
-    container.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
-
-    try {
-        const res = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json");
-        const data = await res.json();
-        const person = data.find(p => p.name === name);
-
-        if (!person) {
-            container.innerHTML = "<p style='text-align:center;color:tomato;'>Biography not found.</p>";
-            return;
-        }
-
-        container.style.background = "linear-gradient(135deg, #000010, #001a33)";
-    container.innerHTML = `
-            <div style="padding:2rem 7.5rem;max-width:550px;margin:50px auto;padding-left:75px;padding-right:75px;">
-                <h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:13pt;">${person.name}</h1>
-                <div style="white-space:pre-wrap;line-height:1.6;font-size:13pt;color:white;">${person.bio}</div>
-                <div style="text-align:center;margin-top:2rem;">
-                    <button id="backToMenu" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button>
-                </div>
-            </div>
-        `;
-
-        document.getElementById("backToMenu").addEventListener("click", () => {
-            location.reload();
-        });
-    } catch (err) {
-        container.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
-        console.error(err);
-    }
-});
-
-</script>
 <div id="bio-page" style="display:none; text-align:center;">
 <div id="bio-container"></div>
 <button class="nav-button" id="return-series">Return to Series</button>
 </div>
-<script>
-// --- Format Bio Text ---
-function formatBioText(bio) {
-    return bio
-        .replace(/\n\n([A-Z][A-Za-z0-9 ,\-’'()]+)\n\n/g, '<br><br><span style="color:gold;font-weight:bold;">$1</span><br><br>')
-        .replace(/\n/g, '<br>');
-}
 
-// Override bio rendering dynamically
-document.addEventListener("click", async (event) => {
-    const link = event.target.closest("a.character-name");
-    if (!link) return;
-    event.preventDefault();
-
-    const name = link.textContent.trim();
-    const container = document.querySelector(".series-wrapper");
-    container.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
-
-    try {
-        const res = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json");
-        const data = await res.json();
-        const person = data.find(p => p.name === name);
-
-        if (!person) {
-            container.innerHTML = "<p style='text-align:center;color:tomato;'>Biography not found.</p>";
-            return;
-        }
-
-        container.style.background = "linear-gradient(135deg, #000010, #001a33)";
-        container.innerHTML = `
-            <div style="padding:2rem 7.5rem;max-width:550px;margin:50px auto;padding-left:75px;padding-right:75px;">
-                <h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:13pt;">${person.name}</h1>
-                <div style="white-space:pre-wrap;line-height:1.6;font-size:13pt;color:white;">${formatBioText(person.bio)}</div>
-                <div style="text-align:center;margin-top:2rem;">
-                    <button id="backToMenu" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button>
-                </div>
-            </div>
-        `;
-
-        document.getElementById("backToMenu").addEventListener("click", () => location.reload());
-    } catch {
-        container.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
-    }
-});
-</script>
-<script>
-// --- Format Bio Text (Accurate Headers + Paragraphs) ---
-function formatBioText(bio) {
-    // Highlight the first header (immediately after name)
-    bio = bio.replace(/^([A-Z][A-Za-z0-9 ,\-’'()]+)\n\n/, '<span style="color:gold;font-weight:bold;">$1</span><br><br>');
-    // Highlight remaining headers
-    bio = bio.replace(/\n\n([A-Z][A-Za-z0-9 ,\-’'()]+)\n\n/g, '<br><br><span style="color:gold;font-weight:bold;">$1</span><br><br>');
-    // Convert remaining newlines to paragraph breaks
-    bio = bio.replace(/\n/g, '<br>');
-    return bio;
-}
-
-document.addEventListener("click", async (event) => {
-    const link = event.target.closest("a.character-name");
-    if (!link) return;
-    event.preventDefault();
-
-    const name = link.textContent.trim();
-    const container = document.querySelector(".series-wrapper");
-    container.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
-
-    try {
-        const res = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json");
-        const data = await res.json();
-        const person = data.find(p => p.name === name);
-
-        if (!person) {
-            container.innerHTML = "<p style='text-align:center;color:tomato;'>Biography not found.</p>";
-            return;
-        }
-
-        container.style.background = "linear-gradient(135deg, #000010, #001a33)";
-        container.innerHTML = `
-            <div style="padding:2rem 7.5rem;max-width:550px;margin:50px auto;padding-left:75px;padding-right:75px;">
-                <h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:18pt;">${person.name}</h1>
-                <div style="white-space:pre-wrap;line-height:1.6;font-size:13pt;color:white;">${formatBioText(person.bio)}</div>
-                <div style="text-align:center;margin-top:2rem;">
-                    <button id="backToMenu" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button>
-                </div>
-            </div>
-        `;
-
-        document.getElementById("backToMenu").addEventListener("click", () => location.reload());
-    } catch {
-        container.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
-    }
-});
-</script>
-<script>
-function formatBioText(bio) {
-    bio = bio.replace(/^([A-Z][A-Za-z0-9 ,\-’'()]+)\n\n/, '<span style="color:gold;font-weight:bold;">$1</span><br><br>');
-    bio = bio.replace(/\n\n([A-Z][A-Za-z0-9 ,\-’'()]+)(?=\n|$)/g, '<br><br><span style="color:gold;font-weight:bold;">$1</span>');
-    bio = bio.replace(/\n/g, '<br>');
-    return bio;
-}
-
-document.addEventListener("click", async (event) => {
-    const link = event.target.closest("a.character-name");
-    if (!link) return;
-    event.preventDefault();
-
-    const name = link.textContent.trim();
-    const container = document.querySelector(".series-wrapper");
-    container.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
-
-    try {
-        const res = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json");
-        const data = await res.json();
-        const person = data.find(p => p.name === name);
-
-        if (!person) {
-            container.innerHTML = "<p style='text-align:center;color:tomato;'>Biography not found.</p>";
-            return;
-        }
-
-        container.style.background = "linear-gradient(135deg, #000010, #001a33)";
-        container.innerHTML = `
-            <div style="padding:2rem 7.5rem;max-width:550px;margin:50px auto;padding-left:75px;padding-right:75px;">
-                <h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:18pt;">${person.name}</h1>
-                <div style="white-space:pre-wrap;line-height:1.6;font-size:13pt;color:white;">${formatBioText(person.bio)}</div>
-                <div style="text-align:center;margin-top:2rem;">
-                    <button id="backToMenu" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button>
-                </div>
-            </div>
-        `;
-
-        document.getElementById("backToMenu").addEventListener("click", () => location.reload());
-    } catch {
-        container.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
-    }
-});
-</script>
-<script>
-function formatBioText(bio) {
-    bio = bio.replace(/^\s*([A-Z][A-Za-z0-9 ,\-’'()]+)\s*\n\s*\n/, '<span style="color:gold;font-weight:bold;">$1</span><br><br>');
-    bio = bio.replace(/\n\s*\n\s*([A-Z][A-Za-z0-9 ,\-’'()]+)\s*(?=\n|$)/g, '<br><br><span style="color:gold;font-weight:bold;">$1</span>');
-    bio = bio.replace(/\n/g, '<br>');
-    return bio;
-}
-
-document.addEventListener("click", async (event) => {
-    const link = event.target.closest("a.character-name");
-    if (!link) return;
-    event.preventDefault();
-
-    const name = link.textContent.trim();
-    const container = document.querySelector(".series-wrapper");
-    container.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
-
-    try {
-        const res = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json");
-        const data = await res.json();
-        const person = data.find(p => p.name === name);
-
-        if (!person) {
-            container.innerHTML = "<p style='text-align:center;color:tomato;'>Biography not found.</p>";
-            return;
-        }
-
-        container.style.background = "linear-gradient(135deg, #000010, #001a33)";
-        container.innerHTML = `
-            <div style="padding:2rem 7.5rem;max-width:550px;margin:50px auto;padding-left:75px;padding-right:75px;">
-                <h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:18pt;">${person.name}</h1>
-                <div style="white-space:pre-wrap;line-height:1.6;font-size:13pt;color:white;">${formatBioText(person.bio)}</div>
-                <div style="text-align:center;margin-top:2rem;">
-                    <button id="backToMenu" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button>
-                </div>
-            </div>
-        `;
-
-        document.getElementById("backToMenu").addEventListener("click", () => location.reload());
-    } catch {
-        container.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
-    }
-});
-</script>
-<script id="bio-loader">(function(){function $(sel,ctx){return (ctx||document).querySelector(sel);}function create(tag,cls){var el=document.createElement(tag); if(cls) el.className=cls; return el;}function renderLegacy(items, container){  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    var parts=(it.bio||'').replace(/\r\n?/g,'\n').split(/\n\n+/).filter(Boolean);    if(parts.length){      var h=create('p','bio-header'); h.textContent=parts[0]; card.appendChild(h);      for(var i=1;i<parts.length;i++){ var p=create('p'); p.textContent=parts[i]; card.appendChild(p);}    }    container.appendChild(card);  });}function renderStructured(obj, container){  var items = Array.isArray(obj.crew)? obj.crew : obj;  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    if(it.header){ var h=create('p','bio-header'); h.textContent=it.header; card.appendChild(h);}    (it.paragraphs||[]).forEach(function(text){ var p=create('p'); p.textContent=text; card.appendChild(p); });    container.appendChild(card);  });}function load(){  var container = document.querySelector('#crew, .crew, main, body');  if(!container){ container=document.body; }  fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json").then(function(r){return r.json();}).then(function(data){    var isLegacy = Array.isArray(data) && data.length && typeof data[0].bio === 'string';    var isStructured = (Array.isArray(data.crew) && data.crew.length && ('header' in data.crew[0]));    if(isStructured){ renderStructured(data, container);}    else if(isLegacy){ renderLegacy(data, container);}    else {      var msg=create('p'); msg.textContent='</script>
-<!-- Build 304: minimal diagnostic + gold enforcement -->
 <div id="build304-status" style="font:14px system-ui, sans-serif; padding:8px 12px;"></div>
-<script id="build304">
-(function() {
-  const RAW_URL = 'https://raw.githubusercontent.com/BigBird7827/Bio-Trek//main/Crew/Bio-Crew-TOS.json';
-  const statusEl = document.getElementById('build304-status');
-  const MAX_SNIPPET = 180;
 
-  function show(msg, isError) {
-    if (!statusEl) return;
-    statusEl.textContent = msg;
-    statusEl.style.color = isError ? '#b00020' : '#444';
-  }
-
-  function norm(s) { return (s||'').replace(/\u00A0/g,' ').replace(/\r\n?/g,'\n').replace(/[\t ]+$/gm,'').trim(); }
-
-  function splitBlocks(s) {
-    const parts = norm(s).split(/\n\n+/).map(p=>p.trim()).filter(Boolean);
-    return parts.length ? parts : (norm(s) ? [norm(s)] : []);
-  }
-
-  function looksLikeHeader(line) {
-    const s = line.trim();
-    if (!s) return false;
-    if (s.length > 140) return false;
-    if (s.includes(':') || s.includes('—') || s.includes('- ')) return true;
-    const words = s.split(/\s+/);
-    if (words.length < 2 || words.length > 12) return false;
-    if (/[.!?]$/.test(s)) return false;
-    const titleish = words.reduce((n,w)=> n + ((/^[A-Z]/.test(w)) || (/^[A-Z]{2,}$/.test(w)) ? 1 : 0), 0) / words.length;
-    return titleish >= 0.6;
-  }
-
-  function extractHeadersFromLegacy(bioText) {
-    const blocks = [];
-    const lines = norm(bioText).split('\n');
-    let buf = [];
-    function flush() { if (buf.length) { blocks.push(buf.join(' ').trim()); buf = []; } }
-    for (let i=0;i<lines.length;i++) {
-      const L = lines[i].trim();
-      if (!L) { flush(); continue; }
-      if (looksLikeHeader(L)) { flush(); blocks.push(L); }
-      else { buf.push(L); }
-    }
-    flush();
-    return blocks.filter(looksLikeHeader);
-  }
-
-  function getHeadersFromData(data) {
-    try {
-      if (Array.isArray(data)) {
-        const hs = [];
-        data.forEach(it => {
-          const bio = it && it.bio || '';
-          const blocks = splitBlocks(bio);
-          blocks.forEach(b => { if (looksLikeHeader(b)) hs.push(b); });
-          extractHeadersFromLegacy(bio).forEach(h => hs.push(h));
-        });
-        return Array.from(new Set(hs.map(norm))).filter(Boolean);
-      } else if (data && Array.isArray(data.crew)) {
-        const hs = [];
-        data.crew.forEach(it => {
-          if (it && it.header) hs.push(norm(it.header));
-          (it.paragraphs||[]).forEach(p => {
-            splitBlocks(p).forEach(b => { if (looksLikeHeader(b)) hs.push(b); });
-          });
-        });
-        return Array.from(new Set(hs.map(norm))).filter(Boolean);
-      }
-    } catch(_) {}
-    return [];
-  }
-
-  function applyGold(headers) {
-    if (!headers.length) return;
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, null);
-    while (walker.nextNode()) {
-      const node = walker.currentNode;
-      const t = node && node.textContent ? node.textContent.trim() : '';
-      if (!t) continue;
-      for (let i=0;i<headers.length;i++) {
-        const h = headers[i];
-        if (!h) continue;
-        if (t === h || t.startsWith(h)) {
-          node.style.color = 'gold';
-          node.style.fontWeight = '700';
-          break;
-        }
-      }
-    }
-  }
-
-  async function start() {
-    show('Loading bios from: ' + RAW_URL, false);
-    try {
-      const res = await fetch(RAW_URL, { cache: 'no-store', mode: 'cors' });
-      if (!res.ok) {
-        show('Failed to load JSON (HTTP ' + res.status + ') from: ' + RAW_URL, true);
-        return;
-      }
-      const text = await res.text();
-      let data;
-      try { data = JSON.parse(text); }
-      catch(parseErr) {
-        const snippet = text.slice(0, MAX_SNIPPET).replace(/\s+/g,' ').trim();
-        show('JSON parse error. First part of response was: ' + snippet, true);
-        return;
-      }
-      const headers = getHeadersFromData(data);
-      if (!headers.length) {
-        show('</script>
 <script>
-// --- Updated JSON Bio Loader (Correct Remote URL) ---
-document.addEventListener("click", async (event) => {
-    const link = event.target.closest("a.character-name");
-    if (!link) return;
-    event.preventDefault();
 
-    const name = link.textContent.trim();
-    const container = document.querySelector(".series-wrapper");
-    container.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
+(function () {
+  
+  const DOC = document;
+  const WRAP_SEL = ".series-wrapper";
 
-    try {
-        const res = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json");
-        const data = await res.json();
-        const bios = data.bios[name] || data.bios[name.replace(/\./g, '')] || data.bios[name.replace(/[^A-Za-z ]/g, '')];
+  
+  const NAME_MAP = {
+    "Leonard (Bones) McCoy": "Doctor McCoy",
+    "James T. Kirk": "James T Kirk",
+    "Montgomery Scott": "Scotty",
+    "Nyota Uhura": "Uhura",
+    "Hikaru Sulu": "Sulu",
+    "Pavel Chekov": "Chekov",
+    "Yeoman Janice Rand": "Yeoman Rand",
+    "Nurse Christine Chapel": "Nurse Chapel"
+  };
 
-        if (!bios) {
-            container.innerHTML = "<p style='text-align:center;color:tomato;'>Biography not found.</p>";
-            return;
-        }
+  let snapshotHTML = null; 
+  let biosCache = null;    
 
-        let bioHTML = `<h1 style='font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:1.5rem;'>${name}</h1>`;
-        bios.forEach(section => {
-            bioHTML += `<h3 style='color:gold;font-weight:bold;margin-top:1.5rem;max-width:70%;margin-left:auto;margin-right:auto;text-align:left;'>${section.header}</h3>`;
-            bioHTML += `<p style='color:white;line-height:1.6;max-width:70%;margin-left:auto;margin-right:auto;'>${section.text}</p>`;
-        });
+  function $(sel, ctx){ return (ctx||DOC).querySelector(sel); }
+  function sanitize(s){ return String(s).replace(/[&<>]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
 
-        bioHTML += `<div style='text-align:center;margin-top:2rem;'>
-                        <button id='backToMenu' style='padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;'>Return to Crew</button>
-                    </div>`;
+  async function loadBios() {
+    if (biosCache) return biosCache;
+    
+    const res = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json", {cache:"no-store"});
+    const data = await res.json();
+    biosCache = data && data.bios ? data.bios : data;
+    return biosCache;
+  }
 
-        container.style.background = "linear-gradient(135deg, #000010, #001a33)";
-        container.innerHTML = bioHTML;
+  function openSeries(seriesName) {
+    const title = $(".title-main");
+    const subtitle = $(".subtitle-main");
+    const seriesGrid = $(".series-grid");
+    const cardsGrid = $(".cards-grid");
+    const returnLink = $("#return-menu");
 
-        document.getElementById("backToMenu").addEventListener("click", () => location.reload());
-    } catch (err) {
-        container.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
-        console.error(err);
+    const card1Text = $("#card-1-text");
+    const card2Text = $("#card-2-text");
+    const card3Text = $("#card-3-text");
+
+    const card1Img = $("#card-1-img");
+    const card2Img = $("#card-2-img");
+    const card3Img = $("#card-3-img");
+
+    title.textContent = "Star Trek";
+    subtitle.textContent = seriesName;
+
+    seriesGrid.style.display = "none";
+    cardsGrid.style.display = "flex";
+    returnLink.style.display = "block";
+
+    if (seriesName === "The Original Series") {
+      const bioUrl = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json";
+
+      card1Text.innerHTML = `<a href="${bioUrl}" class="character-name">James T. Kirk</a><br><p class="character-title">Captain</p><br><a href="#" class="character-actor">William Shatner</a>`;
+      card2Text.innerHTML = `<a href="${bioUrl}" class="character-name">Spock</a><br><p class="character-title">Lt. Commander</p><br><a href="#" class="character-actor">Leonard Nimoy</a>`;
+      card3Text.innerHTML = `<a href="${bioUrl}" class="character-name">Leonard (Bones) McCoy</a><br><p class="character-title">Doctor</p><br><a href="#" class="character-actor">DeForest Kelley</a>`;
+
+      card1Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/James%20Kirk%20(TOS).png";
+      card2Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Spock%20(TOS).png";
+      card3Img.src = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20McCoy%20(TOS).png";
+
+      card1Img.style.display = "block";
+      card2Img.style.display = "block";
+      card3Img.style.display = "block";
+
+      DOC.querySelectorAll(".character-card.tos-only").forEach(c => c.style.display = "flex");
+    } else {
+      
+      DOC.querySelectorAll(".character-card.tos-only").forEach(c => c.style.display = "none");
+      card1Text.textContent = "Character 1";
+      card2Text.textContent = "Character 2";
+      card3Text.textContent = "Character 3";
+
+      card1Img.style.display = "none";
+      card2Img.style.display = "none";
+      card3Img.style.display = "none";
     }
-});
-</script>
-<script>
-document.addEventListener("click", async (event) => {
-    const link = event.target.closest("a.character-name");
-    if (!link) return;
-    event.preventDefault();
+  }
 
-    const name = link.textContent.trim();
-    const container = document.querySelector(".series-wrapper");
-    container.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
+  function returnToMenu() {
+    const title = $(".title-main");
+    const subtitle = $(".subtitle-main");
+    const seriesGrid = $(".series-grid");
+    const cardsGrid = $(".cards-grid");
+    const returnLink = $("#return-menu");
 
-    try {
-        const res = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json");
-        const data = await res.json();
-        const bios = data.bios[name] || data.bios[name.replace(/\./g, '')] || data.bios[name.replace(/[^A-Za-z ]/g, '')];
+    title.textContent = "Bio Trek";
+    subtitle.textContent = "Star Trek Biographies";
 
-        if (!bios) {
-            container.innerHTML = "<p style='text-align:center;color:tomato;'>Biography not found.</p>";
-            return;
-        }
+    cardsGrid.style.display = "none";
+    seriesGrid.style.display = "flex";
+    returnLink.style.display = "none";
+  }
 
-        let bioHTML = `<h1 style='font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:1.5rem;'>${name}</h1>`;
-        bios.forEach(section => {
-            bioHTML += `<h3 style='color:gold;font-weight:bold;margin-top:1.5rem;max-width:70%;margin-left:auto;margin-right:auto;text-align:left;'>${section.header}</h3>`;
-            bioHTML += `<p style='color:white;line-height:1.6;max-width:70%;margin-left:auto;margin-right:auto;'>${section.text}</p>`;
-        });
+  function renderBio(displayName, sections) {
+    const wrapper = $(WRAP_SEL);
+    if (!wrapper) return;
 
-        bioHTML += `<div style='text-align:center;margin-top:2rem;'>
-                        <button id='backToMenu' style='padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;'>Return to Crew</button>
-                    </div>`;
+    const safeName = sanitize(displayName);
+    let html = "<div id='bioView' style=\"padding:2rem 7.5rem;max-width:700px;margin:50px auto;\">";
+    html += `<h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:1.5rem;">${safeName}</h1>`;
 
-        container.style.background = "linear-gradient(135deg, #000010, #001a33)";
-        container.innerHTML = bioHTML;
+    sections.forEach(s => {
+      html += `<h3 style="color:gold;font-weight:bold;margin-top:1.5rem;max-width:70%;margin-left:auto;margin-right:auto;text-align:left;">${sanitize(s.header)}</h3>`;
+      html += `<p style="color:white;line-height:1.6;max-width:70%;margin-left:auto;margin-right:auto;">${sanitize(s.text)}</p>`;
+    });
 
-        document.getElementById("backToMenu").addEventListener("click", () => location.reload());
-    } catch (err) {
-        container.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
+    html += `<div style="text-align:center;margin-top:2rem;">
+               <button id="returnToCrew" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button>
+             </div>`;
+    html += "</div>";
+
+    wrapper.style.background = "linear-gradient(135deg, #000010, #001a33)";
+    wrapper.innerHTML = html;
+  }
+
+  
+  DOC.addEventListener("click", async (ev) => {
+    const seriesBtn = ev.target.closest(".series-btn");
+    if (seriesBtn) {
+      ev.preventDefault();
+      openSeries(seriesBtn.getAttribute("data-series"));
+      return;
     }
-});
+
+    if (ev.target.closest("#return-menu")) {
+      ev.preventDefault();
+      returnToMenu();
+      return;
+    }
+
+    const charLink = ev.target.closest("a.character-name");
+    if (charLink) {
+      ev.preventDefault();
+      const wrapper = $(WRAP_SEL);
+      if (!wrapper) return;
+
+      if (!snapshotHTML) snapshotHTML = wrapper.innerHTML; 
+      const displayName = charLink.textContent.trim();
+      const key = NAME_MAP[displayName] || displayName;
+
+      wrapper.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
+      try {
+        const bios = await loadBios();
+        const sections = bios[key] || bios[key.replace(/\./g,'')] || bios[key.replace(/[^A-Za-z ]/g,'')];
+        if (!sections) {
+          wrapper.innerHTML = "<p style='text-align:center;color:tomato;'>Biography not found.</p>";
+          return;
+        }
+        renderBio(displayName, sections);
+      } catch (e) {
+        wrapper.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
+      }
+      return;
+    }
+
+    if (ev.target && ev.target.id === "returnToCrew") {
+      ev.preventDefault();
+      const wrapper = $(WRAP_SEL);
+      if (!wrapper || !snapshotHTML) return;
+      
+      wrapper.innerHTML = snapshotHTML;
+      snapshotHTML = null;
+      
+      const seriesGrid = $(".series-grid", wrapper);
+      const cardsGrid  = $(".cards-grid", wrapper);
+      if (seriesGrid && cardsGrid) {
+        seriesGrid.style.display = "none";
+        cardsGrid.style.display = "flex";
+      }
+      return;
+    }
+  });
+
+  
+  })();
+
 </script>
+
 </body>
 </html>
