@@ -1,15 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bio-Trek</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bio-Trek</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<style>
         html, body {
             margin: 0;
             padding: 0;
@@ -256,73 +255,69 @@
 </style>
 <style id="gold-headers">.bio-header{color:gold;font-weight:700;}h1,h2,h3,h4,h5,h6{color:gold;}</style></head>
 <body>
-    <header>
-        <h1 class="title-main">Bio Trek</h1>
-        <h2 class="subtitle-main">Star Trek Biographies</h2>
-    </header>
-
-    <main>
-        <div class="series-wrapper">
-            <div id="return-menu" class="return-link">
+<header>
+<h1 class="title-main">Bio Trek</h1>
+<h2 class="subtitle-main">Star Trek Biographies</h2>
+</header>
+<main>
+<div class="series-wrapper">
+<div class="return-link" id="return-menu">
                 Return to Series Menu
             </div>
-
-            <div class="series-grid">
-                <div class="button-row">
-                    <button type="button" class="series-btn" data-series="The Original Series">The Original Series</button>
-                    <button type="button" class="series-btn" data-series="The Next Generation">The Next Generation</button>
-                    <button type="button" class="series-btn" data-series="Deep Space Nine">Deep Space Nine</button>
-                </div>
-                <div class="button-row">
-                    <button type="button" class="series-btn" data-series="Voyager">Voyager</button>
-                    <button type="button" class="series-btn" data-series="Enterprise">Enterprise</button>
-                    <button type="button" class="series-btn" data-series="Discovery">Discovery</button>
-                </div>
-                <div class="button-row">
-                    <button type="button" class="series-btn" data-series="Picard">Picard</button>
-                    <button type="button" class="series-btn series-btn-placeholder" aria-hidden="true" tabindex="-1"></button>
-                    <button type="button" class="series-btn" data-series="Strange New Worlds">Strange New Worlds</button>
-                </div>
-            </div>
-
-            <div class="cards-grid">
-                <div class="cards-row">
-                    <div class="character-card" id="card-1">
-                        <img id="card-1-img" src="" alt="">
-                        <div id="card-1-text"></div>
-                    </div>
-                    <div class="character-card" id="card-2">
-                        <img id="card-2-img" src="" alt="">
-                        <div id="card-2-text"></div>
-                    </div>
-                    <div class="character-card" id="card-3">
-                        <img id="card-3-img" src="" alt="">
-                        <div id="card-3-text"></div>
-                    </div>
-                    <div class="character-card tos-only">
-                        <div><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Montgomery Scott</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Chief Engineer</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">James Doohan</a></div>
-                    </div>
-                    <div class="character-card tos-only">
-                        <div><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Nyota Uhura</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Communications Officer</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Nichelle Nichols</a></div>
-                    </div>
-                    <div class="character-card tos-only">
-                        <div><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Hikaru Sulu</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Helmsman</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">George Takei</a></div>
-                    </div>
-                    <div class="character-card tos-only">
-                        <div><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Pavel Chekov</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Navigator</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Walter Koenig</a></div>
-                    </div>
-                    <div class="character-card tos-only">
-                        <div><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Yeoman Janice Rand</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Yeoman</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Grace Lee Whitney</a></div>
-                    </div>
-                    <div class="character-card tos-only">
-                        <div><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Nurse Christine Chapel</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Nurse</a><br><a href="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json">Majel Barrett</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script>
+<div class="series-grid">
+<div class="button-row">
+<button class="series-btn" data-series="The Original Series" type="button">The Original Series</button>
+<button class="series-btn" data-series="The Next Generation" type="button">The Next Generation</button>
+<button class="series-btn" data-series="Deep Space Nine" type="button">Deep Space Nine</button>
+</div>
+<div class="button-row">
+<button class="series-btn" data-series="Voyager" type="button">Voyager</button>
+<button class="series-btn" data-series="Enterprise" type="button">Enterprise</button>
+<button class="series-btn" data-series="Discovery" type="button">Discovery</button>
+</div>
+<div class="button-row">
+<button class="series-btn" data-series="Picard" type="button">Picard</button>
+<button aria-hidden="true" class="series-btn series-btn-placeholder" tabindex="-1" type="button"></button>
+<button class="series-btn" data-series="Strange New Worlds" type="button">Strange New Worlds</button>
+</div>
+</div>
+<div class="cards-grid">
+<div class="cards-row">
+<div class="character-card" id="card-1">
+<img alt="" id="card-1-img" src=""/>
+<div id="card-1-text"></div>
+</div>
+<div class="character-card" id="card-2">
+<img alt="" id="card-2-img" src=""/>
+<div id="card-2-text"></div>
+</div>
+<div class="character-card" id="card-3">
+<img alt="" id="card-3-img" src=""/>
+<div id="card-3-text"></div>
+</div>
+<div class="character-card tos-only">
+<div><a class="character-name" href="#bio-James-T-Kirk">Montgomery Scott</a><br/><a href="#">Chief Engineer</a><br/><a href="#">James Doohan</a></div>
+</div>
+<div class="character-card tos-only">
+<div><a class="character-name" href="#bio-Spock">Nyota Uhura</a><br/><a href="#">Communications Officer</a><br/><a href="#">Nichelle Nichols</a></div>
+</div>
+<div class="character-card tos-only">
+<div><a class="character-name" href="#bio-Doctor-McCoy">Hikaru Sulu</a><br/><a href="#">Helmsman</a><br/><a href="#">George Takei</a></div>
+</div>
+<div class="character-card tos-only">
+<div><a class="character-name" href="#bio-Scotty">Pavel Chekov</a><br/><a href="#">Navigator</a><br/><a href="#">Walter Koenig</a></div>
+</div>
+<div class="character-card tos-only">
+<div><a class="character-name" href="#bio-Sulu">Yeoman Janice Rand</a><br/><a href="#">Yeoman</a><br/><a href="#">Grace Lee Whitney</a></div>
+</div>
+<div class="character-card tos-only">
+<div><a class="character-name" href="#bio-Chekov">Nurse Christine Chapel</a><br/><a href="#">Nurse</a><br/><a href="#">Majel Barrett</a></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
         const characterMap = {
             "The Original Series": [
                 "James T. Kirk",
@@ -639,13 +634,10 @@ document.addEventListener("click", async (event) => {
 });
 
 </script>
-
-    <div id="bio-page" style="display:none; text-align:center;">
-        <div id="bio-container"></div>
-        <button id="return-series" class="nav-button">Return to Series</button>
-    </div>
-    
-
+<div id="bio-page" style="display:none; text-align:center;">
+<div id="bio-container"></div>
+<button class="nav-button" id="return-series">Return to Series</button>
+</div>
 <script>
 // --- Format Bio Text ---
 function formatBioText(bio) {
@@ -691,8 +683,6 @@ document.addEventListener("click", async (event) => {
     }
 });
 </script>
-
-
 <script>
 // --- Format Bio Text (Accurate Headers + Paragraphs) ---
 function formatBioText(bio) {
@@ -741,8 +731,6 @@ document.addEventListener("click", async (event) => {
     }
 });
 </script>
-
-
 <script>
 function formatBioText(bio) {
     bio = bio.replace(/^([A-Z][A-Za-z0-9 ,\-’'()]+)\n\n/, '<span style="color:gold;font-weight:bold;">$1</span><br><br>');
@@ -787,8 +775,6 @@ document.addEventListener("click", async (event) => {
     }
 });
 </script>
-
-
 <script>
 function formatBioText(bio) {
     bio = bio.replace(/^\s*([A-Z][A-Za-z0-9 ,\-’'()]+)\s*\n\s*\n/, '<span style="color:gold;font-weight:bold;">$1</span><br><br>');
@@ -833,7 +819,6 @@ document.addEventListener("click", async (event) => {
     }
 });
 </script>
-
 <script id="bio-loader">(function(){function $(sel,ctx){return (ctx||document).querySelector(sel);}function create(tag,cls){var el=document.createElement(tag); if(cls) el.className=cls; return el;}function renderLegacy(items, container){  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    var parts=(it.bio||'').replace(/\r\n?/g,'\n').split(/\n\n+/).filter(Boolean);    if(parts.length){      var h=create('p','bio-header'); h.textContent=parts[0]; card.appendChild(h);      for(var i=1;i<parts.length;i++){ var p=create('p'); p.textContent=parts[i]; card.appendChild(p);}    }    container.appendChild(card);  });}function renderStructured(obj, container){  var items = Array.isArray(obj.crew)? obj.crew : obj;  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    if(it.header){ var h=create('p','bio-header'); h.textContent=it.header; card.appendChild(h);}    (it.paragraphs||[]).forEach(function(text){ var p=create('p'); p.textContent=text; card.appendChild(p); });    container.appendChild(card);  });}function load(){  var container = document.querySelector('#crew, .crew, main, body');  if(!container){ container=document.body; }  fetch('Bio-Crew-TOS.json').then(function(r){return r.json();}).then(function(data){    var isLegacy = Array.isArray(data) && data.length && typeof data[0].bio === 'string';    var isStructured = (Array.isArray(data.crew) && data.crew.length && ('header' in data.crew[0]));    if(isStructured){ renderStructured(data, container);}    else if(isLegacy){ renderLegacy(data, container);}    else {      var msg=create('p'); msg.textContent='Unsupported JSON format.'; container.appendChild(msg);    }  }).catch(function(err){    var msg=create('p'); msg.textContent='Failed to load bios: '+err; document.body.appendChild(msg);  });}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded', load);} else {load();}})();</script>
 <!-- Build 304: minimal diagnostic + gold enforcement -->
 <div id="build304-status" style="font:14px system-ui, sans-serif; padding:8px 12px;"></div>
