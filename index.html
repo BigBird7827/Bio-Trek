@@ -254,7 +254,7 @@
 .character-card a.character-actor { color: limegreen !important; -webkit-text-stroke: 0.5px black !important; text-stroke: 0.5px black !important; }
 
 </style>
-<style id="gold-headers">.bio-header{color:gold;font-weight:700;}h1,h2,h3,h4,h5,h6{color:gold;}</style><style id="locked-gold">.bio-header{color:gold !important;font-weight:700 !important;}h1,h2,h3,h4,h5,h6{color:gold !important;}</style></head>
+<style id="gold-headers">.bio-header{color:gold;font-weight:700;}h1,h2,h3,h4,h5,h6{color:gold;}</style></head>
 <body>
     <header>
         <h1 class="title-main">Bio Trek</h1>
@@ -834,5 +834,130 @@ document.addEventListener("click", async (event) => {
 });
 </script>
 
-<script id="bio-loader">(function(){function $(sel,ctx){return (ctx||document).querySelector(sel);}function create(tag,cls){var el=document.createElement(tag); if(cls) el.className=cls; return el;}function renderLegacy(items, container){  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    var parts=(it.bio||'').replace(/\r\n?/g,'\n').split(/\n\n+/).filter(Boolean);    if(parts.length){      var h=create('p','bio-header'); h.textContent=parts[0]; card.appendChild(h);      for(var i=1;i<parts.length;i++){ var p=create('p'); p.textContent=parts[i]; card.appendChild(p);}    }    container.appendChild(card);  });}function renderStructured(obj, container){  var items = Array.isArray(obj.crew)? obj.crew : obj;  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    if(it.header){ var h=create('p','bio-header'); h.textContent=it.header; card.appendChild(h);}    (it.paragraphs||[]).forEach(function(text){ var p=create('p'); p.textContent=text; card.appendChild(p); });    container.appendChild(card);  });}function load(){  var container = document.querySelector('#crew, .crew, main, body');  if(!container){ container=document.body; }  fetch('Bio-Crew-TOS.json').then(function(r){return r.json();}).then(function(data){    var isLegacy = Array.isArray(data) && data.length && typeof data[0].bio === 'string';    var isStructured = (Array.isArray(data.crew) && data.crew.length && ('header' in data.crew[0]));    if(isStructured){ renderStructured(data, container);}    else if(isLegacy){ renderLegacy(data, container);}    else {      var msg=create('p'); msg.textContent='Unsupported JSON format.'; container.appendChild(msg);    }  }).catch(function(err){    var msg=create('p'); msg.textContent='Failed to load bios: '+err; document.body.appendChild(msg);  });}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded', load);} else {load();}})();</script><script id="locked-gold-loader">(function(){function $(s,ctx){return (ctx||document).querySelector(s);}function $all(s,ctx){return Array.prototype.slice.call((ctx||document).querySelectorAll(s));}function create(tag,cls,txt){var el=document.createElement(tag); if(cls) el.className=cls; if(txt) el.textContent=txt; return el;}function isEmptyNode(n){return !n || !n.textContent || !n.textContent.trim();}function fetchJSON(){return fetch('Bio-Crew-TOS.json').then(function(r){return r.json();});}function renderStructured(data, container){  data.crew.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    if(it.header){ card.appendChild(create('h4','bio-header',it.header)); }    (it.paragraphs||[]).forEach(function(p){ card.appendChild(create('p','',p)); });    container.appendChild(card);  });}function renderLegacy(list, container){  list.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    var parts=(it.bio||'').replace(/\r\n?/g,'\n').split(/\n\n+/).filter(Boolean);    if(parts.length){ card.appendChild(create('h4','bio-header',parts[0])); }    for(var i=1;i<parts.length;i++){ card.appendChild(create('p','',parts[i])); }    container.appendChild(card);  });}function ensureGold(container){  $all('section.crew-card', container).forEach(function(card){    var named = $('h3', card);    var existing = $('h1,h2,h3,h4,h5,h6,.bio-header', card);    if(existing && existing !== named){ existing.classList.add('bio-header'); return; }    var candidates = $all('p,div', card).filter(function(n){return !isEmptyNode(n) && n!==named;});    if(candidates.length){      var first=candidates[0];      var h=create('h4','bio-header', first.textContent.trim());      card.insertBefore(h, first);      first.remove();    }  });}function start(){  var container = $('#crew') || $('.crew') || $('main') || document.body;  fetchJSON().then(function(data){    container.innerHTML='';    var isStructured = data && Array.isArray(data.crew);    var isLegacy = Array.isArray(data);    if(isStructured){ renderStructured(data, container); }    else if(isLegacy){ renderLegacy(data, container); }    ensureGold(container);  }).catch(function(err){ console.error('Bio load failed:', err); });}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded', start);}else{ start(); }})();</script></body>
+<script id="bio-loader">(function(){function $(sel,ctx){return (ctx||document).querySelector(sel);}function create(tag,cls){var el=document.createElement(tag); if(cls) el.className=cls; return el;}function renderLegacy(items, container){  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    var parts=(it.bio||'').replace(/\r\n?/g,'\n').split(/\n\n+/).filter(Boolean);    if(parts.length){      var h=create('p','bio-header'); h.textContent=parts[0]; card.appendChild(h);      for(var i=1;i<parts.length;i++){ var p=create('p'); p.textContent=parts[i]; card.appendChild(p);}    }    container.appendChild(card);  });}function renderStructured(obj, container){  var items = Array.isArray(obj.crew)? obj.crew : obj;  items.forEach(function(it){    var card=create('section','crew-card');    var name=create('h3'); name.textContent=it.name||''; card.appendChild(name);    if(it.header){ var h=create('p','bio-header'); h.textContent=it.header; card.appendChild(h);}    (it.paragraphs||[]).forEach(function(text){ var p=create('p'); p.textContent=text; card.appendChild(p); });    container.appendChild(card);  });}function load(){  var container = document.querySelector('#crew, .crew, main, body');  if(!container){ container=document.body; }  fetch('Bio-Crew-TOS.json').then(function(r){return r.json();}).then(function(data){    var isLegacy = Array.isArray(data) && data.length && typeof data[0].bio === 'string';    var isStructured = (Array.isArray(data.crew) && data.crew.length && ('header' in data.crew[0]));    if(isStructured){ renderStructured(data, container);}    else if(isLegacy){ renderLegacy(data, container);}    else {      var msg=create('p'); msg.textContent='Unsupported JSON format.'; container.appendChild(msg);    }  }).catch(function(err){    var msg=create('p'); msg.textContent='Failed to load bios: '+err; document.body.appendChild(msg);  });}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded', load);} else {load();}})();</script>
+<!-- Build 304: minimal diagnostic + gold enforcement -->
+<div id="build304-status" style="font:14px system-ui, sans-serif; padding:8px 12px;"></div>
+<script id="build304">
+(function() {
+  const RAW_URL = 'https://raw.githubusercontent.com/BigBird7827/Bio-Trek//main/Crew/Bio-Crew-TOS.json';
+  const statusEl = document.getElementById('build304-status');
+  const MAX_SNIPPET = 180;
+
+  function show(msg, isError) {
+    if (!statusEl) return;
+    statusEl.textContent = msg;
+    statusEl.style.color = isError ? '#b00020' : '#444';
+  }
+
+  function norm(s) { return (s||'').replace(/\u00A0/g,' ').replace(/\r\n?/g,'\n').replace(/[\t ]+$/gm,'').trim(); }
+
+  function splitBlocks(s) {
+    const parts = norm(s).split(/\n\n+/).map(p=>p.trim()).filter(Boolean);
+    return parts.length ? parts : (norm(s) ? [norm(s)] : []);
+  }
+
+  function looksLikeHeader(line) {
+    const s = line.trim();
+    if (!s) return false;
+    if (s.length > 140) return false;
+    if (s.includes(':') || s.includes('—') || s.includes('- ')) return true;
+    const words = s.split(/\s+/);
+    if (words.length < 2 || words.length > 12) return false;
+    if (/[.!?]$/.test(s)) return false;
+    const titleish = words.reduce((n,w)=> n + ((/^[A-Z]/.test(w)) || (/^[A-Z]{2,}$/.test(w)) ? 1 : 0), 0) / words.length;
+    return titleish >= 0.6;
+  }
+
+  function extractHeadersFromLegacy(bioText) {
+    const blocks = [];
+    const lines = norm(bioText).split('\n');
+    let buf = [];
+    function flush() { if (buf.length) { blocks.push(buf.join(' ').trim()); buf = []; } }
+    for (let i=0;i<lines.length;i++) {
+      const L = lines[i].trim();
+      if (!L) { flush(); continue; }
+      if (looksLikeHeader(L)) { flush(); blocks.push(L); }
+      else { buf.push(L); }
+    }
+    flush();
+    return blocks.filter(looksLikeHeader);
+  }
+
+  function getHeadersFromData(data) {
+    try {
+      if (Array.isArray(data)) {
+        const hs = [];
+        data.forEach(it => {
+          const bio = it && it.bio || '';
+          const blocks = splitBlocks(bio);
+          blocks.forEach(b => { if (looksLikeHeader(b)) hs.push(b); });
+          extractHeadersFromLegacy(bio).forEach(h => hs.push(h));
+        });
+        return Array.from(new Set(hs.map(norm))).filter(Boolean);
+      } else if (data && Array.isArray(data.crew)) {
+        const hs = [];
+        data.crew.forEach(it => {
+          if (it && it.header) hs.push(norm(it.header));
+          (it.paragraphs||[]).forEach(p => {
+            splitBlocks(p).forEach(b => { if (looksLikeHeader(b)) hs.push(b); });
+          });
+        });
+        return Array.from(new Set(hs.map(norm))).filter(Boolean);
+      }
+    } catch(_) {}
+    return [];
+  }
+
+  function applyGold(headers) {
+    if (!headers.length) return;
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT, null);
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      const t = node && node.textContent ? node.textContent.trim() : '';
+      if (!t) continue;
+      for (let i=0;i<headers.length;i++) {
+        const h = headers[i];
+        if (!h) continue;
+        if (t === h || t.startsWith(h)) {
+          node.style.color = 'gold';
+          node.style.fontWeight = '700';
+          break;
+        }
+      }
+    }
+  }
+
+  async function start() {
+    show('Loading bios from: ' + RAW_URL, false);
+    try {
+      const res = await fetch(RAW_URL, { cache: 'no-store', mode: 'cors' });
+      if (!res.ok) {
+        show('Failed to load JSON (HTTP ' + res.status + ') from: ' + RAW_URL, true);
+        return;
+      }
+      const text = await res.text();
+      let data;
+      try { data = JSON.parse(text); }
+      catch(parseErr) {
+        const snippet = text.slice(0, MAX_SNIPPET).replace(/\s+/g,' ').trim();
+        show('JSON parse error. First part of response was: ' + snippet, true);
+        return;
+      }
+      const headers = getHeadersFromData(data);
+      if (!headers.length) {
+        show('Loaded JSON, but no headers detected. Check source formatting.', true);
+        return;
+      }
+      applyGold(headers);
+      show('Loaded ' + headers.length + ' headers. Gold applied.', false);
+    } catch (err) {
+      show('Network error: ' + err, true);
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
+})();
+</script>
+</body>
 </html>
