@@ -363,6 +363,7 @@
     const seriesGrid = $(".series-grid");
     const cardsGrid = $(".cards-grid");
     const returnLink = $("#return-menu");
+    const wrapper = document.querySelector(".series-wrapper"); if (wrapper) { wrapper.style.background = ""; wrapper.style.removeProperty("background"); }
 
     const card1Text = $("#card-1-text");
     const card2Text = $("#card-2-text");
@@ -376,7 +377,7 @@
     subtitle.textContent = seriesName;
 
     seriesGrid.style.display = "none";
-    cardsGrid.style.display = "flex";
+    cardsGrid.style.display = "flex"; window.scrollTo({top:0, behavior:"instant"});
     returnLink.style.display = "block";
 
     if (seriesName === "The Original Series") {
@@ -414,6 +415,7 @@
     const seriesGrid = $(".series-grid");
     const cardsGrid = $(".cards-grid");
     const returnLink = $("#return-menu");
+    const wrapper = document.querySelector(".series-wrapper"); if (wrapper) { wrapper.style.background = ""; wrapper.style.removeProperty("background"); }
 
     title.textContent = "Bio Trek";
     subtitle.textContent = "Star Trek Biographies";
@@ -428,12 +430,12 @@
     if (!wrapper) return;
 
     const safeName = sanitize(displayName);
-    let html = "<div id='bioView' style=\"padding:2rem 7.5rem;max-width:700px;margin:50px auto;\">";
-    html += `<h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:1.5rem;">${safeName}</h1>`;
+    let html = "<div id='bioView' style=\"padding:2rem 7.5rem;max-width:1200px;margin:50px auto;\">";
+    html += `<h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:1.5rem;">${safeName}</h1><br><br>`;
 
     sections.forEach(s => {
-      html += `<h3 style="color:gold;font-weight:bold;margin-top:1.5rem;max-width:70%;margin-left:auto;margin-right:auto;text-align:left;">${sanitize(s.header)}</h3>`;
-      html += `<p style="color:white;line-height:1.6;max-width:70%;margin-left:auto;margin-right:auto;">${sanitize(s.text)}</p>`;
+      html += `<h3 style="color:gold;font-weight:bold;margin-top:1.5rem;max-width:85%;margin-left:auto;margin-right:auto;text-align:left;">${sanitize(s.header)}</h3>`;
+      html += `<p style="color:white;line-height:1.6;max-width:85%;margin-left:auto;margin-right:auto;">${sanitize(s.text)}</p>`;
     });
 
     html += `<div style="text-align:center;margin-top:2rem;">
@@ -442,7 +444,7 @@
     html += "</div>";
 
     wrapper.style.background = "linear-gradient(135deg, #000010, #001a33)";
-    wrapper.innerHTML = html;
+    wrapper.innerHTML = html; window.scrollTo({top:0, behavior:"instant"});
   }
 
   
@@ -490,14 +492,14 @@
       const wrapper = $(WRAP_SEL);
       if (!wrapper || !snapshotHTML) return;
       
-      wrapper.innerHTML = snapshotHTML;
+      wrapper.style.background = ""; wrapper.style.removeProperty("background"); wrapper.innerHTML = snapshotHTML;
       snapshotHTML = null;
       
       const seriesGrid = $(".series-grid", wrapper);
       const cardsGrid  = $(".cards-grid", wrapper);
       if (seriesGrid && cardsGrid) {
         seriesGrid.style.display = "none";
-        cardsGrid.style.display = "flex";
+        cardsGrid.style.display = "flex"; window.scrollTo({top:0, behavior:"instant"});
       }
       return;
     }
