@@ -611,23 +611,70 @@
   window.addEventListener("resize", syncHeight);
 })();
 </script>
-<!-- BEGIN: Force-fill TNG & VOY (post-handler; preserves original layout) -->
+<!-- BEGIN: Modular series layer (Build 428) -->
+<style>
+  /* Reversible: hide TOS extras only while viewing a non‑TOS series */
+  .series-non-tos .character-card.tos-only { display: none !important; }
+</style>
 <script type="module">
 const $  = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => r.querySelectorAll(s);
 
-// --- Generic helpers ---
-function setTopThree(people) {
-  const slots = [
+/* ---------- Data (order matters: first 3 fill the existing top slots) ---------- */
+const SERIES = {
+  "TNG": [
+    { id:'picard', name:'Jean-Luc Picard', role:'Captain', actor:'Patrick Stewart', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Jean-Luc%20Picard%20(TNG).png' },
+    { id:'riker',  name:'William T. Riker', role:'First Officer', actor:'Jonathan Frakes', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/William%20T%20Riker%20(TNG).png' },
+    { id:'data',   name:'Data', role:'Operations', actor:'Brent Spiner', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Data%20(TNG).png' },
+    { id:'barclay',  name:'Reginald Barclay', role:'Engineer', actor:'Dwight Schultz', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Barclay%20(TNG).png' },
+    { id:'crusher',  name:'Beverly Crusher', role:'Chief Medical Officer', actor:'Gates McFadden', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Beverly%20Crusher%20(TNG).png' },
+    { id:'obrien',   name:"Chief O'Brien", role:'Transporter Chief', actor:'Colm Meaney', img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Chief%20O'Brien%20(TNG).png" },
+    { id:'guinan',   name:'Guinan', role:'Ten Forward Host', actor:'Whoopi Goldberg', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Guinan%20(TNG).png' },
+    { id:'yar',      name:'Tasha Yar', role:'Security Chief', actor:'Denise Crosby', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Tasha%20Yar%20(TNG).png' },
+    { id:'troi',     name:'Deanna Troi', role:'Counselor', actor:'Marina Sirtis', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Troi%20(TNG).png' },
+    { id:'worf',     name:'Worf', role:'Tactical/Security', actor:'Michael Dorn', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Worf%20(TNG).png' }
+  ],
+  "VOY": [
+    { id:'janeway',  name:'Kathryn Janeway', role:'Captain',               img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Kathry%20Janeway%20(Voy).png' },
+    { id:'chakotay', name:'Chakotay',        role:'First Officer',         img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Chakotay%20(Voy).png' },
+    { id:'tuvok',    name:'Tuvok',           role:'Security/Tactical',     img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Tuvok%20(Voy).png' },
+    { id:'paris',    name:'Tom Paris',       role:'Helmsman',              img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Tom%20Paris%20(VOY).png' },
+    { id:'torres',   name:"B'Elanna Torres", role:'Chief Engineer',        img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/B'Elanna%20Torres%20(VOY).png" },
+    { id:'kim',      name:'Harry Kim',       role:'Operations',            img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Harry%20Kim%20(VOY).png' },
+    { id:'seven',    name:'Seven of Nine',   role:'Astrometrics',          img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Seven%20of%20Nine%20(VOY).png' },
+    { id:'doctor',   name:'The Doctor',      role:'Chief Medical Officer', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/The%20Doctor%20(VOY).png' },
+    { id:'neelix',   name:'Neelix',          role:'Morale Officer',        img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Neelix%20(VOY).png' }
+  ],
+  "DS9": [
+    { id:'sisko',   name:'Benjamin Sisko', role:'Commander/Captain', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Benjamin%20Sisko%20(DS9).png' },
+    { id:'kira',    name:'Kira Nerys',     role:'First Officer',     img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Major%20Kira%20(DS9).png' },
+    { id:'worf',    name:'Worf',           role:'Strategic Ops',     img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Worf%20(DS9).png' },
+    { id:'jadzia',  name:'Jadzia Dax',     role:'Science Officer',   img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Jadzia%20Dax%20(DS9).png' },
+    { id:'bashir',  name:'Dr. Julian Bashir', role:'Chief Medical Officer', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20Bashir%20(DS9).png' },
+    { id:'obrien',  name:"Chief O'Brien",  role:'Chief of Operations', img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Chief%20O'Brien%20(DS9).png" },
+    { id:'odo',     name:'Odo',            role:'Security Chief',    img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Odo%20(DS9).png' },
+    { id:'quark',   name:'Quark',          role:'Bartender',         img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Quark%20(DS9).png' }]
+};
+
+/* ---------- Rendering (reversible, TOS-safe) ---------- */
+function topThreeSlots() {
+  return [
     { img: '#card-1-img', text:'#card-1-text' },
     { img: '#card-2-img', text:'#card-2-text' },
     { img: '#card-3-img', text:'#card-3-text' },
   ];
-  for (let i=0; i<3; i++) {
-    const p = people[i];
-    const imgEl = $(slots[i].img);
-    const txtEl = $(slots[i].text);
-    if (imgEl) { imgEl.src = p?.img || ''; imgEl.style.display = p?.img ? 'block' : ''; }
+}
+
+function setTopThree(people) {
+  const slots = topThreeSlots();
+  for (let i = 0; i < 3; i++) {
+    const p = people[i] || null;
+    const imgEl = document.querySelector(slots[i].img);
+    const txtEl = document.querySelector(slots[i].text);
+    if (imgEl) {
+      if (p?.img) { imgEl.src = p.img; imgEl.style.removeProperty('display'); }
+      else { imgEl.removeAttribute('src'); }
+    }
     if (txtEl) {
       txtEl.innerHTML = p ? `
         <a href="#" class="character-name">${p.name}</a>
@@ -637,25 +684,25 @@ function setTopThree(people) {
     }
   }
 }
-function extrasHost() {
-  const tosExtra = $('.character-card.tos-only');
-  return tosExtra?.parentElement || $('#crew-grid') || $('.cards') || $('.card-grid') || $('.characters-grid') || document.body;
+
+function dynamicHost() {
+  const tosCard = document.querySelector('.character-card.tos-only');
+  return tosCard?.parentElement || document.querySelector('#crew-grid') || document.querySelector('main') || document.body;
 }
-function clearDynamic() { $$('.tng-only, .voy-only').forEach(el => el.remove()); }
-function hideTOSExtras() { $$('.character-card.tos-only').forEach(el => el.style.display = 'none'); }
-function showTOSExtras()  { $$('.character-card.tos-only').forEach(el => el.style.display = ''); }
-function renderExtras(people, cls) {
-  const host = extrasHost();
+
+function clearDynamic() {
+  document.querySelectorAll('.series-dynamic').forEach(el => el.remove());
+}
+
+function renderExtras(people, seriesKey) {
+  const host = dynamicHost();
   people.slice(3).forEach(p => {
     const card = document.createElement('article');
-    card.className = `character-card ${cls}`;
-    const a = document.createElement('a');
-    a.href = '#'; a.className = 'character-link';
-    const img = document.createElement('img');
-    img.className = 'character-image'; img.alt = p.name;
+    card.className = `character-card series-dynamic ${seriesKey.toLowerCase()}-only`;
+    const a = document.createElement('a'); a.href = '#'; a.className = 'character-link';
+    const img = document.createElement('img'); img.className = 'character-image'; img.alt = p.name;
     if (p.img) img.src = p.img;
-    const text = document.createElement('div');
-    text.className = 'character-text';
+    const text = document.createElement('div'); text.className = 'character-text';
     text.innerHTML = `
       <a href="#" class="character-name">${p.name}</a>
       <p class="character-title">${p.role || ''}</p>
@@ -666,66 +713,50 @@ function renderExtras(people, cls) {
   });
 }
 
-// --- Datasets ---
-const TNG_PEOPLE = [
-  { id:'picard', name:'Jean-Luc Picard', role:'Captain', actor:'Patrick Stewart', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Jean-Luc%20Picard%20(TNG).png' },
-  { id:'riker',  name:'William T. Riker', role:'First Officer', actor:'Jonathan Frakes', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/William%20T%20Riker%20(TNG).png' },
-  { id:'data',   name:'Data', role:'Operations', actor:'Brent Spiner', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Data%20(TNG).png' },
-  { id:'barclay',  name:'Reginald Barclay', role:'Engineer', actor:'Dwight Schultz', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Barclay%20(TNG).png' },
-  { id:'crusher',  name:'Beverly Crusher', role:'Chief Medical Officer', actor:'Gates McFadden', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Beverly%20Crusher%20(TNG).png' },
-  { id:'obrien',   name:"Chief O'Brien", role:'Transporter Chief', actor:'Colm Meaney', img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Chief%20O'Brien%20(TNG).png" },
-  { id:'guinan',   name:'Guinan', role:'Ten Forward Host', actor:'Whoopi Goldberg', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Guinan%20(TNG).png' },
-  { id:'yar',      name:'Tasha Yar', role:'Security Chief', actor:'Denise Crosby', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Tasha%20Yar%20(TNG).png' },
-  { id:'troi',     name:'Deanna Troi', role:'Counselor', actor:'Marina Sirtis', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Troi%20(TNG).png' },
-  { id:'worf',     name:'Worf', role:'Tactical/Security', actor:'Michael Dorn', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Worf%20(TNG).png' }
-];
+/* ---------- Controller (never modifies TOS on load) ---------- */
+function applySeries(seriesKey) {
+  // Re-enable TOS extras only when switching back to TOS
+  if (seriesKey === 'TOS') {
+    document.documentElement.classList.remove('series-non-tos');
+    clearDynamic();             // remove any non‑TOS rendered cards
+    return;                     // do NOT touch TOS markup at all
+  }
 
-const VOY_PEOPLE = [
-  { id:'janeway',  name:'Kathryn Janeway', role:'Captain',               img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Kathry%20Janeway%20(Voy).png' },
-  { id:'chakotay', name:'Chakotay',        role:'First Officer',         img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Chakotay%20(Voy).png' },
-  { id:'tuvok',    name:'Tuvok',           role:'Security/Tactical',     img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Tuvok%20(Voy).png' },
-  { id:'paris',    name:'Tom Paris',       role:'Helmsman',              img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Tom%20Paris%20(VOY).png' },
-  { id:'torres',   name:"B'Elanna Torres", role:'Chief Engineer',        img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/B'Elanna%20Torres%20(VOY).png" },
-  { id:'kim',      name:'Harry Kim',       role:'Operations',            img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Harry%20Kim%20(VOY).png' },
-  { id:'seven',    name:'Seven of Nine',   role:'Astrometrics',          img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Seven%20of%20Nine%20(VOY).png' },
-  { id:'doctor',   name:'The Doctor',      role:'Chief Medical Officer', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/The%20Doctor%20(VOY).png' },
-  { id:'neelix',   name:'Neelix',          role:'Morale Officer',        img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Neelix%20(VOY).png' }
-];
-
-function applySeries(people, cls) {
-  setTimeout(() => {
-    setTopThree(people);
-    hideTOSExtras();
-    clearDynamic();
-    renderExtras(people, cls);
-  }, 0);
+  // Non‑TOS view: hide TOS extras via a reversible class and draw dynamic cards
+  document.documentElement.classList.add('series-non-tos');
+  clearDynamic();
+  const people = SERIES[seriesKey] || [];
+  setTopThree(people);
+  renderExtras(people, seriesKey);
 }
 
-// Delegated click hook for any series button
+/* ---------- Wiring ---------- */
 document.addEventListener('click', (e) => {
   const btn = e.target.closest && e.target.closest('.series-btn');
   if (!btn) return;
   const label = (btn.getAttribute('data-series') || btn.textContent || '').toLowerCase();
   if (label.includes('tng') || label.includes('next generation')) {
-    applySeries(TNG_PEOPLE, 'tng-only');
+    applySeries('TNG');
   } else if (label.includes('voy') || label.includes('voyager')) {
-    applySeries(VOY_PEOPLE, 'voy-only');
+    applySeries('VOY');
+  } else if (label.includes('ds9') || label.includes('deep space nine')) {
+    applySeries('DS9');
   } else if (label.includes('tos') || label.includes('original')) {
-    clearDynamic(); showTOSExtras();
+    applySeries('TOS'); // full TOS restore
   }
 });
 
-// Initial load: if subtitle reflects a series, apply
+// IMPORTANT: On load, do NOTHING (keep TOS 100% untouched).
+// If the page opens on a non‑TOS series via subtitle, then apply that series.
 document.addEventListener('DOMContentLoaded', () => {
-  const subtitle = ($('.subtitle-main')?.textContent || '').toLowerCase();
-  if (subtitle.includes('next generation') || subtitle.includes('tng')) {
-    applySeries(TNG_PEOPLE, 'tng-only');
-  } else if (subtitle.includes('voyager') || subtitle.includes('voy')) {
-    applySeries(VOY_PEOPLE, 'voy-only');
-  }
+  const subtitle = (document.querySelector('.subtitle-main')?.textContent || '').toLowerCase();
+  if (subtitle.includes('tng') || subtitle.includes('next generation')) applySeries('TNG');
+  else if (subtitle.includes('voy') || subtitle.includes('voyager'))     applySeries('VOY');
+  else if (subtitle.includes('ds9') || subtitle.includes('deep space nine')) applySeries('DS9');
+  // else: default is TOS; leave untouched
 });
 </script>
-<!-- END: Force-fill TNG & VOY (post-handler) -->
+<!-- END: Modular series layer (Build 428) -->
 
 </body>
 </html>
