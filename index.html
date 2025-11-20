@@ -612,9 +612,9 @@ function simpleNorm(s) {
   return String(s || '')
     .toLowerCase()
     .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/['’`\.\-]/g, '')
-    .replace(/\s+/g, '')
+    .replace(/[\\u0300-\\u036f]/g, '')
+    .replace(/['’`\\.\\-]/g, '')
+    .replace(/\\s+/g, '')
     .trim();
 }
 function getNormalized(dict, name) {
@@ -827,7 +827,7 @@ async function loadDs9Bios() {
         let sections = null;
         if (bios && bios.Crew) sections = bios.Crew[exactKey];
         if (!sections && bios && bios.bios) sections = bios.bios[exactKey];
-        if (!sections) sections = bios[exactKey] || bios[(typeof exactKey!=='undefined' && exactKey).replace(/\./g,'')] || bios[(typeof exactKey!=='undefined' && exactKey).replace(/[^A-Za-z ]/g,'')];
+        if (!sections) sections = bios[exactKey] || bios[(typeof exactKey!=='undefined' && exactKey).replace(/\\./g,'')] || bios[(typeof exactKey!=='undefined' && exactKey).replace(/[^A-Za-z ]/g,'')];
         if (!sections && bios && bios.characters) sections = bios.characters[exactKey] || bios.characters[displayName];
         if (!sections && bios && bios.crew)       sections = bios.crew[exactKey] || bios.crew[displayName];
         renderBio(displayName, normalizeSections(sections));
@@ -1069,7 +1069,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 </script>
 <script>
- // DS9 actor line injector (enhanced, safe): fill ALL DS9 cards after navigation.
+// DS9 actor line injector (idempotent): fill ALL DS9 cards without duplicating actor lines.
 (function(){
   const SUBTITLE = document.querySelector('.subtitle-main');
   const WRAPPER  = document.querySelector('.series-wrapper');
@@ -1084,7 +1084,6 @@ document.addEventListener('DOMContentLoaded', () => {
       .trim();
   }
 
-  // Map by normalized character keys (no punct/space), include common variants
   const DS9_ACTORS = {
     "benjaminsisko": "Avery Brooks",
     "milesobrien": "Colm Meaney",
@@ -1110,25 +1109,51 @@ document.addEventListener('DOMContentLoaded', () => {
     return DS9_ACTORS[k1] || DS9_ACTORS[k2] || null;
   }
 
+  function dedupeActors(textBox){
+    const actors = textBox.querySelectorAll("a.character-actor");
+    if (actors.length <= 1) return;
+    let kept = false;
+    actors.forEach((a) => {
+      const t = (a.textContent || '').trim();
+      if (!kept && t) { kept = true; return; }
+      a.remove();
+    });
+    // remove redundant <br> beyond the first occurrence
+    const brs = textBox.querySelectorAll("br");
+    let brKept = false;
+    brs.forEach((br) => {
+      if (!brKept) { brKept = true; return; }
+      br.remove();
+    });
+  }
+
   function injectAllDs9Actors(){
     if (SUBTITLE.textContent.trim() !== "Deep Space Nine") return;
 
     const cards = WRAPPER.querySelectorAll(".cards-grid .character-card");
     for (const card of cards){
-      // Ignore any TOS-only placeholders if they exist in markup
       if (card.classList.contains("tos-only")) continue;
 
-      // Find the text container that already holds character name
       const nameLink = card.querySelector("a.character-name");
       if (!nameLink) continue;
-      const textBox = nameLink.parentElement || card;
 
-      // Skip if actor already present
+      let textBox = nameLink.closest("#card-1-text, #card-2-text, #card-3-text, .card-text, .character-text");
+      if (!textBox) textBox = nameLink.parentElement || card;
+
+      // Idempotency: if we've handled this container before, just clean duplicates and skip
+      if (textBox.dataset.actorInjected === "1") { dedupeActors(textBox); continue; }
+
+      // De-dupe any preexisting duplicates before proceeding
+      dedupeActors(textBox);
+
       const existing = textBox.querySelector("a.character-actor");
-      if (existing && existing.textContent.trim()) continue;
+      if (existing && (existing.textContent || '').trim()) {
+        textBox.dataset.actorInjected = "1";
+        continue;
+      }
 
       const actor = actorFor(nameLink.textContent);
-      if (!actor) continue;
+      if (!actor) { textBox.dataset.actorInjected = "1"; continue; }
 
       const br = document.createElement("br");
       const a = document.createElement("a");
@@ -1137,10 +1162,10 @@ document.addEventListener('DOMContentLoaded', () => {
       a.textContent = actor;
       textBox.appendChild(br);
       textBox.appendChild(a);
+      textBox.dataset.actorInjected = "1";
     }
   }
 
-  // Run after clicks (navigation triggers), and once on load
   document.addEventListener("click", () => { requestAnimationFrame(injectAllDs9Actors); }, true);
   requestAnimationFrame(injectAllDs9Actors);
 })();
