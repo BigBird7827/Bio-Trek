@@ -611,97 +611,104 @@
   window.addEventListener("resize", syncHeight);
 })();
 </script>
-<!-- BEGIN: Modular data layer (non-destructive; preserves original layout) -->
+<!-- BEGIN: Force-fill TNG top-three + extras (post-handler) -->
 <script type="module">
-/**
- * Lightweight data-first helpers that feed your existing DOM.
- * Keeps your HTML/CSS and the original rendering logic intact.
- * Use window.BioTrek.* to update images/text/bios later.
- */
-const $ = (sel, root=document) => root.querySelector(sel);
+const $  = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => r.querySelectorAll(s);
 
-const DATA = {
-  "The Original Series": {
-    featured: [
-      { id:'kirk',  name:'James T. Kirk', role:'Captain', actor:'William Shatner', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/James%20Kirk%20(TOS).png',  bioUrl:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json' },
-      { id:'spock', name:'Spock',         role:'First Officer', actor:'Leonard Nimoy', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Spock%20(TOS).png', bioUrl:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json' },
-      { id:'mccoy', name:'Leonard (Bones) McCoy', role:'Chief Medical Officer', actor:'DeForest Kelley', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20McCoy%20(TOS).png', bioUrl:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Crew/Bio-Crew-TOS.json' }
-    ]
-  },
-  "The Next Generation": {
-    featured: [
-      // Fill via BioTrek.setImage/patchPeople later; layout remains untouched
-    ]
-  }
-};
+const TNG_PEOPLE = [
+  { id:'picard', name:'Jean-Luc Picard', role:'Captain', actor:'Patrick Stewart', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Jean-Luc%20Picard%20(TNG).png' },
+  { id:'riker',  name:'William T. Riker', role:'First Officer', actor:'Jonathan Frakes', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/William%20T%20Riker%20(TNG).png' },
+  { id:'data',   name:'Data', role:'Operations', actor:'Brent Spiner', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Data%20(TNG).png' },
+  { id:'barclay',  name:'Reginald Barclay', role:'Engineer', actor:'Dwight Schultz', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Barclay%20(TNG).png' },
+  { id:'crusher',  name:'Beverly Crusher', role:'Chief Medical Officer', actor:'Gates McFadden', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Beverly%20Crusher%20(TNG).png' },
+  { id:'obrien',   name:"Chief O'Brien", role:'Transporter Chief', actor:'Colm Meaney', img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Chief%20O'Brien%20(TNG).png" },
+  { id:'guinan',   name:'Guinan', role:'Ten Forward Host', actor:'Whoopi Goldberg', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Guinan%20(TNG).png' },
+  { id:'yar',      name:'Tasha Yar', role:'Security Chief', actor:'Denise Crosby', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Tasha%20Yar%20(TNG).png' },
+  { id:'troi',     name:'Deanna Troi', role:'Counselor', actor:'Marina Sirtis', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Troi%20(TNG).png' },
+  { id:'worf',     name:'Worf', role:'Tactical/Security', actor:'Michael Dorn', img:'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Worf%20(TNG).png' }
+];
 
-function fillFeatured(seriesName) {
-  const cfg = DATA[seriesName];
-  if (!cfg || !cfg.featured || cfg.featured.length < 1) return;
-  const targets = [
+function setTopThree(people) {
+  const slots = [
     { img: '#card-1-img', text:'#card-1-text' },
     { img: '#card-2-img', text:'#card-2-text' },
     { img: '#card-3-img', text:'#card-3-text' },
   ];
-  for (let i=0; i<Math.min(3, cfg.featured.length); i++) {
-    const p = cfg.featured[i];
-    const imgEl = $(targets[i].img);
-    const textEl = $(targets[i].text);
-    if (imgEl && p.img) imgEl.src = p.img;
-    if (textEl) {
-      // Preserve your original anchors/classes structure
-      const bioHref = p.bioUrl || '#';
-      textEl.innerHTML = `
-        <a href="${bioHref}" class="character-name" target="_blank" rel="noopener">${p.name}</a>
-        <p class="character-title">${p.role}</p>
+  for (let i=0; i<3; i++) {
+    const p = people[i];
+    const imgEl = $(slots[i].img);
+    const txtEl = $(slots[i].text);
+    if (imgEl) { imgEl.src = p?.img || ''; imgEl.style.display = p?.img ? 'block' : ''; }
+    if (txtEl) {
+      txtEl.innerHTML = p ? `
+        <a href="#" class="character-name">${p.name}</a>
+        <p class="character-title">${p.role || ''}</p>
         <br>
-        <a href="#" class="character-actor">${p.actor || ''}</a>`;
+        <a href="#" class="character-actor">${p.actor || ''}</a>` : '';
     }
   }
 }
 
-function hookButtons() {
-  // Attach after your existing listeners, no interference
-  document.querySelectorAll('.series-btn[data-series]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const seriesName = btn.getAttribute('data-series');
-      fillFeatured(seriesName);
-    });
+function extrasHost() {
+  const tosExtra = $('.character-card.tos-only');
+  return tosExtra?.parentElement || $('#crew-grid') || $('.cards') || $('.card-grid') || $('.characters-grid') || document.body;
+}
+
+function clearDynamic() { $$('.tng-only').forEach(el => el.remove()); }
+
+function renderExtras(people) {
+  clearDynamic();
+  const host = extrasHost();
+  // hide TOS-only extras for parity
+  $$('.character-card.tos-only').forEach(el => el.style.display = 'none');
+  people.slice(3).forEach(p => {
+    const card = document.createElement('article');
+    card.className = 'character-card tng-only';
+    const a = document.createElement('a');
+    a.href = '#'; a.className = 'character-link';
+    const img = document.createElement('img');
+    img.className = 'character-image'; img.alt = p.name;
+    if (p.img) img.src = p.img;
+    const text = document.createElement('div');
+    text.className = 'character-text';
+    text.innerHTML = `
+      <a href="#" class="character-name">${p.name}</a>
+      <p class="character-title">${p.role || ''}</p>
+      <br>
+      <a href="#" class="character-actor">${p.actor || ''}</a>`;
+    a.appendChild(img); a.appendChild(text); card.appendChild(a);
+    host.appendChild(card);
   });
 }
 
-// Public API for late updates
-function setImage(seriesName, personIndex /* 0..2 */, url) {
-  const cfg = DATA[seriesName];
-  if (!cfg || !cfg.featured || !cfg.featured[personIndex]) return;
-  cfg.featured[personIndex].img = url;
-  fillFeatured(seriesName);
-}
-function patchPeople(seriesName, updates /* Array<Partial person with index> */) {
-  const cfg = DATA[seriesName];
-  if (!cfg || !cfg.featured) return;
-  updates.forEach(u => {
-    const i = typeof u.index === 'number' ? u.index : -1;
-    if (i < 0 || i >= cfg.featured.length) return;
-    Object.assign(cfg.featured[i], u);
-  });
-  fillFeatured(seriesName);
+function applyTNG() {
+  // Run after existing handlers (so we override any clearing those handlers do)
+  setTimeout(() => {
+    setTopThree(TNG_PEOPLE);
+    renderExtras(TNG_PEOPLE);
+  }, 0);
 }
 
-// Expose to window
-window.BioTrek = { fillFeatured, setImage, patchPeople, DATA };
-
-// Initialize for the default series if already on cards view
-try {
-  const subtitle = document.querySelector('.subtitle-main');
-  if (subtitle && subtitle.textContent.includes('Original Series')) {
-    fillFeatured('The Original Series');
+// Click hook (delegated) — run for any button whose label or data-series contains TNG
+document.addEventListener('click', (e) => {
+  const btn = e.target.closest && e.target.closest('.series-btn');
+  if (!btn) return;
+  const label = (btn.getAttribute('data-series') || btn.textContent || '').toLowerCase();
+  if (label.includes('tng') || label.includes('next generation')) {
+    applyTNG();
   }
-} catch (_e) {}
+});
 
-document.addEventListener('DOMContentLoaded', hookButtons);
+// If the page initially opens on TNG, apply immediately after DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  const subtitle = ($('.subtitle-main')?.textContent || '').toLowerCase();
+  if (subtitle.includes('tng') || subtitle.includes('next generation')) {
+    applyTNG();
+  }
+});
 </script>
-<!-- END: Modular data layer -->
+<!-- END: Force-fill TNG top-three + extras -->
 
 </body>
 </html>
