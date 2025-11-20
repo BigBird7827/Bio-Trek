@@ -78,6 +78,8 @@ Bio-Trek is designed to be:
 
 - **Under Construction** - Bio-Trek is a work in progress. TOS, TNG and DS9 are complete. We are currently working on VOY, and it will be available soon.
 
+- **NOTE:** All images, character and actor biogrophies are AI generated.
+
 ---
 
 ## Legal Notice
