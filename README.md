@@ -76,7 +76,7 @@ Bio-Trek is designed to be:
 - **Expandable** so additional series, characters, and actors can be added over time.
 - **Simple to host** as a static site that can be shared with other fans.
 
-- **Under Construction** - Bio-Trek is a work in progress. TOS, TNG and DS9 are complete. We are currently working on VOY, and it will be available soon.
+- **Under Construction** - Bio-Trek is a work in progress. TOS, TNG and DS9 are complete. We are currently working on VOY and ENT, and they will be available soon.
 
 - **NOTE:** All images, character and actor biogrophies are AI generated.
 
