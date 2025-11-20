@@ -342,7 +342,7 @@
         let sections = null;
         if (bios && bios.Crew) sections = bios.Crew[exactKey];
         if (!sections && bios && bios.bios) sections = bios.bios[exactKey];
-        if (!sections) sections = bios[exactKey] || bios[exactKey?.replace(/\./g,'')] || bios[exactKey?.replace(/[^A-Za-z ]/g,'')];
+        if (!sections) sections = bios[exactKey] || bios[(typeof exactKey!=='undefined' && exactKey).replace(/\./g,'')] || bios[(typeof exactKey!=='undefined' && exactKey).replace(/[^A-Za-z ]/g,'')];
         if (!sections && bios && bios.characters) sections = bios.characters[exactKey] || bios.characters[displayName];
         if (!sections && bios && bios.crew)       sections = bios.crew[exactKey] || bios.crew[displayName];
         renderBio(displayName, normalizeSections(sections));
@@ -449,7 +449,7 @@ function setTopThree(people) {
     const p = people[i] || null;
     const imgEl = document.querySelector(slots[i].img);
     const txtEl = document.querySelector(slots[i].text);
-    if (imgEl) { if (p?.img) { imgEl.src = p.img; imgEl.style.removeProperty('display'); } else { imgEl.removeAttribute('src'); } }
+    if (imgEl) { if ((typeof p!=='undefined' && p).img) { imgEl.src = p.img; imgEl.style.removeProperty('display'); } else { imgEl.removeAttribute('src'); } }
     if (txtEl) {
       txtEl.innerHTML = p ? `
         <a href="#" class="character-name">${p.name}</a>
@@ -461,7 +461,7 @@ function setTopThree(people) {
 }
 function dynamicHost() {
   const tosCard = document.querySelector('.character-card.tos-only');
-  return tosCard?.parentElement || document.querySelector('#crew-grid') || document.querySelector('main') || document.body;
+  return (typeof tosCard!=='undefined' && tosCard).parentElement || document.querySelector('#crew-grid') || document.querySelector('main') || document.body;
 }
 function clearDynamic() { document.querySelectorAll('.series-dynamic').forEach(el => el.remove()); }
 function renderExtras(people, seriesKey) {
