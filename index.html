@@ -348,6 +348,56 @@ h1,h2,h3,h4,h5,h6 {
    
 }
   </style>
+  <style>
+   /* Make DS9 cards (and others) show Name, Title, Actor as clean three lines */ .cards-grid .character-card .character-name  {
+   display: block;
+   /* force its own line */ font-weight: 600;
+   text-decoration: none;
+   margin: 0 0 2px 0;
+   
+}
+ .cards-grid .character-card .character-title  {
+   display: block;
+   margin: 2px 0 2px 0;
+   /* consistent spacing above/below */ 
+}
+ .cards-grid .character-card .character-actor  {
+   display: block;
+   /* force actor onto its own line */ text-decoration: none;
+   margin: 2px 0 0 0;
+   
+}
+ /* Normalize stray <br> rendering differences */ .cards-grid .character-card br  {
+   display: none;
+   /* spacing now handled by margins */ 
+}
+  </style>
+  <style>
+   /* Unified 3-line stack for all character cards */ .cards-grid .character-card [id$='-text'], .cards-grid .character-card .card-text  {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   gap: 4px;
+   /* consistent vertical spacing between lines */ min-height: 72px;
+   /* reserve space for 3 lines to align grids */ 
+}
+ /* Reset margins so spacing is controlled solely by the text container's gap */ .cards-grid .character-card .character-name, .cards-grid .character-card .character-title, .cards-grid .character-card .character-actor  {
+   display: block;
+   margin: 0;
+   line-height: 1.2;
+   text-decoration: none;
+   
+}
+ .cards-grid .character-card .character-name  {
+   font-weight: 600;
+   
+}
+ /* Hide BRs to avoid double spacing;
+ gap handles spacing */ .cards-grid .character-card br  {
+   display: none;
+   
+}
+  </style>
  </head>
  <body>
   <header>
@@ -518,7 +568,67 @@ h1,h2,h3,h4,h5,h6 {
   <div id="build304-status" style="font:14px system-ui, sans-serif; padding:8px 12px;">
   </div>
   <script>
-   (function () {
+   // --- DS9 alias + resolver ---
+function ds9Alias(name) {
+  const map = {
+    "Chief O'Brien": "Miles O'Brien",
+    "Lt. Commander Worf": "Worf",
+    "Elim Garak": "Garak"
+  };
+  return map[name] || name;
+}
+function ds9Resolve(bios, displayName, which) {
+  const exact = ds9Alias(displayName);
+  let s = null;
+  if (which === "crew") {
+    if (bios && bios.Crew) s = bios.Crew[exact];
+    if (!s && bios && bios.crew) s = bios.crew[exact];
+    if (!s && bios && bios.characters) s = bios.characters[exact];
+  } else {
+    if (bios && bios.Actors) s = bios.Actors[exact];
+    if (!s && bios && bios.actors) s = bios.actors[exact];
+    if (!s && bios && bios.actorBios) s = bios.actorBios[exact];
+  }
+  if (!s && bios) s = bios[exact];
+  if (s) return s;
+
+  // normalized fallbacks
+  if (which === "crew") {
+    if (!s && bios && bios.Crew) s = getNormalized(bios.Crew, exact);
+    if (!s && bios && bios.crew) s = getNormalized(bios.crew, exact);
+    if (!s && bios && bios.characters) s = getNormalized(bios.characters, exact);
+  } else {
+    if (!s && bios && bios.Actors) s = getNormalized(bios.Actors, exact);
+    if (!s && bios && bios.actors) s = getNormalized(bios.actors, exact);
+    if (!s && bios && bios.actorBios) s = getNormalized(bios.actorBios, exact);
+  }
+  if (!s && bios) s = getNormalized(bios, exact);
+  return s;
+}
+// --- end DS9 helpers ---
+
+// --- Minimal normalization helpers ---
+function simpleNorm(s) {
+  return String(s || '')
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/['’`\.\-]/g, '')
+    .replace(/\s+/g, '')
+    .trim();
+}
+function getNormalized(dict, name) {
+  if (!dict || !name) return null;
+  const target = simpleNorm(name);
+  for (const k of Object.keys(dict)) {
+    if (simpleNorm(k) === target) return dict[k];
+  }
+  return null;
+}
+// --- end normalization helpers ---
+
+
+(function () {
   const DOC = document;
   const WRAP_SEL = ".series-wrapper";
   const NAME_MAP = {
@@ -593,76 +703,14 @@ h1,h2,h3,h4,h5,h6 {
     return biosCache;
   }
 
-// Dedicated loader for TNG bios (mirrors legacy loadBios for TOS).
-async function loadTngBios() {
-  const url = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TNG.json";
+// DS9 bios loader (GitHub raw)
+async function loadDs9Bios() {
+  const url = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-DS9.json";
   const res = await fetch(url, { cache: "no-store" });
-  if (!res.ok) throw new Error("Failed to load TNG bios: " + res.status);
+  if (!res.ok) throw new Error("Failed to load DS9 bios: " + res.status);
   const data = await res.json();
   return (data && data.bios) ? data.bios : data;
 }
-
-// --- Minimal TNG name helpers (safe) ---
-function tngAlias(name) {
-  // Specific known variants
-  const map = {
-    "Chief O'Brien": "Miles O'Brien",
-    "Will Riker": "William Riker",
-    "William T. Riker": "William Riker",
-    "Jean-Luc Picard": "Jean Luc Picard"
-  };
-  return map[name] || name;
-}
-function simpleNorm(s) {
-  return String(s || '')
-    .toLowerCase()
-    .normalize('NFKD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/['’`\.\-]/g, '')   // strip common punctuation
-    .replace(/\s+/g, '')
-    .trim();
-}
-function getNormalized(dict, name) {
-  if (!dict || !name) return null;
-  const target = simpleNorm(name);
-  for (const k of Object.keys(dict)) {
-    if (simpleNorm(k) === target) return dict[k];
-  }
-  return null;
-}
-function tngResolve(bios, displayName, which) {
-  const exact = tngAlias(displayName);
-  let s = null;
-
-  // exact dictionary tries
-  if (which === "crew") {
-    if (bios.Crew) s = bios.Crew[exact];
-    if (!s && bios.crew) s = bios.crew[exact];
-    if (!s && bios.characters) s = bios.characters[exact];
-  } else {
-    if (bios.Actors) s = bios.Actors[exact];
-    if (!s && bios.actors) s = bios.actors[exact];
-    if (!s && bios.actorBios) s = bios.actorBios[exact];
-  }
-  if (!s && bios) s = bios[exact];
-  if (s) return s;
-
-  // normalized tries (only if exact failed)
-  if (which === "crew") {
-    if (!s && bios.Crew) s = getNormalized(bios.Crew, exact);
-    if (!s && bios.crew) s = getNormalized(bios.crew, exact);
-    if (!s && bios.characters) s = getNormalized(bios.characters, exact);
-  } else {
-    if (!s && bios.Actors) s = getNormalized(bios.Actors, exact);
-    if (!s && bios.actors) s = getNormalized(bios.actors, exact);
-    if (!s && bios.actorBios) s = getNormalized(bios.actorBios, exact);
-  }
-  if (!s && bios) s = getNormalized(bios, exact);
-  return s;
-}
-// --- end helpers ---
-
-
 
 
   function openSeries(seriesName) {
@@ -764,76 +812,64 @@ function tngResolve(bios, displayName, which) {
     if (ev.target.closest("#return-menu")) { ev.preventDefault(); returnToMenu(); return; }
     const tosImg = ev.target.closest(".character-card.tos-only img");
     if (tosImg) { const card = ev.target.closest(".character-card.tos-only"); const link = card && card.querySelector("a.character-name"); if (link) { link.click(); } return; }
-// Crew link (TOS + TNG explicit)
+    // Crew link (TOS)
     const charLink = ev.target.closest("a.character-name");
-    if (charLink) {
-      const subtitle = document.querySelector(".subtitle-main")?.textContent?.trim();
-      if (!subtitle) return;
+    if (charLink && ($('.subtitle-main')?.textContent === 'The Original Series')) {
       ev.preventDefault();
-
-      const wrapper = document.querySelector(WRAP_SEL); if (!wrapper) return;
+      const wrapper = $(WRAP_SEL); if (!wrapper) return;
       if (!snapshotHTML) snapshotHTML = wrapper.innerHTML;
+      const displayName = charLink.textContent.trim();
+      const key = NAME_MAP[displayName] || displayName;
+      wrapper.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
+      try {
+        const bios = await loadBios();
+        const exactKey = (CREW_EXACT_KEY && CREW_EXACT_KEY[displayName]) || (NAME_MAP && NAME_MAP[displayName]) || displayName;
+        let sections = null;
+        if (bios && bios.Crew) sections = bios.Crew[exactKey];
+        if (!sections && bios && bios.bios) sections = bios.bios[exactKey];
+        if (!sections) sections = bios[exactKey] || bios[(typeof exactKey!=='undefined' && exactKey).replace(/\./g,'')] || bios[(typeof exactKey!=='undefined' && exactKey).replace(/[^A-Za-z ]/g,'')];
+        if (!sections && bios && bios.characters) sections = bios.characters[exactKey] || bios.characters[displayName];
+        if (!sections && bios && bios.crew)       sections = bios.crew[exactKey] || bios.crew[displayName];
+        renderBio(displayName, normalizeSections(sections));
+      } catch (e) {
+        wrapper.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
+      }
+      return;
+    }
 
+    // Crew link (DS9)
+if (charLink && ($('.subtitle-main')?.textContent === 'Deep Space Nine')) {
+      ev.preventDefault();
+      const wrapper = $(WRAP_SEL); if (!wrapper) return;
+      if (!snapshotHTML) snapshotHTML = wrapper.innerHTML;
       const displayName = charLink.textContent.trim();
       wrapper.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
       try {
-        let bios, sections = null;
-
-        if (subtitle === "The Original Series") {
-          bios = await loadBios();
-          const exactKey = (typeof CREW_EXACT_KEY!=='undefined' && CREW_EXACT_KEY && CREW_EXACT_KEY[displayName]) || (typeof NAME_MAP!=='undefined' && NAME_MAP && NAME_MAP[displayName]) || displayName;
-          if (bios && bios.Crew) sections = bios.Crew[exactKey];
-          if (!sections && bios && bios.characters) sections = bios.characters[exactKey];
-          if (!sections && bios && bios.crew) sections = bios.crew[exactKey];
-          if (!sections) sections = bios[exactKey];
-        } else if (subtitle === "The Next Generation") {
-          const bios = await loadTngBios();
-          const found = tngResolve(bios, displayName, "crew");
-          if (!found) throw new Error("Crew bio not found");
-          sections = found;
-        } else {
-          return; // other series not wired here
-        }
-
-        renderBio(displayName, normalizeSections(sections));
+        const bios = await loadDs9Bios();
+        const found = ds9Resolve(bios, displayName, "crew");
+        renderBio(displayName, normalizeSections(found));
       } catch (e) {
         wrapper.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading crew biography.</p>";
       }
       return;
     }
-
-
-// Actor link (TOS + TNG explicit)
+    // Actor link (TOS)
     const actorLink = ev.target.closest("a.character-actor");
-    if (actorLink) {
-      const subtitle = document.querySelector(".subtitle-main")?.textContent?.trim();
-      if (!subtitle) return;
+    if (actorLink && ($('.subtitle-main')?.textContent === 'The Original Series')) {
       ev.preventDefault();
-
-      const wrapper = document.querySelector(WRAP_SEL); if (!wrapper) return;
+      const wrapper = $(WRAP_SEL); if (!wrapper) return;
       if (!snapshotHTML) snapshotHTML = wrapper.innerHTML;
-
       const displayName = actorLink.textContent.trim();
+      const key = NAME_MAP[displayName] || displayName;
       wrapper.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading actor biography...</p>";
       try {
-        let bios, sections = null;
-
-        if (subtitle === "The Original Series") {
-          bios = await loadBios();
-          const exactKey = (typeof ACTOR_EXACT_KEY!=='undefined' && ACTOR_EXACT_KEY && ACTOR_EXACT_KEY[displayName]) || displayName;
-          if (bios && bios.Actors) sections = bios.Actors[exactKey];
-          if (!sections && bios && bios.actors)     sections = bios.actors[exactKey];
-          if (!sections && bios && bios.actorBios)  sections = bios.actorBios[exactKey];
-          if (!sections) sections = bios[exactKey];
-        } else if (subtitle === "The Next Generation") {
-          const bios = await loadTngBios();
-          const found = tngResolve(bios, displayName, "actor");
-          if (!found) throw new Error("Actor bio not found");
-          sections = found;
-        } else {
-          return;
-        }
-
+        const bios = await loadBios();
+        const exactKey = (ACTOR_EXACT_KEY && ACTOR_EXACT_KEY[displayName]) || displayName;
+        let sections = null;
+        if (bios && bios.Actors) sections = bios.Actors[exactKey];
+        if (!sections && bios && bios.actors)     sections = bios.actors[exactKey];
+        if (!sections && bios && bios.actorBios)  sections = bios.actorBios[exactKey];
+        if (!sections) sections = bios[exactKey];
         renderBio(displayName, normalizeSections(sections));
       } catch (e) {
         wrapper.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading actor biography.</p>";
@@ -841,7 +877,22 @@ function tngResolve(bios, displayName, which) {
       return;
     }
 
-
+    // Actor link (DS9)
+if (actorLink && ($('.subtitle-main')?.textContent === 'Deep Space Nine')) {
+      ev.preventDefault();
+      const wrapper = $(WRAP_SEL); if (!wrapper) return;
+      if (!snapshotHTML) snapshotHTML = wrapper.innerHTML;
+      const displayName = actorLink.textContent.trim();
+      wrapper.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading actor biography...</p>";
+      try {
+        const bios = await loadDs9Bios();
+        const found = ds9Resolve(bios, displayName, "actor");
+        renderBio(displayName, normalizeSections(found));
+      } catch (e) {
+        wrapper.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading actor biography.</p>";
+      }
+      return;
+    }
     if (ev.target && ev.target.id === "returnToCrew") {
       ev.preventDefault();
       const wrapper = $(WRAP_SEL);
@@ -877,65 +928,7 @@ function tngResolve(bios, displayName, which) {
 }
   </style>
   <script type="module">
-   // --- Series-aware bios loader (TOS + TNG) ---
-const BIOS_URLS = {
-  TOS: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TOS.json",
-  TNG: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TNG.json",
-};
-
-const SERIES_KEY_BY_SUBTITLE = {
-  "The Original Series": "TOS",
-  "The Next Generation": "TNG",
-};
-
-const biosCacheBySeries = Object.create(null);
-
-/** Load bios JSON for a given series key (TOS | TNG). */
-// Backward-compat alias for legacy TOS-only loader; prefer loadBiosForSeries("TOS"|"TNG")
-async function loadBios() {
-  return loadBiosForSeries("TOS");
-}
-
-/** Normalize heterogeneous section formats into [{header, text}, ...]. */
-function normalizeSections(sections) {
-  if (!sections) return [];
-  if (Array.isArray(sections)) return sections;
-  if (sections.sections && Array.isArray(sections.sections)) return sections.sections;
-  return [];
-}
-
-/** Crew sections resolver for both series. */
-function getCrewSections(seriesKey, bios, displayName) {
-  const key = seriesKey === "TOS" ? ((typeof NAME_MAP !== "undefined" && NAME_MAP) ? (NAME_MAP[displayName] || displayName) : displayName) : displayName;
-
-  let s = null;
-  // TOS primary
-  if (bios && bios.characters) s = bios.characters[key] || bios.characters[displayName];
-  // TNG primary
-  if (!s && bios && bios.Crew) s = bios.Crew[key] || bios.Crew[displayName];
-  // Soft fallbacks
-  if (!s && bios && bios.crew) s = bios.crew[key] || bios.crew[displayName];
-  if (!s) s = bios[key] || bios[displayName];
-  return normalizeSections(s);
-}
-
-/** Actor sections resolver for both series. */
-function getActorSections(seriesKey, bios, displayName) {
-  const exact = seriesKey === "TOS"
-    ? ((typeof ACTOR_EXACT_KEY !== "undefined" && ACTOR_EXACT_KEY) ? (ACTOR_EXACT_KEY[displayName] || displayName) : displayName)
-    : displayName;
-
-  let s = null;
-  if (bios && bios.Actors)    s = bios.Actors[exact];
-  if (!s && bios && bios.actors)    s = bios.actors[exact];
-  if (!s && bios && bios.actorBios) s = bios.actorBios[exact];
-  if (!s) s = bios[exact];
-  return normalizeSections(s);
-}
-// --- end series-aware loader ---
-
-
-const $  = (s, r=document) => r.querySelector(s);
+   const $  = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => r.querySelectorAll(s);
 const SERIES = {
   "TNG": [
@@ -978,7 +971,7 @@ function setTopThree(people) {
     const p = people[i] || null;
     const imgEl = document.querySelector(slots[i].img);
     const txtEl = document.querySelector(slots[i].text);
-    if (imgEl) { if ((typeof p!=='undefined' && p).img) { imgEl.src = p.img; imgEl.style.removeProperty('display'); } else { imgEl.removeAttribute('src'); } }
+    if (imgEl) { if ((typeof p!=='undefined' && p).img) { imgEl.src = p.img; imgEl.style.removeProperty('display'); } else {  } }
     if (txtEl) {
       txtEl.innerHTML = p ? `
         <a href="#" class="character-name">${p.name}</a>
@@ -1037,3 +1030,118 @@ document.addEventListener('DOMContentLoaded', () => {
   <!-- END: Modular series layer (Build 428) -->
  </body>
 </html>
+<script>
+ // DS9 card actors (non-invasive): populate when DS9 is opened
+(function(){
+  const subtitleEl = document.querySelector('.subtitle-main');
+  if (!subtitleEl) return;
+  const people = [
+    { name: 'Benjamin Sisko', role: 'Commander/Captain', actor: 'Avery Brooks' },
+    { name: "Chief O'Brien",  role: 'Chief of Operations', actor: 'Colm Meaney' },
+    { name: 'Jadzia Dax',     role: 'Science Officer', actor: 'Terry Farrell' }
+  ];
+  function fill() {
+    if (subtitleEl.textContent.trim() !== 'Deep Space Nine') return;
+    const slots = [
+      {img:'#card-1-img', text:'#card-1-text'},
+      {img:'#card-2-img', text:'#card-2-text'},
+      {img:'#card-3-img', text:'#card-3-text'}
+    ];
+    for (let i = 0; i < 3; i++) {
+      const p = people[i];
+      const imgEl = document.querySelector(slots[i].img);
+      const txtEl = document.querySelector(slots[i].text);
+      if (imgEl) { imgEl.style.visibility = "";  }
+      if (txtEl) {
+        txtEl.innerHTML = p
+          ? '<a href="#" class="character-name">' + p.name + '</a>' +
+            '<p class="character-title">' + (p.role || '') + '</p><br>' +
+            '<a href="#" class="character-actor">' + (p.actor || '') + '</a>'
+          : '';
+      }
+    }
+  }
+  // Observe subtitle changes
+  const obs = new MutationObserver(fill);
+  obs.observe(subtitleEl, { childList: true, characterData: true, subtree: true });
+  // Also run once on load in case DS9 is already open
+  fill();
+})();
+</script>
+<script>
+ // DS9 actor line injector (enhanced, safe): fill ALL DS9 cards after navigation.
+(function(){
+  const SUBTITLE = document.querySelector('.subtitle-main');
+  const WRAPPER  = document.querySelector('.series-wrapper');
+  if (!SUBTITLE || !WRAPPER) return;
+
+  function norm(s){
+    return String(s || '')
+      .toLowerCase()
+      .normalize('NFKD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '')
+      .trim();
+  }
+
+  // Map by normalized character keys (no punct/space), include common variants
+  const DS9_ACTORS = {
+    "benjaminsisko": "Avery Brooks",
+    "milesobrien": "Colm Meaney",
+    "chiefobrien": "Colm Meaney",
+    "jadziadax": "Terry Farrell",
+    "julianbashir": "Alexander Siddig",
+    "drjulianbashir": "Alexander Siddig",
+    "kiranerys": "Nana Visitor",
+    "odo": "René Auberjonois",
+    "quark": "Armin Shimerman",
+    "worf": "Michael Dorn",
+    "garak": "Andrew J. Robinson",
+    "elimgarak": "Andrew J. Robinson"
+  };
+
+  const RANK_RE = /^(captain|capt|commander|cmdr|major|colonel|lt|lt\.|lieutenant|ensign|doctor|dr|chief)\s+/;
+
+  function actorFor(rawName){
+    const name = String(rawName || '').trim();
+    const noRank = name.replace(RANK_RE, '');
+    const k1 = norm(name);
+    const k2 = norm(noRank);
+    return DS9_ACTORS[k1] || DS9_ACTORS[k2] || null;
+  }
+
+  function injectAllDs9Actors(){
+    if (SUBTITLE.textContent.trim() !== "Deep Space Nine") return;
+
+    const cards = WRAPPER.querySelectorAll(".cards-grid .character-card");
+    for (const card of cards){
+      // Ignore any TOS-only placeholders if they exist in markup
+      if (card.classList.contains("tos-only")) continue;
+
+      // Find the text container that already holds character name
+      const nameLink = card.querySelector("a.character-name");
+      if (!nameLink) continue;
+      const textBox = nameLink.parentElement || card;
+
+      // Skip if actor already present
+      const existing = textBox.querySelector("a.character-actor");
+      if (existing && existing.textContent.trim()) continue;
+
+      const actor = actorFor(nameLink.textContent);
+      if (!actor) continue;
+
+      const br = document.createElement("br");
+      const a = document.createElement("a");
+      a.href = "#";
+      a.className = "character-actor";
+      a.textContent = actor;
+      textBox.appendChild(br);
+      textBox.appendChild(a);
+    }
+  }
+
+  // Run after clicks (navigation triggers), and once on load
+  document.addEventListener("click", () => { requestAnimationFrame(injectAllDs9Actors); }, true);
+  requestAnimationFrame(injectAllDs9Actors);
+})();
+</script>
