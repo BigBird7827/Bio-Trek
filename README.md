@@ -12,6 +12,12 @@
 
 - **Explore character biographies**
 
+- **What is included**
+Bio-Trek displays character and actor biographies for TOS, TNG, DS9, VOY, ENT, DIS, PIC and SNW
+
+** What is not included**
+Bio-Trek does not display biographies for TAS, LD or PRO. There are currently no plans to include animated series in the future.
+
   View crew-focused biographies that cover:
   - Origins and background
   - Career in Starfleet or equivalent service
