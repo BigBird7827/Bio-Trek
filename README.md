@@ -28,7 +28,7 @@
 - **Card-based character gallery**
 
   Each character is represented as a visual “card” with:
-  - A portrait image
+  - A portrait image (all images are AI generated)
   - Character name and role/title
   - Actor name
   Cards are organized in responsive rows so you can quickly scan a series’ ensemble at a glance.
