@@ -1,186 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Bio-Trek</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;display=swap" rel="stylesheet"/>
-<style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background-color: #0a0d36;
-            color: #f5f5f5;
-        }
-        header { padding: 1rem 1rem 0.5rem; text-align: center; }
-        main { flex: 1; display: flex; align-items: flex-start; justify-content: center; padding: 1.5rem 1rem 2.5rem; }
-        .series-wrapper { width: 100%; max-width: 1400px; }
-        .title-main { font-family: "Orbitron", sans-serif; font-size: 42pt; color: #ffd700; margin: 0 0 0.25rem; letter-spacing: 0.12em; text-transform: uppercase; text-shadow: 0 0 4px #000000, 0 0 10px rgba(255, 215, 0, 0.8); }
-        .subtitle-main { font-family: "Orbitron", sans-serif; font-size: 30pt; color: #ffd700; margin: 0; letter-spacing: 0.1em; text-transform: uppercase; text-shadow: 0 0 3px #000000, 0 0 8px rgba(255, 215, 0, 0.7); }
-        .return-link { display: none; margin: 0.75rem auto 0; font-family: "Orbitron", sans-serif; font-size: 0.9rem; letter-spacing: 0.18em; text-transform: uppercase; color: #ffffff; cursor: pointer; opacity: 0.9; padding: 0.4rem 1.5rem; border-radius: 999px; border: 0.5px solid #ffd700; transition: opacity 140ms ease-out, text-shadow 140ms ease-out, transform 140ms ease-out; width: fit-content; text-align: center; }
-        .return-link:hover { opacity: 1; text-shadow: 0 0 4px #000000, 0 0 10px rgba(250, 204, 107, 0.9); transform: translateY(-1px); }
-        .series-grid { display: flex; flex-direction: column; align-items: center; margin-top: 100px; }
-        .button-row { display: flex; gap: 2rem; justify-content: center; width: 100%; max-width: 1100px; }
-        .button-row + .button-row { margin-top: 75px; }
-        .series-btn { display: inline-flex; align-items: center; justify-content: center; width: 100%; padding: 1rem 1.5rem; border-radius: 999px; border: 1px solid #ffffff; font-size: 12pt; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; background-image: linear-gradient(135deg, #011926 0%, #003E5C 100%); color: #B29433; box-shadow: 0 4px 0 #000000, 0 16px 30px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -3px 10px rgba(0, 0, 0, 0.95); cursor: pointer; transition: transform 160ms ease-out, box-shadow 160ms ease-out, border-color 160ms ease-out; text-align: center; white-space: normal; line-height: 1.3; }
-        .series-btn-placeholder { visibility: hidden; pointer-events: none; }
-        .series-btn:hover { box-shadow: 0 6px 0 #000000, 0 22px 38px rgba(0, 0, 0, 0.98), 0 0 18px rgba(211, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -3px 12px rgba(0, 0, 0, 0.98); transform: translateY(-2px) scale(1.02); border-color: #f9fafb; }
-        .series-btn:active { box-shadow: 0 2px 0 #000000, 0 10px 18px rgba(0, 0, 0, 0.98), inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -2px 6px rgba(0, 0, 0, 0.98); transform: translateY(1px) scale(0.99); }
-        .cards-grid { display: none; flex-direction: column; align-items: center; margin-top: 100px; }
-        .cards-row { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; width: 100%; max-width: 1100px; }
-        .character-card {  }
-        .character-card.tos-only { display: none; }
-        .character-card { flex: 0 1 18%; max-width: 260px; padding: 1.5rem 1.75rem; border-radius: 18px; background-image: linear-gradient(135deg, #011926 0%, #003E5C 100%); border: 1px solid #ffffff; color: #B29433; font-size: 12pt; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; text-align: center; box-shadow: 0 4px 0 #000000, 0 16px 30px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -3px 10px rgba(0, 0, 0, 0.95); cursor: pointer; transition: transform 160ms ease-out, box-shadow 160ms ease-out, border-color 160ms ease-out; }
-        .character-card:hover { box-shadow: 0 6px 0 #000000, 0 22px 38px rgba(0, 0, 0, 0.98), 0 0 18px rgba(211, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -3px 12px rgba(0, 0, 0, 0.98); transform: translateY(-2px) scale(1.02); border-color: #f9fafb; }
-        .character-card:active { box-shadow: 0 2px 0 #000000, 0 10px 18px rgba(0, 0, 0, 0.98), inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -2px 6px rgba(0, 0, 0, 0.98); transform: translateY(1px) scale(0.99); }
-        .character-card img { width: 100%; height: auto; display: none; margin-bottom: 0.75rem; }
-        .character-card a.character-name { color: white !important; }
-        .character-card p.character-title { color: gold !important; }
-        .character-card a.character-actor { color: limegreen !important; font-weight: bold !important; font-size: 1.1em !important; -webkit-text-stroke: 0.5px black !important; text-stroke: 0.5px black !important; }
-        .character-card a.character-name { color: white !important; }
-        .character-card p.character-title { color: gold !important; }
-        .character-card a.character-actor { color: limegreen !important; -webkit-text-stroke: 0.5px black !important; text-stroke: 0.5px black !important; }
-</style>
-<style id="gold-headers">.bio-header{color:gold;font-weight:700;}h1,h2,h3,h4,h5,h6{color:gold;}</style><style>
-/* Ensure TOS images are shown */
-.character-card.tos-only img { display: block; }
-</style><style>
-/* Unified card image sizing: all images same size */
-.character-card img {
-  display: block;   /* override earlier display:none */
-  width: 100%;
-  height: 240px;    /* single consistent height for ALL cards */
-  object-fit: cover;/* avoid stretching; center-crop to fill area */
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Bio-Trek
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   html, body  {
+   margin: 0;
+   padding: 0;
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+   background-color: #0a0d36;
+   color: #f5f5f5;
+   
 }
-</style><style>
-/* Unified height driven by JS from featured image height */
-:root { --card-img-h: auto; }
-.character-card img { height: var(--card-img-h); object-fit: cover; }
-</style>
-<style>.character-card.tos-only img{display:block;}</style>
-<style>
-/* Text placement only (no typography changes) */
-.character-card img + div { margin-top: 0.75rem; }
-.character-card .character-name,
-.character-card .character-role,
-.character-card .character-actor { display: block; margin: 0.2rem 0; }
-.character-card a { text-decoration: none; }
-</style><style>
-/* Layout-only alignment so text starts in the same place as the first three cards */
-.character-card { display: flex; flex-direction: column; }
-.character-card > img { display: block; }
-/* Use gap to create a consistent space between image and text block */
-.character-card { gap: 0.75rem; }
-/* Ensure the first text container under image is treated as a block */
-.character-card > .card-text,
-.character-card > #card-1-text,
-.character-card > #card-2-text,
-.character-card > #card-3-text { display: block; }
-/* No font sizes/weights changed */
-</style><style>
-/* Tighter three-line stack (name/role/actor) without typography changes */
-.character-card .character-name,
-.character-card .character-role,
-.character-card .character-actor {
-  display: block;
-  margin: 0.1rem 0;         /* smaller inter-line gap */
-  line-height: 1.15;        /* slightly more than normal */
+ header  {
+   padding: 1rem 1rem 0.5rem;
+   text-align: center;
+   
 }
-</style><style>
-/* Ensure consistent layout so we can compute remaining space for image */
-.character-card { display: flex; flex-direction: column; gap: 0.75rem; }
-.character-card > img { display: block; }
-</style><style>
-/* Ultra-precise line stacking for card text: close to single spacing + ~2px */
-.character-card .character-name,
-.character-card .character-role,
-.character-card .character-actor {
-  display: block;
-  line-height: calc(1em + 2px) !important;  /* "text editor + a couple px" */
-  margin: 0;                                 /* no extra margin between lines */
+ main  {
+   flex: 1;
+   display: flex;
+   align-items: flex-start;
+   justify-content: center;
+   padding: 1.5rem 1rem 2.5rem;
+   
 }
-/* Remove <br> inserted gaps inside card text containers */
-.character-card > div br { display: none; }
-</style><style>
-/* Ensure TOS extra card images are visible; text uses default spacing like featured cards */
-.character-card.tos-only img { display: block; }
-</style></head>
-<body>
-<header>
-<h1 class="title-main">Bio Trek</h1>
-<h2 class="subtitle-main">Star Trek Biographies</h2>
-</header>
-<main>
-<div class="series-wrapper">
-<div class="return-link" id="return-menu">
-                Return to Series Menu
-            </div>
-<div class="series-grid">
-<div class="button-row">
-<button class="series-btn" data-series="The Original Series" type="button">The Original Series</button>
-<button class="series-btn" data-series="The Next Generation" type="button">The Next Generation</button>
-<button class="series-btn" data-series="Deep Space Nine" type="button">Deep Space Nine</button>
-</div>
-<div class="button-row">
-<button class="series-btn" data-series="Voyager" type="button">Voyager</button>
-<button class="series-btn" data-series="Enterprise" type="button">Enterprise</button>
-<button class="series-btn" data-series="Discovery" type="button">Discovery</button>
-</div>
-<div class="button-row">
-<button class="series-btn" data-series="Picard" type="button">Picard</button>
-<button aria-hidden="true" class="series-btn series-btn-placeholder" tabindex="-1" type="button"></button>
-<button class="series-btn" data-series="Strange New Worlds" type="button">Strange New Worlds</button>
-</div>
-</div>
-<div class="cards-grid">
-<div class="cards-row">
-<div class="character-card" id="card-1">
-<img alt="" id="card-1-img" src=""/>
-<div id="card-1-text"></div>
-</div>
-<div class="character-card" id="card-2">
-<img alt="" id="card-2-img" src=""/>
-<div id="card-2-text"></div>
-</div>
-<div class="character-card" id="card-3">
-<img alt="" id="card-3-img" src=""/>
-<div id="card-3-text"></div>
-</div>
-<div class="character-card tos-only"><img alt="Montgomery Scott (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Scotty%20(TOS).png"/>
-<div class="card-text"><a class="character-name" href="#bio-James-T-Kirk">Montgomery Scott</a><p class="character-title">Chief Engineer</p><br/><a class="character-actor" href="#">James Doohan</a></div>
-</div>
-<div class="character-card tos-only"><img alt="Nyota Uhura (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Uhura%20(TOS).png"/>
-<div class="card-text"><a class="character-name" href="#bio-Spock">Nyota Uhura</a><p class="character-title">Communications Officer</p><br/><a class="character-actor" href="#">Nichelle Nichols</a></div>
-</div>
-<div class="character-card tos-only"><img alt="Hikaru Sulu (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Sulu%20(TOS).png"/>
-<div class="card-text"><a class="character-name" href="#bio-Doctor-McCoy">Hikaru Sulu</a><p class="character-title">Helmsman</p><br/><a class="character-actor" href="#">George Takei</a></div>
-</div>
-<div class="character-card tos-only"><img alt="Pavel Chekov (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Chekov%20(TOS).png"/>
-<div class="card-text"><a class="character-name" href="#bio-Scotty">Pavel Chekov</a><p class="character-title">Navigator</p><br/><a class="character-actor" href="#">Walter Koenig</a></div>
-</div>
-<div class="character-card tos-only"><img alt="Yeoman Janice Rand (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Yeoman%20Rand%20(TOS).png"/>
-<div class="card-text"><a class="character-name" href="#bio-Sulu">Yeoman Janice Rand</a><p class="character-title">Yeoman</p><br/><a class="character-actor" href="#">Grace Lee Whitney</a></div>
-</div>
-<div class="character-card tos-only"><img alt="Nurse Christine Chapel (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Christine%20Chapel%20(TOS).png"/>
-<div class="card-text"><a class="character-name" href="#bio-Chekov">Nurse Christine Chapel</a><p class="character-title">Nurse</p><br/><a class="character-actor" href="#">Majel Barett Roddenberry</a></div>
-</div>
-</div>
-</div>
-</div>
-</main>
-<div id="bio-page" style="display:none; text-align:center;">
-<div id="bio-container"></div>
-<button class="nav-button" id="return-series">Return to Series</button>
-</div>
-<div id="build304-status" style="font:14px system-ui, sans-serif; padding:8px 12px;"></div>
-<script>
-(function () {
+ .series-wrapper  {
+   width: 100%;
+   max-width: 1400px;
+   
+}
+ .title-main  {
+   font-family: "Orbitron", sans-serif;
+   font-size: 42pt;
+   color: #ffd700;
+   margin: 0 0 0.25rem;
+   letter-spacing: 0.12em;
+   text-transform: uppercase;
+   text-shadow: 0 0 4px #000000, 0 0 10px rgba(255, 215, 0, 0.8);
+   
+}
+ .subtitle-main  {
+   font-family: "Orbitron", sans-serif;
+   font-size: 30pt;
+   color: #ffd700;
+   margin: 0;
+   letter-spacing: 0.1em;
+   text-transform: uppercase;
+   text-shadow: 0 0 3px #000000, 0 0 8px rgba(255, 215, 0, 0.7);
+   
+}
+ .return-link  {
+   display: none;
+   margin: 0.75rem auto 0;
+   font-family: "Orbitron", sans-serif;
+   font-size: 0.9rem;
+   letter-spacing: 0.18em;
+   text-transform: uppercase;
+   color: #ffffff;
+   cursor: pointer;
+   opacity: 0.9;
+   padding: 0.4rem 1.5rem;
+   border-radius: 999px;
+   border: 0.5px solid #ffd700;
+   transition: opacity 140ms ease-out, text-shadow 140ms ease-out, transform 140ms ease-out;
+   width: fit-content;
+   text-align: center;
+   
+}
+ .return-link:hover  {
+   opacity: 1;
+   text-shadow: 0 0 4px #000000, 0 0 10px rgba(250, 204, 107, 0.9);
+   transform: translateY(-1px);
+   
+}
+ .series-grid  {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 100px;
+   
+}
+ .button-row  {
+   display: flex;
+   gap: 2rem;
+   justify-content: center;
+   width: 100%;
+   max-width: 1100px;
+   
+}
+ .button-row + .button-row  {
+   margin-top: 75px;
+   
+}
+ .series-btn  {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   padding: 1rem 1.5rem;
+   border-radius: 999px;
+   border: 1px solid #ffffff;
+   font-size: 12pt;
+   font-weight: 700;
+   letter-spacing: 0.03em;
+   text-transform: uppercase;
+   background-image: linear-gradient(135deg, #011926 0%, #003E5C 100%);
+   color: #B29433;
+   box-shadow: 0 4px 0 #000000, 0 16px 30px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -3px 10px rgba(0, 0, 0, 0.95);
+   cursor: pointer;
+   transition: transform 160ms ease-out, box-shadow 160ms ease-out, border-color 160ms ease-out;
+   text-align: center;
+   white-space: normal;
+   line-height: 1.3;
+   
+}
+ .series-btn-placeholder  {
+   visibility: hidden;
+   pointer-events: none;
+   
+}
+ .series-btn:hover  {
+   box-shadow: 0 6px 0 #000000, 0 22px 38px rgba(0, 0, 0, 0.98), 0 0 18px rgba(211, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -3px 12px rgba(0, 0, 0, 0.98);
+   transform: translateY(-2px) scale(1.02);
+   border-color: #f9fafb;
+   
+}
+ .series-btn:active  {
+   box-shadow: 0 2px 0 #000000, 0 10px 18px rgba(0, 0, 0, 0.98), inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -2px 6px rgba(0, 0, 0, 0.98);
+   transform: translateY(1px) scale(0.99);
+   
+}
+ .cards-grid  {
+   display: none;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 100px;
+   
+}
+ .cards-row  {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 1.5rem;
+   justify-content: center;
+   width: 100%;
+   max-width: 1100px;
+   
+}
+ .character-card  {
+   
+}
+ .character-card.tos-only  {
+   display: none;
+   
+}
+ .character-card  {
+   flex: 0 1 18%;
+   max-width: 260px;
+   padding: 1.5rem 1.75rem;
+   border-radius: 18px;
+   background-image: linear-gradient(135deg, #011926 0%, #003E5C 100%);
+   border: 1px solid #ffffff;
+   color: #B29433;
+   font-size: 12pt;
+   font-weight: 700;
+   letter-spacing: 0.04em;
+   text-transform: uppercase;
+   text-align: center;
+   box-shadow: 0 4px 0 #000000, 0 16px 30px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -3px 10px rgba(0, 0, 0, 0.95);
+   cursor: pointer;
+   transition: transform 160ms ease-out, box-shadow 160ms ease-out, border-color 160ms ease-out;
+   
+}
+ .character-card:hover  {
+   box-shadow: 0 6px 0 #000000, 0 22px 38px rgba(0, 0, 0, 0.98), 0 0 18px rgba(211, 175, 55, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -3px 12px rgba(0, 0, 0, 0.98);
+   transform: translateY(-2px) scale(1.02);
+   border-color: #f9fafb;
+   
+}
+ .character-card:active  {
+   box-shadow: 0 2px 0 #000000, 0 10px 18px rgba(0, 0, 0, 0.98), inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -2px 6px rgba(0, 0, 0, 0.98);
+   transform: translateY(1px) scale(0.99);
+   
+}
+ .character-card img  {
+   width: 100%;
+   height: auto;
+   display: none;
+   margin-bottom: 0.75rem;
+   
+}
+ .character-card a.character-name  {
+   color: white !important;
+   
+}
+ .character-card p.character-title  {
+   color: gold !important;
+   
+}
+ .character-card a.character-actor  {
+   color: limegreen !important;
+   font-weight: bold !important;
+   font-size: 1.1em !important;
+   -webkit-text-stroke: 0.5px black !important;
+   text-stroke: 0.5px black !important;
+   
+}
+ .character-card a.character-name  {
+   color: white !important;
+   
+}
+ .character-card p.character-title  {
+   color: gold !important;
+   
+}
+ .character-card a.character-actor  {
+   color: limegreen !important;
+   -webkit-text-stroke: 0.5px black !important;
+   text-stroke: 0.5px black !important;
+   
+}
+  </style>
+  <style id="gold-headers">
+   .bio-header {
+  color:gold;
+  font-weight:700;
+  
+}
+h1,h2,h3,h4,h5,h6 {
+  color:gold;
+  
+}
+  </style>
+  <style>
+   /* Ensure TOS images are shown */ .character-card.tos-only img  {
+   display: block;
+   
+}
+  </style>
+  <style>
+   /* Unified card image sizing: all images same size */ .character-card img  {
+   display: block;
+   /* override earlier display:none */ width: 100%;
+   height: 240px;
+   /* single consistent height for ALL cards */ object-fit: cover;
+  /* avoid stretching;
+   center-crop to fill area */ 
+}
+  </style>
+  <style>
+   /* Unified height driven by JS from featured image height */ :root  {
+   --card-img-h: auto;
+   
+}
+ .character-card img  {
+   height: var(--card-img-h);
+   object-fit: cover;
+   
+}
+  </style>
+  <style>
+   .character-card.tos-only img {
+  display:block;
+  
+}
+  </style>
+  <style>
+   /* Text placement only (no typography changes) */ .character-card img + div  {
+   margin-top: 0.75rem;
+   
+}
+ .character-card .character-name, .character-card .character-role, .character-card .character-actor  {
+   display: block;
+   margin: 0.2rem 0;
+   
+}
+ .character-card a  {
+   text-decoration: none;
+   
+}
+  </style>
+  <style>
+   /* Layout-only alignment so text starts in the same place as the first three cards */ .character-card  {
+   display: flex;
+   flex-direction: column;
+   
+}
+ .character-card > img  {
+   display: block;
+   
+}
+ /* Use gap to create a consistent space between image and text block */ .character-card  {
+   gap: 0.75rem;
+   
+}
+ /* Ensure the first text container under image is treated as a block */ .character-card > .card-text, .character-card > #card-1-text, .character-card > #card-2-text, .character-card > #card-3-text  {
+   display: block;
+   
+}
+ /* No font sizes/weights changed */
+  </style>
+  <style>
+   /* Tighter three-line stack (name/role/actor) without typography changes */ .character-card .character-name, .character-card .character-role, .character-card .character-actor  {
+   display: block;
+   margin: 0.1rem 0;
+   /* smaller inter-line gap */ line-height: 1.15;
+   /* slightly more than normal */ 
+}
+  </style>
+  <style>
+   /* Ensure consistent layout so we can compute remaining space for image */ .character-card  {
+   display: flex;
+   flex-direction: column;
+   gap: 0.75rem;
+   
+}
+ .character-card > img  {
+   display: block;
+   
+}
+  </style>
+  <style>
+   /* Ultra-precise line stacking for card text: close to single spacing + ~2px */ .character-card .character-name, .character-card .character-role, .character-card .character-actor  {
+   display: block;
+   line-height: calc(1em + 2px) !important;
+   /* "text editor + a couple px" */ margin: 0;
+   /* no extra margin between lines */ 
+}
+ /* Remove <br> inserted gaps inside card text containers */ .character-card > div br  {
+   display: none;
+   
+}
+  </style>
+  <style>
+   /* Ensure TOS extra card images are visible;
+ text uses default spacing like featured cards */ .character-card.tos-only img  {
+   display: block;
+   
+}
+  </style>
+ </head>
+ <body>
+  <header>
+   <h1 class="title-main">
+    Bio Trek
+   </h1>
+   <h2 class="subtitle-main">
+    Star Trek Biographies
+   </h2>
+  </header>
+  <main>
+   <div class="series-wrapper">
+    <div class="return-link" id="return-menu">
+     Return to Series Menu
+    </div>
+    <div class="series-grid">
+     <div class="button-row">
+      <button class="series-btn" data-series="The Original Series" type="button">
+       The Original Series
+      </button>
+      <button class="series-btn" data-series="The Next Generation" type="button">
+       The Next Generation
+      </button>
+      <button class="series-btn" data-series="Deep Space Nine" type="button">
+       Deep Space Nine
+      </button>
+     </div>
+     <div class="button-row">
+      <button class="series-btn" data-series="Voyager" type="button">
+       Voyager
+      </button>
+      <button class="series-btn" data-series="Enterprise" type="button">
+       Enterprise
+      </button>
+      <button class="series-btn" data-series="Discovery" type="button">
+       Discovery
+      </button>
+     </div>
+     <div class="button-row">
+      <button class="series-btn" data-series="Picard" type="button">
+       Picard
+      </button>
+      <button aria-hidden="true" class="series-btn series-btn-placeholder" tabindex="-1" type="button">
+      </button>
+      <button class="series-btn" data-series="Strange New Worlds" type="button">
+       Strange New Worlds
+      </button>
+     </div>
+    </div>
+    <div class="cards-grid">
+     <div class="cards-row">
+      <div class="character-card" id="card-1">
+       <img alt="" id="card-1-img" src=""/>
+       <div id="card-1-text">
+       </div>
+      </div>
+      <div class="character-card" id="card-2">
+       <img alt="" id="card-2-img" src=""/>
+       <div id="card-2-text">
+       </div>
+      </div>
+      <div class="character-card" id="card-3">
+       <img alt="" id="card-3-img" src=""/>
+       <div id="card-3-text">
+       </div>
+      </div>
+      <div class="character-card tos-only">
+       <img alt="Montgomery Scott (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Scotty%20(TOS).png"/>
+       <div class="card-text">
+        <a class="character-name" href="#bio-James-T-Kirk">
+         Montgomery Scott
+        </a>
+        <p class="character-title">
+         Chief Engineer
+        </p>
+        <br/>
+        <a class="character-actor" href="#">
+         James Doohan
+        </a>
+       </div>
+      </div>
+      <div class="character-card tos-only">
+       <img alt="Nyota Uhura (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Uhura%20(TOS).png"/>
+       <div class="card-text">
+        <a class="character-name" href="#bio-Spock">
+         Nyota Uhura
+        </a>
+        <p class="character-title">
+         Communications Officer
+        </p>
+        <br/>
+        <a class="character-actor" href="#">
+         Nichelle Nichols
+        </a>
+       </div>
+      </div>
+      <div class="character-card tos-only">
+       <img alt="Hikaru Sulu (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Sulu%20(TOS).png"/>
+       <div class="card-text">
+        <a class="character-name" href="#bio-Doctor-McCoy">
+         Hikaru Sulu
+        </a>
+        <p class="character-title">
+         Helmsman
+        </p>
+        <br/>
+        <a class="character-actor" href="#">
+         George Takei
+        </a>
+       </div>
+      </div>
+      <div class="character-card tos-only">
+       <img alt="Pavel Chekov (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Chekov%20(TOS).png"/>
+       <div class="card-text">
+        <a class="character-name" href="#bio-Scotty">
+         Pavel Chekov
+        </a>
+        <p class="character-title">
+         Navigator
+        </p>
+        <br/>
+        <a class="character-actor" href="#">
+         Walter Koenig
+        </a>
+       </div>
+      </div>
+      <div class="character-card tos-only">
+       <img alt="Yeoman Janice Rand (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Yeoman%20Rand%20(TOS).png"/>
+       <div class="card-text">
+        <a class="character-name" href="#bio-Sulu">
+         Yeoman Janice Rand
+        </a>
+        <p class="character-title">
+         Yeoman
+        </p>
+        <br/>
+        <a class="character-actor" href="#">
+         Grace Lee Whitney
+        </a>
+       </div>
+      </div>
+      <div class="character-card tos-only">
+       <img alt="Nurse Christine Chapel (TOS)" decoding="async" loading="lazy" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Christine%20Chapel%20(TOS).png"/>
+       <div class="card-text">
+        <a class="character-name" href="#bio-Chekov">
+         Nurse Christine Chapel
+        </a>
+        <p class="character-title">
+         Nurse
+        </p>
+        <br/>
+        <a class="character-actor" href="#">
+         Majel Barett Roddenberry
+        </a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </main>
+  <div id="bio-page" style="display:none; text-align:center;">
+   <div id="bio-container">
+   </div>
+   <button class="nav-button" id="return-series">
+    Return to Series
+   </button>
+  </div>
+  <div id="build304-status" style="font:14px system-ui, sans-serif; padding:8px 12px;">
+  </div>
+  <script>
+   (function () {
   const DOC = document;
   const WRAP_SEL = ".series-wrapper";
   const NAME_MAP = {
@@ -254,6 +592,79 @@
     biosCache = data && data.bios ? data.bios : data;
     return biosCache;
   }
+
+// Dedicated loader for TNG bios (mirrors legacy loadBios for TOS).
+async function loadTngBios() {
+  const url = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TNG.json";
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) throw new Error("Failed to load TNG bios: " + res.status);
+  const data = await res.json();
+  return (data && data.bios) ? data.bios : data;
+}
+
+// --- Minimal TNG name helpers (safe) ---
+function tngAlias(name) {
+  // Specific known variants
+  const map = {
+    "Chief O'Brien": "Miles O'Brien",
+    "Will Riker": "William Riker",
+    "William T. Riker": "William Riker",
+    "Jean-Luc Picard": "Jean Luc Picard"
+  };
+  return map[name] || name;
+}
+function simpleNorm(s) {
+  return String(s || '')
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/['’`\.\-]/g, '')   // strip common punctuation
+    .replace(/\s+/g, '')
+    .trim();
+}
+function getNormalized(dict, name) {
+  if (!dict || !name) return null;
+  const target = simpleNorm(name);
+  for (const k of Object.keys(dict)) {
+    if (simpleNorm(k) === target) return dict[k];
+  }
+  return null;
+}
+function tngResolve(bios, displayName, which) {
+  const exact = tngAlias(displayName);
+  let s = null;
+
+  // exact dictionary tries
+  if (which === "crew") {
+    if (bios.Crew) s = bios.Crew[exact];
+    if (!s && bios.crew) s = bios.crew[exact];
+    if (!s && bios.characters) s = bios.characters[exact];
+  } else {
+    if (bios.Actors) s = bios.Actors[exact];
+    if (!s && bios.actors) s = bios.actors[exact];
+    if (!s && bios.actorBios) s = bios.actorBios[exact];
+  }
+  if (!s && bios) s = bios[exact];
+  if (s) return s;
+
+  // normalized tries (only if exact failed)
+  if (which === "crew") {
+    if (!s && bios.Crew) s = getNormalized(bios.Crew, exact);
+    if (!s && bios.crew) s = getNormalized(bios.crew, exact);
+    if (!s && bios.characters) s = getNormalized(bios.characters, exact);
+  } else {
+    if (!s && bios.Actors) s = getNormalized(bios.Actors, exact);
+    if (!s && bios.actors) s = getNormalized(bios.actors, exact);
+    if (!s && bios.actorBios) s = getNormalized(bios.actorBios, exact);
+  }
+  if (!s && bios) s = getNormalized(bios, exact);
+  return s;
+}
+// --- end helpers ---
+
+
+
+
   function openSeries(seriesName) {
     const title = $(".title-main");
     const subtitle = $(".subtitle-main");
@@ -353,53 +764,84 @@
     if (ev.target.closest("#return-menu")) { ev.preventDefault(); returnToMenu(); return; }
     const tosImg = ev.target.closest(".character-card.tos-only img");
     if (tosImg) { const card = ev.target.closest(".character-card.tos-only"); const link = card && card.querySelector("a.character-name"); if (link) { link.click(); } return; }
-    // Crew link (TOS)
+// Crew link (TOS + TNG explicit)
     const charLink = ev.target.closest("a.character-name");
-    if (charLink && ($('.subtitle-main')?.textContent === 'The Original Series')) {
+    if (charLink) {
+      const subtitle = document.querySelector(".subtitle-main")?.textContent?.trim();
+      if (!subtitle) return;
       ev.preventDefault();
-      const wrapper = $(WRAP_SEL); if (!wrapper) return;
+
+      const wrapper = document.querySelector(WRAP_SEL); if (!wrapper) return;
       if (!snapshotHTML) snapshotHTML = wrapper.innerHTML;
+
       const displayName = charLink.textContent.trim();
-      const key = NAME_MAP[displayName] || displayName;
       wrapper.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading biography...</p>";
       try {
-        const bios = await loadBios();
-        const exactKey = (CREW_EXACT_KEY && CREW_EXACT_KEY[displayName]) || (NAME_MAP && NAME_MAP[displayName]) || displayName;
-        let sections = null;
-        if (bios && bios.Crew) sections = bios.Crew[exactKey];
-        if (!sections && bios && bios.bios) sections = bios.bios[exactKey];
-        if (!sections) sections = bios[exactKey] || bios[(typeof exactKey!=='undefined' && exactKey).replace(/\./g,'')] || bios[(typeof exactKey!=='undefined' && exactKey).replace(/[^A-Za-z ]/g,'')];
-        if (!sections && bios && bios.characters) sections = bios.characters[exactKey] || bios.characters[displayName];
-        if (!sections && bios && bios.crew)       sections = bios.crew[exactKey] || bios.crew[displayName];
+        let bios, sections = null;
+
+        if (subtitle === "The Original Series") {
+          bios = await loadBios();
+          const exactKey = (typeof CREW_EXACT_KEY!=='undefined' && CREW_EXACT_KEY && CREW_EXACT_KEY[displayName]) || (typeof NAME_MAP!=='undefined' && NAME_MAP && NAME_MAP[displayName]) || displayName;
+          if (bios && bios.Crew) sections = bios.Crew[exactKey];
+          if (!sections && bios && bios.characters) sections = bios.characters[exactKey];
+          if (!sections && bios && bios.crew) sections = bios.crew[exactKey];
+          if (!sections) sections = bios[exactKey];
+        } else if (subtitle === "The Next Generation") {
+          const bios = await loadTngBios();
+          const found = tngResolve(bios, displayName, "crew");
+          if (!found) throw new Error("Crew bio not found");
+          sections = found;
+        } else {
+          return; // other series not wired here
+        }
+
         renderBio(displayName, normalizeSections(sections));
       } catch (e) {
-        wrapper.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading biography data.</p>";
+        wrapper.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading crew biography.</p>";
       }
       return;
     }
-    // Actor link (TOS)
+
+
+// Actor link (TOS + TNG explicit)
     const actorLink = ev.target.closest("a.character-actor");
-    if (actorLink && ($('.subtitle-main')?.textContent === 'The Original Series')) {
+    if (actorLink) {
+      const subtitle = document.querySelector(".subtitle-main")?.textContent?.trim();
+      if (!subtitle) return;
       ev.preventDefault();
-      const wrapper = $(WRAP_SEL); if (!wrapper) return;
+
+      const wrapper = document.querySelector(WRAP_SEL); if (!wrapper) return;
       if (!snapshotHTML) snapshotHTML = wrapper.innerHTML;
+
       const displayName = actorLink.textContent.trim();
-      const key = NAME_MAP[displayName] || displayName;
       wrapper.innerHTML = "<p style='text-align:center;font-family:Orbitron,sans-serif;font-size:1.5rem;color:gold;'>Loading actor biography...</p>";
       try {
-        const bios = await loadBios();
-        const exactKey = (ACTOR_EXACT_KEY && ACTOR_EXACT_KEY[displayName]) || displayName;
-        let sections = null;
-        if (bios && bios.Actors) sections = bios.Actors[exactKey];
-        if (!sections && bios && bios.actors)     sections = bios.actors[exactKey];
-        if (!sections && bios && bios.actorBios)  sections = bios.actorBios[exactKey];
-        if (!sections) sections = bios[exactKey];
+        let bios, sections = null;
+
+        if (subtitle === "The Original Series") {
+          bios = await loadBios();
+          const exactKey = (typeof ACTOR_EXACT_KEY!=='undefined' && ACTOR_EXACT_KEY && ACTOR_EXACT_KEY[displayName]) || displayName;
+          if (bios && bios.Actors) sections = bios.Actors[exactKey];
+          if (!sections && bios && bios.actors)     sections = bios.actors[exactKey];
+          if (!sections && bios && bios.actorBios)  sections = bios.actorBios[exactKey];
+          if (!sections) sections = bios[exactKey];
+        } else if (subtitle === "The Next Generation") {
+          const bios = await loadTngBios();
+          const found = tngResolve(bios, displayName, "actor");
+          if (!found) throw new Error("Actor bio not found");
+          sections = found;
+        } else {
+          return;
+        }
+
         renderBio(displayName, normalizeSections(sections));
       } catch (e) {
         wrapper.innerHTML = "<p style='text-align:center;color:tomato;'>Error loading actor biography.</p>";
       }
       return;
     }
+
+
     if (ev.target && ev.target.id === "returnToCrew") {
       ev.preventDefault();
       const wrapper = $(WRAP_SEL);
@@ -413,9 +855,9 @@
     }
   });
   })();
-</script>
-<script>
-(function(){
+  </script>
+  <script>
+   (function(){
   const img1 = document.querySelector("#card-1-img");
   if (!img1) return;
   function syncHeight(){
@@ -426,12 +868,73 @@
   else { img1.addEventListener("load", syncHeight, { once: true }); }
   window.addEventListener("resize", syncHeight);
 })();
-</script>
-<!-- BEGIN: Modular series layer (Build 428) -->
-<style>
-  .series-non-tos .character-card.tos-only { display: none !important; }
-</style>
-<script type="module">
+  </script>
+  <!-- BEGIN: Modular series layer (Build 428) -->
+  <style>
+   .series-non-tos .character-card.tos-only  {
+   display: none !important;
+   
+}
+  </style>
+  <script type="module">
+   // --- Series-aware bios loader (TOS + TNG) ---
+const BIOS_URLS = {
+  TOS: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TOS.json",
+  TNG: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TNG.json",
+};
+
+const SERIES_KEY_BY_SUBTITLE = {
+  "The Original Series": "TOS",
+  "The Next Generation": "TNG",
+};
+
+const biosCacheBySeries = Object.create(null);
+
+/** Load bios JSON for a given series key (TOS | TNG). */
+// Backward-compat alias for legacy TOS-only loader; prefer loadBiosForSeries("TOS"|"TNG")
+async function loadBios() {
+  return loadBiosForSeries("TOS");
+}
+
+/** Normalize heterogeneous section formats into [{header, text}, ...]. */
+function normalizeSections(sections) {
+  if (!sections) return [];
+  if (Array.isArray(sections)) return sections;
+  if (sections.sections && Array.isArray(sections.sections)) return sections.sections;
+  return [];
+}
+
+/** Crew sections resolver for both series. */
+function getCrewSections(seriesKey, bios, displayName) {
+  const key = seriesKey === "TOS" ? ((typeof NAME_MAP !== "undefined" && NAME_MAP) ? (NAME_MAP[displayName] || displayName) : displayName) : displayName;
+
+  let s = null;
+  // TOS primary
+  if (bios && bios.characters) s = bios.characters[key] || bios.characters[displayName];
+  // TNG primary
+  if (!s && bios && bios.Crew) s = bios.Crew[key] || bios.Crew[displayName];
+  // Soft fallbacks
+  if (!s && bios && bios.crew) s = bios.crew[key] || bios.crew[displayName];
+  if (!s) s = bios[key] || bios[displayName];
+  return normalizeSections(s);
+}
+
+/** Actor sections resolver for both series. */
+function getActorSections(seriesKey, bios, displayName) {
+  const exact = seriesKey === "TOS"
+    ? ((typeof ACTOR_EXACT_KEY !== "undefined" && ACTOR_EXACT_KEY) ? (ACTOR_EXACT_KEY[displayName] || displayName) : displayName)
+    : displayName;
+
+  let s = null;
+  if (bios && bios.Actors)    s = bios.Actors[exact];
+  if (!s && bios && bios.actors)    s = bios.actors[exact];
+  if (!s && bios && bios.actorBios) s = bios.actorBios[exact];
+  if (!s) s = bios[exact];
+  return normalizeSections(s);
+}
+// --- end series-aware loader ---
+
+
 const $  = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => r.querySelectorAll(s);
 const SERIES = {
@@ -530,7 +1033,7 @@ document.addEventListener('DOMContentLoaded', () => {
   else if (subtitle.includes('voy') || subtitle.includes('voyager'))     applySeries('VOY');
   else if (subtitle.includes('ds9') || subtitle.includes('deep space nine')) applySeries('DS9');
 });
-</script>
-<!-- END: Modular series layer (Build 428) -->
-</body>
+  </script>
+  <!-- END: Modular series layer (Build 428) -->
+ </body>
 </html>
