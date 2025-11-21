@@ -236,7 +236,16 @@
         { name:"Hoshi Sato",        role:"Communications Officer", actor:"Linda Park",          img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Hoshi%20Sato.png" },
         { name:"Doctor Phlox",      role:"Chief Medical Officer", actor:"John Billingsley",     img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20Phlox.png" }
       ],
-      DIS: [], PIC: [], SNW: []
+      DIS: [], PIC: [], SNW: [
+        { name:"Christopher Pike", role:"Captain", actor:"Anson Mount", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Christopher%20Pike.png" },
+        { name:"Una Chin Riley", role:"First Officer", actor:"Rebecca Romijn", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Una%20Chin%20Riley.png" },
+        { name:"Spock", role:"Science Officer", actor:"Ethan Peck", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Spock%20(SNW).png" },
+        { name:"Erica Ortegas", role:"Helm Officer", actor:"Melissa Navia", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Erica%20Ortegas.png" },
+        { name:"La'An Noonien-Singh", role:"Security Chief", actor:"Christina Chong", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/La%E2%80%99An%20Noonien-Singh.png" },
+        { name:"Nyota Uhura", role:"Communications", actor:"Celia Rose Gooding", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Nyota%20Uhura.png" },
+        { name:"Christine Chapel", role:"Nurse", actor:"Jess Bush", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Christine%20Chapel.png" },
+        { name:"Doctor M'Benga", role:"Chief Medical Officer", actor:"Babs Olusanmokun", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20M'Benga.png" }
+      ]
     };
 
     // ===== Aliases for bios =====
@@ -270,6 +279,19 @@
       },
       actor: {}
     }
+
+      ,
+      SNW: {
+        crew: {
+          "Una Chin Riley":"Una Chin-Riley",
+          "Una":"Una Chin-Riley",
+          "Number One":"Una Chin-Riley",
+          "Doctor M'Benga":"Dr. Joseph M'Benga",
+          "Dr. M'Benga":"Dr. Joseph M'Benga",
+          "M'Benga":"Dr. Joseph M'Benga"
+        },
+        actor: {}
+      }
 };
 
     // ===== JSON loaders =====
@@ -278,17 +300,51 @@
     async function loadDS9(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-DS9.json"); }
     async function loadTNG(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TNG.json"); }
 async function loadENT(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-ENT.json"); }
+    async function loadSNW(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-SNW.json"); }
 function mapDs9Alias(n){ const m={ "chief o'brien":"miles o'brien","elim garak":"garak","lt. commander worf":"worf" }; return m[(n||'').toLowerCase()]||n; }
 
+    
+    
     function resolve(ds, name, which, seriesKey){
       const display = (name||'').trim();
+
       const seriesAliases = (ALIASES[seriesKey] && ALIASES[seriesKey][which]) || {};
       const aliased = seriesAliases[display] || display;
-      const exact = (seriesKey==='DS9' && which==='crew') ? mapDs9Alias(aliased) : aliased;
+
+      // Build robust candidate variants
+      const cset = new Set();
+      const straight = aliased.replace(/[’`]/g, "'");
+      const curly   = straight.replace(/'/g, "’");
+      const noHyphen = straight.replace(/-/g, " ");
+      const withHyphen = straight.replace(/\s+/g, " ").replace(/\b([A-Za-z])\s*-\s*([A-Za-z])/g, "$1-$2");
+      const baseVariants = new Set([straight, curly, noHyphen, withHyphen]);
+      baseVariants.forEach(v => {
+        cset.add(v);
+        cset.add(v.replace(/^Doctor\s+/i, "Dr. "));
+        cset.add(v.replace(/^Dr\.\s+/i, "Doctor "));
+        cset.add(v.replace(/^Dr\s+/i, "Dr. "));
+      });
+      const candidates = Array.from(cset);
+
       const dicts = which==='actor' ? [ds?.Actors, ds?.actors, ds?.actorBios, ds] : [ds?.Crew, ds?.crew, ds?.characters, ds];
-      for (const d of dicts){ if (d && d[exact]) return d[exact]; }
-      const tgt = simpleNorm(exact);
-      for (const d of dicts){ if (!d) continue; for (const k of Object.keys(d)){ if (simpleNorm(k)===tgt) return d[k]; } }
+
+      // Exact match pass
+      for (const cand of candidates){
+        for (const d of dicts){ if (d && d[cand]) return d[cand]; }
+      }
+
+      // Normalized match pass
+      const norm = (s)=> String(s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/['’`\.\-]/g,'').replace(/\s+/g,'').trim();
+      for (const d of dicts){
+        if (!d) continue;
+        const keys = Object.keys(d);
+        for (const k of keys){
+          const nk = norm(k);
+          for (const cand of candidates){
+            if (norm(cand) === nk) return d[k];
+          }
+        }
+      }
       return null;
     }
 
@@ -364,6 +420,7 @@ function mapDs9Alias(n){ const m={ "chief o'brien":"miles o'brien","elim garak":
     }
 
     function applySeries(key){
+
       setTitles(key);
       showCards();
       clearTopThree();
@@ -375,6 +432,20 @@ function mapDs9Alias(n){ const m={ "chief o'brien":"miles o'brien","elim garak":
       const people = SERIES[key] || [];
       setTopThree(people);
       renderExtras(people, key);
+      if (key === "SNW") {
+        const cards = document.querySelectorAll(".cards-row .character-card");
+        cards.forEach(async (card) => {
+          const nameEl = card.querySelector(".character-name");
+          const imgEl  = card.querySelector("img");
+          if (!nameEl || !imgEl) return;
+          // Only probe if still showing the fallback placeholder
+          const isPlaceholder = (imgEl.src || "").startsWith("data:image/svg+xml");
+          if (!isPlaceholder) return;
+          const n = nameEl.textContent.trim();
+          const found = await findSnwImage(n);
+          if (found) { imgEl.src = found; }
+        });
+      }
     }
 
     // ===== Bio overlay (non-destructive to cards DOM) =====
@@ -442,38 +513,36 @@ function mapDs9Alias(n){ const m={ "chief o'brien":"miles o'brien","elim garak":
       const isTNG  = series.includes("next generation") || series.includes("tng");
       const isENT  = series.includes("enterprise") || series.includes("ent");
       const isVOY  = series.includes("voyager") || series.includes("voy");
-      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY);
+      const isSNW  = series.includes("strange new worlds") || series.includes("snw");
+      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isSNW);
       try {
+        const which = nameLink ? "crew" : "actor";
+        const text  = (nameLink ? nameLink : actorLink).textContent;
         if (isTOS) {
           const ds = await loadTOS();
-          const which = nameLink ? "crew" : "actor";
-          const text  = (nameLink?nameLink:actorLink).textContent;
           const sections = resolve(ds, text, which, "TOS") || [{header:"Biography", text:"Not found."}];
           renderBio(text, sections);
         } else if (isDS9) {
           const ds = await loadDS9();
-          const which = nameLink ? "crew" : "actor";
-          const text  = (nameLink?nameLink:actorLink).textContent;
           const sections = resolve(ds, text, which, "DS9") || [{header:"Biography", text:"Not found."}];
           renderBio(text, sections);
-        } 
-        else if (isTNG) {
+        } else if (isTNG) {
           const ds = await loadTNG();
-          const which = nameLink ? "crew" : "actor";
-          const text  = (nameLink?nameLink:actorLink).textContent;
           const sections = resolve(ds, text, which, "TNG") || [{header:"Biography", text:"Not found."}];
           renderBio(text, sections);
         } else if (isENT) {
-              const ds = await loadENT();
-              const which = nameLink ? "crew" : "actor";
-              const text  = (nameLink?nameLink:actorLink).textContent;
-              const sections = resolve(ds, text, which, "ENT") || [{header:"Biography", text:"Not found."}];
-              renderBio(text, sections);
-            } else {
-          const text  = (nameLink?nameLink:actorLink).textContent;
+          const ds = await loadENT();
+          const sections = resolve(ds, text, which, "ENT") || [{header:"Biography", text:"Not found."}];
+          renderBio(text, sections);
+        } else if (isSNW) {
+          const ds = await loadSNW();
+          const sections = resolve(ds, text, which, "SNW") || [{header:"Biography", text:"Not found."}];
+          renderBio(text, sections);
+        } else {
           renderBio(text, [{header:"Biography", text:"This series is not wired to bios yet."}]);
         }
-      } catch (err) {
+      }
+      catch (err) {
         renderBio("Error", [{header:"Biography", text:"Failed to load biography data."}]);
       }
     });
