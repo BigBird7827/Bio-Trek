@@ -140,7 +140,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
+    margin-top: 140px;
   }
 
   .button-row {
@@ -171,6 +171,10 @@
     text-transform: uppercase;
     background-image: linear-gradient(145deg, #020b18 0%, #05304a 38%, #04719c 52%, #011522 100%);
     color: #f6e27a;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background-color: rgba(10, 15, 40, 0.55);
+    transform: perspective(600px) translateY(0);
     box-shadow:
       0 8px 0 #000000,
       0 22px 40px rgba(0, 0, 0, 0.98),
@@ -263,7 +267,7 @@
   }
 
   .series-btn:hover {
-    transform: translateY(-2px);
+    transform: perspective(600px) rotateX(3deg) rotateY(-3deg) translateY(-2px);
     box-shadow:
       0 6px 0 #000000,
       0 22px 40px rgba(0, 0, 0, 0.98),
@@ -921,16 +925,24 @@ function mapDs9Alias(n){ return n; }
     }
 
     // ===== Bio overlay (non-destructive to cards DOM) =====
-    function renderBio(title, sections){
+    function renderBio(title, sections, imgUrl){
       const blocks = Array.isArray(sections) ? sections : [{header:"Biography", text:"No biography available."}];
-      bioOverlay.innerHTML = [
+      const headerHtml = [
         `<h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:1.5rem;">${esc(title)}</h1>`,
-        `<div style="height:18px;"></div>`,
-        ...blocks.map(s => `<h3 style="color:gold;font-weight:bold;margin-top:1.5rem;max-width:85%;margin:1.5rem auto 0;text-align:left;">${esc(s.header||"Biography")}</h3><p style="color:white;line-height:1.6;max-width:85%;margin:0.35rem auto 0;">${esc(s.text||"")}</p>`),
-        `<div style="text-align:center;margin-top:2rem;"><button id="returnToCrew" class="return-link" style="display:inline-flex;align-items:center;justify-content:center;">Return to Crew</button></div>`
+        `<div style="height:12px;"></div>`
       ].join("");
+      const imageHtml = imgUrl ? [
+        `<div style="display:flex;justify-content:flex-end;margin-bottom:0.5rem;">`,
+        `<img src="${esc(imgUrl)}" alt="${esc(title)}" style="width:100px;height:150px;object-fit:cover;border-radius:6px;border:1px solid rgba(255,255,255,0.6);box-shadow:0 0 8px rgba(0,0,0,0.8);" />`,
+        `</div>`
+      ].join("") : "";
+      const bodyHtml = blocks.map(s => [
+        `<h3 style="color:gold;font-weight:bold;font-family:Orbitron,sans-serif;font-size:1.0rem;margin:1.1rem auto 0.35rem;max-width:85%;">${esc(s.header||"")}</h3>`,
+        `<p style="color:#e3f1ff;line-height:1.55;font-size:0.95rem;max-width:85%;margin:0.35rem auto 0;">${esc(s.text||"")}</p>`
+      ].join("")).join("");
+      const footerHtml = `<div style="text-align:center;margin-top:2rem;"><button id="returnToCrew" style="font-family:Orbitron,sans-serif;font-size:0.9rem;padding:0.65rem 1.8rem;border-radius:999px;border:1px solid rgba(255,255,255,0.5);background:rgba(4,20,40,0.85);color:#f6e27a;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;">Return to Crew</button></div>`;
+      bioOverlay.innerHTML = headerHtml + imageHtml + bodyHtml + footerHtml;
       bioOverlay.style.display = "block";
-      // hide the grid under it
       cardsGrid.style.display = "none";
       returnMenu.style.display = "inline-flex";
       document.body.classList.add("bio-open");
@@ -992,38 +1004,42 @@ function mapDs9Alias(n){ return n; }
       try {
         const which = nameLink ? "crew" : "actor";
         const text  = (nameLink ? nameLink : actorLink).textContent;
+        const linkEl = nameLink ? nameLink : actorLink;
+        const cardEl = linkEl.closest(".character-card");
+        const imgEl = cardEl ? cardEl.querySelector("img") : null;
+        const imgUrl = imgEl ? imgEl.src : "";
         if (isTOS) {
           const ds = await loadTOS();
           const sections = resolve(ds, text, which, "TOS") || [{header:"Biography", text:"Not found."}];
-          renderBio(text, sections);
+          renderBio(text, sections, imgUrl);
         } else if (isDS9) {
           const ds = await loadDS9();
           const sections = resolve(ds, text, which, "DS9") || [{header:"Biography", text:"Not found."}];
-          renderBio(text, sections);
+          renderBio(text, sections, imgUrl);
         } else if (isTNG) {
           const ds = await loadTNG();
           const sections = resolve(ds, text, which, "TNG") || [{header:"Biography", text:"Not found."}];
-          renderBio(text, sections);
+          renderBio(text, sections, imgUrl);
         } else if (isENT) {
           const ds = await loadENT();
           const sections = resolve(ds, text, which, "ENT") || [{header:"Biography", text:"Not found."}];
-          renderBio(text, sections);
+          renderBio(text, sections, imgUrl);
         }
         else if (isVOY) {
           const ds = await loadVOY();
           const sections = resolve(ds, text, which, "VOY") || [{header:"Biography", text:"Not found."}];
-          renderBio(text, sections);
+          renderBio(text, sections, imgUrl);
         }
         else if (isSNW) {
           const ds = await loadSNW();
           const sections = resolve(ds, text, which, "SNW") || [{header:"Biography", text:"Not found."}];
-          renderBio(text, sections);
+          renderBio(text, sections, imgUrl);
         } else {
           renderBio(text, [{header:"Biography", text:"This series is not wired to bios yet."}]);
         }
       }
       catch (err) {
-        renderBio("Error", [{header:"Biography", text:"Failed to load biography data."}]);
+        renderBio("Error", [{header:"Biography", text:"Failed to load biography data."}], imgUrl);
       }
     });
   
