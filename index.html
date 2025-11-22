@@ -172,8 +172,7 @@
   <!-- BIO OVERLAY AREA (non-destructive) -->
   <div id="bio-overlay" style="display:none; padding:2rem 7.5rem; max-width:1200px; margin:50px auto;"></div>
 
-  <script>
-
+  <script type="module">
     // ===== Helpers =====
     const $  = (s, r=document) => r.querySelector(s);
     const $$ = (s, r=document) => r.querySelectorAll(s);
@@ -186,7 +185,7 @@
     const bioOverlay = $("#bio-overlay");
 
     function esc(s){ return String(s).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
-    function simpleNorm(s){ return String(s||'').toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').replace(/[''`\\.\\-]/g,'').replace(/\\s+/g,'').trim(); }
+    function simpleNorm(s){ return String(s||'').toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').replace(/['’`\\.\\-]/g,'').replace(/\\s+/g,'').trim(); }
 
     // ===== Data (cards) =====
     const SERIES = {
@@ -256,7 +255,7 @@
         actor:{ "Majel Barett Roddenberry":"Majel Barett Roddenberry","Majel Barrett":"Majel Barett Roddenberry","Majel-Barett Roddenberry":"Majel Barett Roddenberry" }
       },
       DS9: {
-        crew: { "Chief O'Brien":"Miles O'Brien","Lt. Commander Worf":"Worf","Elim Garak":"Garak","Miles O'Brien":"Miles Edward O'Brien","Chief Miles O'Brien":"Miles Edward O'Brien","Chief Miles Edward O'Brien":"Miles Edward O'Brien" },
+        crew: {"Lt. Commander Worf":"Worf","Elim Garak":"Garak",},
         actor:{}
       }
       ,
@@ -306,20 +305,7 @@ async function loadENT(){ return fetchJSON("https://raw.githubusercontent.com/Bi
     async function loadSNW(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-SNW.json"); }
 
 async function loadVOY(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-VOY.json"); }
-function mapDs9Alias(n){
-  var m = {
-    "miles o'brien": "Chief O'Brien",
-    "chief o'brien": "Chief O'Brien",
-    "miles edward o'brien": "Chief O'Brien",
-    "chief miles o'brien": "Chief O'Brien",
-    "chief miles edward o'brien": "Chief O'Brien",
-    "elim garak": "Garak",
-    "lt. commander worf": "Worf"
-  };
-  var k = (n||'').toLowerCase();
-  return Object.prototype.hasOwnProperty.call(m, k) ? m[k] : n;
-}
-
+function mapDs9Alias(n){ return n; }
 
     
     
@@ -331,8 +317,8 @@ function mapDs9Alias(n){
 
       // Build robust candidate variants
       const cset = new Set();
-      const straight = aliased.replace(/['`]/g, "'");
-      const curly   = straight.replace(/'/g, "'");
+      const straight = aliased.replace(/[’`]/g, "'");
+      const curly   = straight.replace(/'/g, "’");
       const noHyphen = straight.replace(/-/g, " ");
       const withHyphen = straight.replace(/\s+/g, " ").replace(/\b([A-Za-z])\s*-\s*([A-Za-z])/g, "$1-$2");
       const baseVariants = new Set([straight, curly, noHyphen, withHyphen]);
@@ -352,7 +338,7 @@ function mapDs9Alias(n){
       }
 
       // Normalized match pass
-      const norm = (s)=> String(s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[''`\.\-]/g,'').replace(/\s+/g,'').trim();
+      const norm = (s)=> String(s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/['’`\.\-]/g,'').replace(/\s+/g,'').trim();
       for (const d of dicts){
         if (!d) continue;
         const keys = Object.keys(d);
@@ -579,11 +565,9 @@ function mapDs9Alias(n){
         // let the main handler process it (already registered above)
       }
     }, true);
-  
-</script>
+  </script>
 
 <script>
-
 // Fallback handler to ensure TNG/ENT (and others) links open a placeholder bio
 (function(){
   function $(s, r=document){ return r.querySelector(s); }
@@ -629,7 +613,6 @@ function mapDs9Alias(n){
     }
   }, true);
 })();
-
 </script>
 
 </body>
