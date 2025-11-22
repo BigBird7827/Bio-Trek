@@ -937,8 +937,8 @@ function mapDs9Alias(n){ return n; }
         `</div>`
       ].join("") : "";
       const bodyHtml = blocks.map(s => [
-        `<h3 style="color:gold;font-weight:bold;font-family:Orbitron,sans-serif;font-size:1.0rem;margin:1.1rem auto 0.35rem;max-width:85%;">${esc(s.header||"")}</h3>`,
-        `<p style="color:#e3f1ff;line-height:1.55;font-size:0.95rem;max-width:85%;margin:0.35rem auto 0;">${esc(s.text||"")}</p>`
+        `<h3 style="color:gold;font-weight:bold;font-family:Orbitron,sans-serif;font-size:calc(1.0rem + 2pt);margin:1.1rem auto 0.35rem;max-width:85%;">${esc(s.header||"")}</h3>`,
+        `<p style="color:#e3f1ff;line-height:1.55;font-size:calc(0.95rem + 2pt);max-width:85%;margin:0.35rem auto 0;">${esc(s.text||"")}</p>`
       ].join("")).join("");
       const footerHtml = `<div style="text-align:center;margin-top:2rem;"><button id="returnToCrew" style="font-family:Orbitron,sans-serif;font-size:0.9rem;padding:0.65rem 1.8rem;border-radius:999px;border:1px solid rgba(255,255,255,0.5);background:rgba(4,20,40,0.85);color:#f6e27a;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;">Return to Crew</button></div>`;
       bioOverlay.innerHTML = headerHtml + imageHtml + bodyHtml + footerHtml;
