@@ -53,21 +53,6 @@
     overflow: hidden;
   }
 
-  .header-inner {
-    position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
-    min-height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .title-block {
-    flex: 1 1 auto;
-  }
-
-
   header::after {
     content: "";
     position: absolute;
@@ -108,19 +93,6 @@
     width: 100%;
     max-width: 1400px;
     position: relative;
-  }
-
-  .series-cover {
-    position: absolute;
-    top: 50%;
-    right: 40px;
-    transform: translateY(-50%);
-    width: 260px;
-    height: 160px;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    display: none;
   }
 
   .title-main {
@@ -341,8 +313,6 @@
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
-    position: relative;
-    z-index: 1;
   }
 
   .cards-row {
@@ -575,13 +545,8 @@
 </head>
 <body>
   <header>
-    <div class="header-inner">
-      <div class="title-block">
-        <h1 class="title-main">Bio Trek</h1>
-        <h2 class="subtitle-main">Star Trek Biographies</h2>
-      </div>
-      <div id="series-cover" class="series-cover"></div>
-    </div>
+    <h1 class="title-main">Bio Trek</h1>
+    <h2 class="subtitle-main">Star Trek Biographies</h2>
   </header>
   <main>
     <div class="series-wrapper">
@@ -602,7 +567,7 @@
         <div class="button-row">
           <button type="button" class="series-btn" data-series="Picard">PIC - Coming Soon</button>
           <button type="button" class="series-btn" data-series="Strange New Worlds">Strange New Worlds</button>
-          <button type="button" class="series-btn series-btn-placeholder" aria-hidden="true" tabindex="-1">Guest List - Coming Soon</button>
+                    <button type="button" class="series-btn" data-series="Guest List">Guest List</button>
         </div>
       </div>
 
@@ -690,7 +655,6 @@
     const cardsGrid  = $(".cards-grid");
     const returnMenu = $("#return-menu");
     const bioOverlay = $("#bio-overlay");
-    const seriesCover = $("#series-cover");
 
     function esc(s){ return String(s).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
     function simpleNorm(s){ return String(s||'').toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').replace(/['’`\\.\\-]/g,'').replace(/\\s+/g,'').trim(); }
@@ -744,7 +708,14 @@
         { name:"Hoshi Sato",        role:"Communications Officer", actor:"Linda Park",          img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Hoshi%20Sato.png" },
         { name:"Doctor Phlox",      role:"Chief Medical Officer", actor:"John Billingsley",     img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20Phlox.png" }
       ],
-      DIS: [], PIC: [], SNW: [
+DIS: [], PIC: [], GUEST: [
+  { name:"Borg Queen", role:"Queen of the Borg Collective", actor:"Susanna Thompson", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Borg%20Queen.png" },
+  { name:"Edith Keeler", role:"Social Worker, Mission Director", actor:"Joan Collins", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Edith%20Keeler.png" },
+  { name:"Gary Seven", role:"Temporal Agent", actor:"Robert Lansing", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Apollo.png" },
+  { name:"Roberta Lincoln", role:"Secretary Turned Field Partner", actor:"Teri Garr", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Apollo.png" },
+  { name:"Q", role:"Omnipotent Trickster", actor:"John De Lancie", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Q.png" },
+  { name:"Timicin", role:"Kaelon Scientist", actor:"David Ogden Stiers", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Timicin.png" }
+], SNW: [
         { name:"Christopher Pike", role:"Captain", actor:"Anson Mount", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Christopher%20Pike.png" },
         { name:"Una Chin Riley", role:"First Officer", actor:"Rebecca Romijn", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Una%20Chin%20Riley.png" },
         { name:"Spock", role:"Science Officer", actor:"Ethan Peck", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Spock%20(SNW).png" },
@@ -755,15 +726,6 @@
         { name:"Doctor M'Benga", role:"Chief Medical Officer", actor:"Babs Olusanmokun", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20M'Benga.png" }
       ]
     };
-    const SERIES_COVERS = {
-      TOS: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/TOS%20Cover.png",
-      TNG: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/TNG%20Cover.png",
-      DS9: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/DS9%20Cover.png",
-      VOY: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/VOY%20Cover.png",
-      ENT: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/ENT%20Cover.png",
-      SNW: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/SNW%20Cover.png"
-    };
-
 
     // ===== Aliases for bios =====
     const ALIASES = {
@@ -823,6 +785,8 @@ async function loadENT(){ return fetchJSON("https://raw.githubusercontent.com/Bi
 
 async function loadVOY(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-VOY.json"); }
 function mapDs9Alias(n){ return n; }
+async function loadGUEST(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-Guests.json"); }
+
 
     
     
@@ -880,7 +844,8 @@ function mapDs9Alias(n){ return n; }
         key==='ENT' ? "Enterprise" :
         key==='DIS' ? "Discovery" :
         key==='PIC' ? "Picard" :
-        key==='SNW' ? "Strange New Worlds" : "";
+        key==='SNW' ? "Strange New Worlds" :
+        key==='GUEST' ? "Guest List" : "";
     }
     function showCards(){
       seriesMenu.style.display = "none";
@@ -937,6 +902,7 @@ function mapDs9Alias(n){ return n; }
       if (l.includes("discovery") || l.includes("dis")) return "DIS";
       if (l.includes("picard") || l.includes("pic")) return "PIC";
       if (l.includes("strange new worlds") || l.includes("snw")) return "SNW";
+      if (l.includes("guest")) return "GUEST";
       return "";
     }
 
@@ -944,16 +910,6 @@ function mapDs9Alias(n){ return n; }
 
       setTitles(key);
       showCards();
-      if (seriesCover) {
-        const coverUrl = SERIES_COVERS[key];
-        if (coverUrl) {
-          seriesCover.style.backgroundImage = `url('${coverUrl}')`;
-          seriesCover.style.display = "block";
-        } else {
-          seriesCover.style.backgroundImage = "";
-          seriesCover.style.display = "none";
-        }
-      }
       clearTopThree();
       clearExtras();
       // Toggle visibility of TOS-only extras
@@ -1033,10 +989,6 @@ function mapDs9Alias(n){ return n; }
         seriesMenu.style.display = "flex";
         cardsGrid.style.display = "none";
         returnMenu.style.display = "none";
-        if (seriesCover) {
-          seriesCover.style.backgroundImage = "";
-          seriesCover.style.display = "none";
-        }
         return;
       }
       // Return from bio
@@ -1059,7 +1011,8 @@ function mapDs9Alias(n){ return n; }
       const isENT  = series.includes("enterprise") || series.includes("ent");
       const isVOY  = series.includes("voyager") || series.includes("voy");
       const isSNW  = series.includes("strange new worlds") || series.includes("snw");
-      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isSNW);
+      const isGUEST = series.includes("guest");
+      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isSNW || isGUEST);
       try {
         const which = nameLink ? "crew" : "actor";
         const text  = (nameLink ? nameLink : actorLink).textContent;
@@ -1092,6 +1045,10 @@ function mapDs9Alias(n){ return n; }
         else if (isSNW) {
           const ds = await loadSNW();
           const sections = resolve(ds, text, which, "SNW") || [{header:"Biography", text:"Not found."}];
+          renderBio(text, sections, imgUrl);
+        } else if (isGUEST) {
+          const ds = await loadGUEST();
+          const sections = resolve(ds, text, which, "GUEST") || [{header:"Biography", text:"Not found."}];
           renderBio(text, sections, imgUrl);
         } else {
           renderBio(text, [{header:"Biography", text:"This series is not wired to bios yet."}]);
@@ -1143,7 +1100,8 @@ function mapDs9Alias(n){ return n; }
     const sub = (subtitle && subtitle.textContent || '').toLowerCase();
     const wiredTOS = sub.includes('original');
     const wiredDS9 = sub.includes('deep space nine');
-    if (wiredTOS || wiredDS9) return;
+    const wiredGUEST = sub.includes('guest');
+    if (wiredTOS || wiredDS9 || wiredGUEST) return;
     if (sub.includes('next generation') || sub.includes('tng')) return;
     if (sub.includes('enterprise') || sub.includes('ent')) return;
     if (sub.includes('next generation') || sub.includes('tng')) return; // let the main module handle these
