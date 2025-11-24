@@ -709,20 +709,21 @@
         { name:"Doctor Phlox",      role:"Chief Medical Officer", actor:"John Billingsley",     img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20Phlox.png" }
       ],
 DIS: [], PIC: [
-  { name:"Deanna Troi", role:"", actor:"Marina Sirtis", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Troi%20(Pic).png" },
-  { name:"Jean-Luc Picard", role:"", actor:"Patrick Stewart", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Picard%20(Pic).png" },
-  { name:"Worf", role:"", actor:"Michael Dorn", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Worf%20(Pic).png" },
-  { name:"William T. Riker", role:"Captain", actor:"Jonathan Frakes", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Riker%20(Pic).png" },
-  { name:"Data", role:"", actor:"Brent Spiner", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
-  { name:"Elnor", role:"", actor:"Evan Evagora", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
-  { name:"Guinan", role:"", actor:"Ito Aghayere", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
-  { name:"Jack Crusher", role:"", actor:"Ed Speleers", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
-  { name:"Q", role:"", actor:"John de Lancie", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
-  { name:"Seven of Nine", role:"", actor:"Jeri Ryan", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
-  { name:"Soji Asha", role:"", actor:"Isa Briones", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
-  { name:"Vadic", role:"", actor:"Amanda Plummer", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
-  { name:"Agnes Jurati", role:"", actor:"Alison Pill", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" }
-], GUEST: [
+        { name:"Deanna Troi",      role:"",        actor:"Marina Sirtis",      img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Troi%20(Pic).png" },
+        { name:"Jean-Luc Picard",  role:"",        actor:"Patrick Stewart",    img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Picard%20(Pic).png" },
+        { name:"Worf",             role:"",        actor:"Michael Dorn",       img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Worf%20(Pic).png" },
+        { name:"William T. Riker", role:"Captain", actor:"Jonathan Frakes",    img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Riker%20(Pic).png" },
+        { name:"Data",             role:"",        actor:"Brent Spiner",       img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Elnor",            role:"",        actor:"Evan Evagora",       img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Guinan",           role:"",        actor:"Ito Aghayere",       img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Jack Crusher",     role:"",        actor:"Ed Speleers",        img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Q",                role:"",        actor:"John de Lancie",     img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Seven of Nine",    role:"",        actor:"Jeri Ryan",          img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Soji Asha",        role:"",        actor:"Isa Briones",        img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Vadic",            role:"",        actor:"Amanda Plummer",     img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Agnes Jurati",     role:"",        actor:"Alison Pill",        img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Cristóbal \"Chris\" Rios", role:"", actor:"Santiago Cabrera",  img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" }
+      ], GUEST: [
   { name:"Borg Queen", role:"Collective Leader", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Borg%20Queen.png", actor:"Susanna Thompson" },
   { name:"Edith Keeler", role:"Social Worker", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png", actor:"Joan Collins" },
   { name:"Gary Seven", role:"Temporal Guardian", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png", actor:"Robert Lansing" },
@@ -757,14 +758,29 @@ DIS: [], PIC: [
     // ===== Aliases for bios =====
     const ALIASES = {
       TOS: {
-        crew: { "James T. Kirk":"James T Kirk","Leonard (Bones) McCoy":"Doctor McCoy","Nyota Uhura":"Uhura","Hikaru Sulu":"Sulu","Pavel Chekov":"Chekov","Yeoman Janice Rand":"Yeoman Rand","Nurse Christine Chapel":"Nurse Chapel","Montgomery Scott":"Scotty" },
-        actor:{ "Majel Barett Roddenberry":"Majel Barett Roddenberry","Majel Barrett":"Majel Barett Roddenberry","Majel-Barett Roddenberry":"Majel Barett Roddenberry" }
+        crew: {
+          "James T. Kirk":"James T Kirk",
+          "Leonard (Bones) McCoy":"Doctor McCoy",
+          "Nyota Uhura":"Uhura",
+          "Hikaru Sulu":"Sulu",
+          "Pavel Chekov":"Chekov",
+          "Yeoman Janice Rand":"Yeoman Rand",
+          "Nurse Christine Chapel":"Nurse Chapel",
+          "Montgomery Scott":"Scotty"
+        },
+        actor: {
+          "Majel Barett Roddenberry":"Majel Barett Roddenberry",
+          "Majel Barrett":"Majel Barett Roddenberry",
+          "Majel-Barett Roddenberry":"Majel Barett Roddenberry"
+        }
       },
       DS9: {
-        crew: {"Lt. Commander Worf":"Worf","Elim Garak":"Garak",},
-        actor:{}
-      }
-      ,
+        crew: {
+          "Lt. Commander Worf":"Worf",
+          "Elim Garak":"Garak"
+        },
+        actor: {}
+      },
       TNG: {
         crew: {
           "William T. Riker":"William Riker",
@@ -774,21 +790,17 @@ DIS: [], PIC: [
           "Chief O'Brien":"Miles O'Brien"
         },
         actor: {}
-      }
-    
-      
-  , ENT: {
-      crew: {
-        "Doctor Phlox": "Phlox",
-        "Dr. Phlox": "Phlox",
-        "Dr Phlox": "Phlox",
-        "Charles \"Trip\" Tucker III": "Charles \"Trip\" Tucker III",
-        "Trip Tucker": "Charles \"Trip\" Tucker III"
       },
-      actor: {}
-    }
-
-      ,
+      ENT: {
+        crew: {
+          "Doctor Phlox":"Phlox",
+          "Dr. Phlox":"Phlox",
+          "Dr Phlox":"Phlox",
+          "Charles \"Trip\" Tucker III":"Charles \"Trip\" Tucker III",
+          "Trip Tucker":"Charles \"Trip\" Tucker III"
+        },
+        actor: {}
+      },
       SNW: {
         crew: {
           "Una Chin Riley":"Una Chin-Riley",
@@ -799,38 +811,68 @@ DIS: [], PIC: [
           "M'Benga":"Dr. Joseph M'Benga"
         },
         actor: {}
+      },
+      PIC: {
+        crew: {},
+        actor: {}
       }
 };
 
     // ===== JSON loaders =====
-    async function fetchJSON(url){ const r=await fetch(url,{cache:'no-store'}); if(!r.ok) throw new Error(''+r.status); const d=await r.json(); return (d&&d.bios)?d.bios:d; }
-    async function loadTOS(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TOS.json"); }
-    async function loadDS9(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-DS9.json"); }
-    async function loadTNG(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TNG.json"); }
-async function loadENT(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-ENT.json"); }
-    async function loadSNW(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-SNW.json"); }
-
-async function loadVOY(){ return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-VOY.json"); }
-function mapDs9Alias(n){ return n; }
-async function loadGUEST(){
-  try {
-    const tag = document.getElementById("guests-json");
-    if (tag && tag.textContent) {
-      const parsed = JSON.parse(tag.textContent);
-      return (parsed && parsed.bios) ? parsed.bios : parsed;
+    async function fetchJSON(url) {
+      const r = await fetch(url, { cache: "no-store" });
+      if (!r.ok) throw new Error("" + r.status);
+      const d = await r.json();
+      return (d && d.bios) ? d.bios : d;
     }
-  } catch (e) {
-    // fall through to network fetch
-  }
-  const r = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-Guests.json", { cache: "no-store" });
-  if (!r.ok) throw new Error("" + r.status);
-  const d = await r.json();
-  return (d && d.bios) ? d.bios : d;
-}
 
+    async function loadTOS() {
+      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TOS.json");
+    }
 
-    
-    
+    async function loadDS9() {
+      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-DS9.json");
+    }
+
+    async function loadTNG() {
+      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TNG.json");
+    }
+
+    async function loadENT() {
+      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-ENT.json");
+    }
+
+    async function loadSNW() {
+      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-SNW.json");
+    }
+
+    async function loadPIC() {
+      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-PIC.json");
+    }
+
+    async function loadVOY() {
+      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-VOY.json");
+    }
+
+    function mapDs9Alias(n) {
+      return n;
+    }
+
+    async function loadGUEST() {
+      try {
+        const tag = document.getElementById("guests-json");
+        if (tag && tag.textContent) {
+          const parsed = JSON.parse(tag.textContent);
+          return (parsed && parsed.bios) ? parsed.bios : parsed;
+        }
+      } catch (e) {
+      }
+      const r = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-Guests.json", { cache: "no-store" });
+      if (!r.ok) throw new Error("" + r.status);
+      const d = await r.json();
+      return (d && d.bios) ? d.bios : d;
+    }
+
     function resolve(ds, name, which, seriesKey){
       const display = (name||'').trim();
 
@@ -1054,8 +1096,9 @@ async function loadGUEST(){
       const isENT  = series.includes("enterprise") || series.includes("ent");
       const isVOY  = series.includes("voyager") || series.includes("voy");
       const isSNW  = series.includes("strange new worlds") || series.includes("snw");
+      const isPIC  = series.includes("picard") || series.includes("pic");
       const isGUEST = series.includes("guest");
-      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isSNW || isGUEST);
+      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isSNW || isPIC || isGUEST);
       try {
         const which = nameLink ? "crew" : "actor";
         const text  = (nameLink ? nameLink : actorLink).textContent;
@@ -1079,25 +1122,28 @@ async function loadGUEST(){
           const ds = await loadENT();
           const sections = resolve(ds, text, which, "ENT") || [{header:"Biography", text:"Not found."}];
           renderBio(text, sections, imgUrl);
-        }
-        else if (isVOY) {
+        } else if (isVOY) {
           const ds = await loadVOY();
           const sections = resolve(ds, text, which, "VOY") || [{header:"Biography", text:"Not found."}];
           renderBio(text, sections, imgUrl);
-        }
-        else if (isSNW) {
+        } else if (isSNW) {
           const ds = await loadSNW();
           const sections = resolve(ds, text, which, "SNW") || [{header:"Biography", text:"Not found."}];
+          renderBio(text, sections, imgUrl);
+        } else if (isPIC) {
+          const ds = await loadPIC();
+          const sections = resolve(ds, text, which, "PIC") || [{header:"Biography", text:"Not found."}];
           renderBio(text, sections, imgUrl);
         } else if (isGUEST) {
           const ds = await loadGUEST();
           const sections = resolve(ds, text, which, "GUEST") || [{header:"Biography", text:"Not found."}];
           renderBio(text, sections, imgUrl);
         } else {
-          renderBio(text, [{header:"Biography", text:"This series is not wired to bios yet."}]);
+          renderBio(text, [{header:"Biography", text:"This series is not wired to bios yet."}], imgUrl);
         }
       }
-      catch (err) {
+
+catch (err) {
         renderBio("Error", [{header:"Biography", text:"Failed to load biography data."}], imgUrl);
       }
     });
@@ -1113,53 +1159,44 @@ async function loadGUEST(){
   </script>
 
 <script>
-// Fallback handler to ensure TNG/ENT (and others) links open a placeholder bio
 (function(){
-  function $(s, r=document){ return r.querySelector(s); }
+  function $(s, r=document) { return r.querySelector(s); }
   const subtitle = document.querySelector(".subtitle-main");
   const cardsGrid = document.querySelector(".cards-grid");
   const returnMenu = document.getElementById("return-menu");
   const overlay = document.getElementById("bio-overlay");
 
-  function esc(s){ return String(s).replace(/[&<>]/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
-  function renderPlaceholder(title){
+  function esc(s) {
+    return String(s).replace(/[&<>]/g, function(m) {
+      return m === "&" ? "&amp;" : m === "<" ? "&lt;" : "&gt;";
+    });
+  }
+
+  function renderPlaceholder(title) {
     if (!overlay) return;
-    overlay.innerHTML = [
-      '<h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:1.5rem;">' + esc(title) + '</h1>',
-      '<div style="height:18px;"></div>',
-      '<h3 style="color:gold;font-weight:bold;margin-top:1.5rem;max-width:85%;margin:1.5rem auto 0;text-align:left;">Biography</h3>',
-      '<p style="color:white;line-height:1.6;max-width:85%;margin:0.35rem auto 0;">This series is not wired to bios yet.</p>',
-      '<div style="text-align:center;margin-top:2rem;"><button id="returnToCrew" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button></div>'
-    ].join("");
+    overlay.innerHTML = '<h1 style="font-family:Orbitron,sans-serif;color:white;text-align:center;font-size:1.5rem;">' + esc(title) + '</h1>'
+      + '<div style="height:18px;"></div>'
+      + '<h3 style="color:gold;font-weight:bold;margin-top:1.5rem;max-width:85%;margin:1.5rem auto 0;text-align:left;">Biography</h3>'
+      + '<p style="color:white;line-height:1.6;max-width:85%;margin:0.35rem auto 0;">This series is not wired to bios yet.</p>'
+      + '<div style="text-align:center;margin-top:2rem;"><button id="returnToCrew" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button></div>';
     overlay.style.display = "block";
     if (cardsGrid) cardsGrid.style.display = "none";
     if (returnMenu) returnMenu.style.display = "inline-flex";
-    window.scrollTo({top:0, behavior:"instant"});
+    window.scrollTo({ top: 0, behavior: "instant" });
   }
 
-  document.addEventListener("click", function(e){
+  document.addEventListener("click", function(e) {
     const a = e.target.closest && e.target.closest("a.character-name, a.character-actor");
     if (!a) return;
-    const sub = (subtitle && subtitle.textContent || '').toLowerCase();
-    const wiredTOS = sub.includes('original');
-    const wiredDS9 = sub.includes('deep space nine');
-    const wiredGUEST = sub.includes('guest');
-    if (wiredTOS || wiredDS9 || wiredGUEST) return;
-    if (sub.includes('next generation') || sub.includes('tng')) return;
-    if (sub.includes('enterprise') || sub.includes('ent')) return;
-    if (sub.includes('next generation') || sub.includes('tng')) return; // let the main module handle these
-    if (sub.includes('next generation') || sub.includes('tng') ||
-        sub.includes('enterprise') || sub.includes('ent') ||
-        sub.includes('voyager') || sub.includes('voy') ||
-        sub.includes('discovery') || sub.includes('dis') ||
-        sub.includes('picard') || sub.includes('pic') ||
-        sub.includes('strange new worlds') || sub.includes('snw')) {
-      e.preventDefault();
-      renderPlaceholder(a.textContent.trim());
-    }
+    const sub = (subtitle && subtitle.textContent || "").toLowerCase();
+    const isDiscovery = sub.includes("discovery") || sub.includes("dis ");
+    if (!isDiscovery) return;
+    e.preventDefault();
+    renderPlaceholder(a.textContent.trim());
   }, true);
 })();
 </script>
+
 
 <script id="guests-json" type="application/json">
 {
