@@ -843,7 +843,19 @@ header::before {
         { name:"Hoshi Sato",        role:"Communications Officer", actor:"Linda Park",          img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Hoshi%20Sato.png" },
         { name:"Doctor Phlox",      role:"Chief Medical Officer", actor:"John Billingsley",     img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20Phlox.png" }
       ],
-DIS: [], PIC: [
+DIS: [
+        { name:"Michael Burnham",  role:"Captain, USS Discovery",          actor:"Sonequa Martin-Green", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Saru",             role:"Kelpien Captain",                 actor:"Doug Jones",           img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Philippa Georgiou",role:"Captain, USS Shenzhou",          actor:"Michelle Yeoh",        img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Sylvia Tilly",     role:"Starfleet Officer & Instructor",  actor:"Mary Wiseman",         img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Hugh Culber",      role:"Chief Medical Officer",           actor:"Wilson Cruz",          img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Paul Stamets",     role:"Spore Drive Scientist",           actor:"Anthony Rapp",         img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Jett Reno",        role:"Engineer",                        actor:"Tig Notaro",           img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Adira Tal",        role:"Joined Specialist",               actor:"Blu del Barrio",       img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Joann Owosekun",   role:"Operations Officer",              actor:"Oyin Oladejo",         img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Keyla Detmer",     role:"Helm Officer",                    actor:"Emily Coutts",         img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" },
+        { name:"Gabriel Lorca",    role:"Captain, USS Discovery",          actor:"Jason Isaacs",         img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png" }
+      ], PIC: [
         { name:"Deanna Troi",      role:"Counselor",        actor:"Marina Sirtis",      img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Troi%20(Pic).png" },
         { name:"Jean-Luc Picard",  role:"Retired Starfleet Admiral",        actor:"Patrick Stewart",    img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Picard%20(Pic).png" },
         { name:"Worf",             role:"Starfleet Intelligence",        actor:"Michael Dorn",       img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Worf%20(Pic).png" },
@@ -988,6 +1000,11 @@ DIS: [], PIC: [
 
     async function loadVOY() {
       return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-VOY.json");
+    }
+
+
+    async function loadDIS() {
+      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-DIS.json");
     }
 
     function mapDs9Alias(n) {
@@ -1284,10 +1301,11 @@ function hideBio(){
       const isTNG  = series.includes("next generation") || series.includes("tng");
       const isENT  = series.includes("enterprise") || series.includes("ent");
       const isVOY  = series.includes("voyager") || series.includes("voy");
+      const isDIS  = series.includes("discovery") || series.includes("dis ");
       const isSNW  = series.includes("strange new worlds") || series.includes("snw");
       const isPIC  = series.includes("picard") || series.includes("pic");
       const isGUEST = series.includes("guest");
-      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isSNW || isPIC || isGUEST);
+      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isDIS || isSNW || isPIC || isGUEST);
       try {
         const which = nameLink ? "crew" : "actor";
         const text  = (nameLink ? nameLink : actorLink).textContent;
@@ -1317,6 +1335,10 @@ function hideBio(){
         } else if (isVOY) {
           const ds = await loadVOY();
           const sections = resolve(ds, text, which, "VOY") || [{header:"Biography", text:"Not found."}];
+          renderBio(text, sections, imgUrl);
+        } else if (isDIS) {
+          const ds = await loadDIS();
+          const sections = resolve(ds, text, which, "DIS") || [{header:"Biography", text:"Not found."}];
           renderBio(text, sections, imgUrl);
         } else if (isSNW) {
           const ds = await loadSNW();
@@ -1352,33 +1374,7 @@ catch (err) {
 
     </script>
 
-<script>
-(function(){
-  function $(s, r=document) { return r.querySelector(s); }
-  const subtitle = document.querySelector(".subtitle-main");
-  const cardsGrid = document.querySelector(".cards-grid");
-  const returnMenu = document.getElementlign:center;font-size:1.5rem;">' + esc(title) + '</h1>'
-      + '<div style="height:18px;"></div>'
-      + '<h3 style="color:gold;font-weight:bold;margin-top:1.5rem;max-width:85%;margin:1.5rem auto 0;text-align:left;">Biography</h3>'
-      + '<p style="color:white;line-height:1.6;max-width:85%;margin:0.35rem auto 0;">This series is not wired to bios yet.</p>'
-      + '<div style="text-align:center;margin-top:2rem;"><button id="returnToCrew" style="padding:0.6rem 1.5rem;border:1px solid gold;border-radius:20px;background:transparent;color:gold;cursor:pointer;">Return to Crew</button></div>';
-    overlay.style.display = "block";
-    if (cardsGrid) cardsGrid.style.display = "none";
-    if (returnMenu) returnMenu.style.display = "inline-flex";
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }
 
-  document.addEventListener("click", function(e) {
-    const a = e.target.closest && e.target.closest("a.character-name, a.character-actor");
-    if (!a) return;
-    const sub = (subtitle && subtitle.textContent || "").toLowerCase();
-    const isDiscovery = sub.includes("discovery") || sub.includes("dis ");
-    if (!isDiscovery) return;
-    e.preventDefault();
-    renderPlaceholder(a.textContent.trim());
-  }, true);
-})();
-</script>
 
 
 <script id="guests-json" type="application/json">
