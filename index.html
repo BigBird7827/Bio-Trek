@@ -86,8 +86,8 @@ header::before {
     position: fixed;
     top: 1.5rem;
     right: 1.25rem;
-    display: block;
-    max-height: 120px;
+    display: none;
+    max-height: 240px;
     width: auto;
     pointer-events: none;
     z-index: 200;
@@ -685,7 +685,7 @@ header::before {
   <header>
     <h1 class="title-main">Bio Trek</h1>
     <h2 class="subtitle-main">Star Trek Biographies</h2>
-    <img class="header-ship" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Bio%20Page%20Enterprise.png" alt="USS Enterprise silhouette">
+    <img class="header-ship" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Enterprise%20NCC-1701.png" alt="USS Enterprise silhouette">
   </header>
   <main>
     <div class="series-wrapper">
@@ -798,6 +798,7 @@ header::before {
     const cardsGrid  = $(".cards-grid");
     const returnMenu = $("#return-menu");
     const bioOverlay = $("#bio-overlay");
+    const headerShip = $(".header-ship");
     let bioLinkState = null;
 
     function esc(s){ return String(s).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
@@ -1442,6 +1443,7 @@ DIS: [
       bioOverlay.style.display = "block";
       cardsGrid.style.display = "none";
       returnMenu.style.display = "inline-flex";
+      if (headerShip) headerShip.style.display = "block";
       document.body.classList.add("bio-open");
       window.scrollTo({ top: 0, behavior: "instant" });
     }
@@ -1451,6 +1453,7 @@ function hideBio(){
       bioOverlay.innerHTML = "";
       cardsGrid.style.display = "flex";
       returnMenu.style.display = "inline-flex";
+      if (headerShip) headerShip.style.display = "none";
       document.body.classList.remove("bio-open");
       window.scrollTo({top:0, behavior:"instant"});
     }
@@ -1468,6 +1471,7 @@ function hideBio(){
         e.preventDefault();
         bioOverlay.style.display = "none";
         document.documentElement.classList.remove("series-non-tos");
+        if (headerShip) headerShip.style.display = "none";
 
         titleEl.textContent = "Bio Trek";
         subtitleEl.textContent = "Star Trek Biographies";
