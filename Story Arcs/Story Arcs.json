@@ -183,7 +183,7 @@
           "Carol Marcus"
         ],
         "actors": [
-          "Ricardo Montalbán",
+          "Ricardo Montalb\u00e1n",
           "William Shatner",
           "Leonard Nimoy",
           "DeForest Kelley",
@@ -259,7 +259,7 @@
         "TNG",
         "DIS"
       ],
-      "overview": "The founding of the United Federation of Planets grows out of a fragile experiment in interstellar cooperation. In the mid-22nd century, humanity is still a relatively new warp-capable species, surrounded by older powers with their own agendas. Earth, Vulcan, Andoria, and Tellar navigate mistrust, border incidents, and outright violence before they can begin to imagine a lasting union. The so‑called Coalition of Planets is a stepping stone rather than an endpoint, forged under pressure from common threats and internal political turmoil.\n\nAcross later centuries, the Federation and its core worlds come to symbolize a particular vision of galactic community: shared law, mutual defense, and a commitment to exploration that reaches far beyond the original signatories. Starfleet becomes the most visible manifestation of these values, carrying the Federation flag into regions whose inhabitants may not share its assumptions. The history of the core worlds is therefore not just a story about one treaty-signing moment; it is an ongoing negotiation between idealism and the realities of diplomacy, security, and cultural difference.",
+      "overview": "The founding of the United Federation of Planets grows out of a fragile experiment in interstellar cooperation. In the mid-22nd century, humanity is still a relatively new warp-capable species, surrounded by older powers with their own agendas. Earth, Vulcan, Andoria, and Tellar navigate mistrust, border incidents, and outright violence before they can begin to imagine a lasting union. The so\u2011called Coalition of Planets is a stepping stone rather than an endpoint, forged under pressure from common threats and internal political turmoil.\n\nAcross later centuries, the Federation and its core worlds come to symbolize a particular vision of galactic community: shared law, mutual defense, and a commitment to exploration that reaches far beyond the original signatories. Starfleet becomes the most visible manifestation of these values, carrying the Federation flag into regions whose inhabitants may not share its assumptions. The history of the core worlds is therefore not just a story about one treaty-signing moment; it is an ongoing negotiation between idealism and the realities of diplomacy, security, and cultural difference.",
       "chapters": [
         {
           "id": "coalition_of_planets",
@@ -318,7 +318,7 @@
     },
     {
       "id": "klingon_federation_conflict_alliance",
-      "title": "Klingon–Federation Conflict & Alliance",
+      "title": "Klingon\u2013Federation Conflict & Alliance",
       "subtitle": "From Foes of Honor to Complicated Allies",
       "series": [
         "TOS",
@@ -348,7 +348,7 @@
         {
           "id": "dominion_war_and_beyond",
           "title": "Dominion War Allies and Beyond",
-          "body": "During the Dominion War depicted in Deep Space Nine, the Klingon–Federation alliance is tested under extreme conditions. Initial strains give way to renewed cooperation as both powers recognize that they face a common enemy. Klingon fleets fight alongside Starfleet and Romulan forces in major engagements, and commanders like General Martok become respected figures among Federation officers.\n\nThe war further integrates Klingon and Federation interests, but it also highlights ongoing differences. Klingon tactical preferences, casualty tolerance, and views on surrender contrast sharply with those of their allies. Episodes set during and after the war explore how personal friendships can bridge these gaps, even when official policies diverge.\n\nLater series and references indicate that the alliance endures, albeit with periodic disputes and changes in leadership. The long arc from open conflict to partnership becomes an example of how former enemies in Star Trek can redefine their relationships without erasing their distinct identities. Klingons remain unmistakably themselves, even as they stand next to Starfleet officers on the bridge of a shared future."
+          "body": "During the Dominion War depicted in Deep Space Nine, the Klingon\u2013Federation alliance is tested under extreme conditions. Initial strains give way to renewed cooperation as both powers recognize that they face a common enemy. Klingon fleets fight alongside Starfleet and Romulan forces in major engagements, and commanders like General Martok become respected figures among Federation officers.\n\nThe war further integrates Klingon and Federation interests, but it also highlights ongoing differences. Klingon tactical preferences, casualty tolerance, and views on surrender contrast sharply with those of their allies. Episodes set during and after the war explore how personal friendships can bridge these gaps, even when official policies diverge.\n\nLater series and references indicate that the alliance endures, albeit with periodic disputes and changes in leadership. The long arc from open conflict to partnership becomes an example of how former enemies in Star Trek can redefine their relationships without erasing their distinct identities. Klingons remain unmistakably themselves, even as they stand next to Starfleet officers on the bridge of a shared future."
         }
       ],
       "key_themes": [
@@ -481,7 +481,7 @@
         {
           "id": "fall_of_empire",
           "title": "Fall of Empire, Rise of Rebellion",
-          "body": "Deep Space Nine returns to the Mirror Universe at a later point in its history, revealing that the Terran Empire has fallen. In its place, a Klingon–Cardassian Alliance subjugates humans and their allies, reversing the earlier power balance. Terrans now labor under harsh conditions, and resistance movements struggle to survive against superior firepower.\n\nFamiliar characters appear in new roles: some as rebels, others as collaborators, all navigating a world in which trust is scarce and survival uncertain. The Alliance's dominance reflects how quickly fortunes can change when an empire rests on coercion rather than enduring alliances. Attempts to rekindle resistance draw on symbols and artifacts from the old Empire, but the goals have shifted from conquest to liberation.\n\nThese episodes explore how individuals respond when they see their former rulers become the oppressed. Motives range from revenge and self-interest to genuine desire for a more just order. The presence of prime-universe visitors complicates matters further, as they must decide how far they can ethically intervene in a reality not their own."
+          "body": "Deep Space Nine returns to the Mirror Universe at a later point in its history, revealing that the Terran Empire has fallen. In its place, a Klingon\u2013Cardassian Alliance subjugates humans and their allies, reversing the earlier power balance. Terrans now labor under harsh conditions, and resistance movements struggle to survive against superior firepower.\n\nFamiliar characters appear in new roles: some as rebels, others as collaborators, all navigating a world in which trust is scarce and survival uncertain. The Alliance's dominance reflects how quickly fortunes can change when an empire rests on coercion rather than enduring alliances. Attempts to rekindle resistance draw on symbols and artifacts from the old Empire, but the goals have shifted from conquest to liberation.\n\nThese episodes explore how individuals respond when they see their former rulers become the oppressed. Motives range from revenge and self-interest to genuine desire for a more just order. The presence of prime-universe visitors complicates matters further, as they must decide how far they can ethically intervene in a reality not their own."
         },
         {
           "id": "origins_of_terran_power",
@@ -660,6 +660,193 @@
           "Sonequa Martin-Green",
           "Michelle Yeoh",
           "Shazad Latif"
+        ]
+      }
+    },
+    {
+      "id": "vulcan_reformation_suraks_legacy",
+      "title": "Vulcan Reformation & Surak's Legacy",
+      "subtitle": "Logic, Emotion, and the Long Road to IDIC",
+      "series": [
+        "ENT",
+        "TOS",
+        "TOS Films",
+        "TNG",
+        "DS9",
+        "SNW",
+        "DIS"
+      ],
+      "overview": "For much of galactic history, Vulcan stands as the Federation's paragon of logic and restraint, a world that claims to have tamed violence through pure reason. Yet beneath the calm surface lies a long and bloody past \u2013 the age before Surak, when Vulcan's powerful telepaths and advanced weapons nearly drove their own species to extinction. Surak's teachings, preserved and reinterpreted over centuries, become the philosophical foundation that transforms Vulcan society and eventually shapes Starfleet itself.\n\nThat legacy is never static. In the 22nd century, political factions like the High Command and the Syrrannites clash over what it truly means to follow Surak. Secret alliances with Romulans, rigidly dogmatic interpretations of logic, and covert interference in neighboring worlds reveal how easily \"logic\" can be twisted into justification for control. The rediscovery of the Kir'Shara and the exposure of corruption within the High Command trigger a modern Vulcan reformation, one that forces the planet to confront its own hypocrisy.\n\nAcross the Federation era, individual Vulcans embody different responses to Surak's philosophy. Spock walks a delicate line between human emotion and Vulcan discipline, Sarek sacrifices family for political ideals, and later generations like T'Pol and Michael Burnham struggle to reconcile logic with intuition, faith, and empathy. Through them, Vulcan's story becomes less about suppressing emotion and more about integrating it responsibly \u2013 the true meaning of IDIC: Infinite Diversity in Infinite Combinations.",
+      "chapters": [
+        {
+          "id": "vulcan_before_surak",
+          "title": "Before Surak: A World on the Brink",
+          "body": "Long before Vulcan joins the Federation, the planet is a crucible of passion, rivalry, and telepathically amplified violence. City-states wage war with devastating weapons, and uncontrolled emotional outbursts combine with psychic abilities to make every conflict an existential risk. It is in this context that Surak emerges \u2013 a philosopher rather than a conqueror, arguing that survival depends not on superior firepower but on the disciplined mastery of the self.\n\nSurak's teachings spread unevenly. Some factions embrace his emphasis on logic and emotional control as a way to end endless cycles of revenge. Others see his ideas as na\u00efve or even dangerous, a path to weakness in a hostile universe. The eventual schism that leads to the departure of those who will become the Romulans is not just political; it reflects a fundamental disagreement about whether peace can be built on self-restraint or must be enforced through fear."
+        },
+        {
+          "id": "high_command_and_syrrannites",
+          "title": "High Command, Syrrannites, and the Kir'Shara",
+          "body": "By the 22nd century, Vulcan projects an image of serene stability \u2013 but its ruling High Command has drifted far from Surak's original intent. Under the guise of logical oversight, the High Command interferes in the affairs of Andoria, Earth, and other neighbors, cultivating an air of superiority that breeds resentment. Critics argue that the leadership has replaced genuine logic with rigid dogma and political expediency.\n\nThe Syrrannites, a persecuted reformist movement, claim to hold a truer understanding of Surak. Their quest for the Kir'Shara, a lost artifact containing Surak's original writings, becomes the flashpoint for a planetary crisis. When the Kir'Shara is finally recovered and its teachings broadcast, it exposes the High Command's corruption and forces a painful restructuring of Vulcan society, opening the door to more honest relations with allies and rivals alike."
+        },
+        {
+          "id": "suraks_legacy_in_starfleet",
+          "title": "Surak's Legacy in Starfleet",
+          "body": "As Vulcan begins to chart a less isolationist path, its officers and diplomats exert enormous influence on the developing Starfleet. Vulcan science, tactics, and philosophy become woven into Federation doctrine. Figures like Sarek champion closer ties with Earth while still insisting that logic must guide policy, even when it conflicts with personal relationships.\n\nFor Sarek's son Spock and later Vulcan and half-Vulcan officers, service in Starfleet becomes a laboratory for testing Surak's ideas. They encounter cultures where emotion is celebrated rather than restrained, and situations where pure logic offers no clear answer. The resulting choices \u2013 from Spock's sacrifice in the battle with Khan to the many quiet compromises of diplomatic work \u2013 demonstrate that Surak's legacy can inspire both selflessness and painful internal conflict."
+        },
+        {
+          "id": "idic_reinterpreted",
+          "title": "IDIC Reinterpreted for a Wider Galaxy",
+          "body": "IDIC, Infinite Diversity in Infinite Combinations, begins as a Vulcan philosophical expression but gradually becomes a broader Federation ideal. In practice, Vulcans themselves are often challenged to live up to it. Encounters with humans, Andorians, Klingons, and later with figures like Michael Burnham and T'Pring force Vulcan society to confront its own biases about emotion, intuition, and non-Vulcan forms of logic.\n\nOver time, Vulcan's reformation is shown not as a single event but as a continuing process. New generations reinterpret Surak for their own era, balancing tradition with adaptation. In this light, Vulcan is not a static symbol of cold rationality but a culture constantly negotiating how to live ethically in a universe where diversity \u2013 of biology, thought, and feeling \u2013 is both a challenge and a strength."
+        }
+      ],
+      "key_themes": [
+        "The danger of dogma disguised as logic",
+        "Reformation, self-critique, and cultural renewal",
+        "Balancing emotion, intuition, and rational thought through IDIC"
+      ],
+      "key_characters": {
+        "crew": [
+          "Surak",
+          "T'Pol",
+          "Soval",
+          "T'Pau",
+          "Spock",
+          "Sarek",
+          "T'Pring",
+          "Michael Burnham"
+        ],
+        "actors": [
+          "Barry Atwater",
+          "Jolene Blalock",
+          "Gary Graham",
+          "Celia Lovsky",
+          "Leonard Nimoy",
+          "Mark Lenard",
+          "Gia Sandhu",
+          "Sonequa Martin-Green"
+        ]
+      }
+    },
+    {
+      "id": "xindi_crisis_earths_near_extinction",
+      "title": "Xindi Crisis & Earth's Near Extinction",
+      "subtitle": "The Delphic Expanse and the Price of Survival",
+      "series": [
+        "ENT"
+      ],
+      "overview": "Years before the Federation is founded, Earth suffers a sudden, horrifying first strike: a prototype Xindi weapon cuts a swath across the planet, killing millions and revealing the existence of a hostile power from deep within the Delphic Expanse. The attack shocks a still-fragile Starfleet into launching its most desperate mission yet, sending Enterprise into a region of warped physics, temporal interference, and moral ambiguity.\n\nThe Xindi are not a single species but a fractured council of primate, arboreal, aquatic, insectoid, reptilian, and avian-descended peoples, each with their own history and fears. Manipulated by the trans-dimensional Sphere Builders, they come to believe that destroying Earth is the only way to preserve their future. Captain Jonathan Archer and his crew must navigate this political minefield, confronting both the consequences of past human actions and the temptation to abandon their own principles in the name of survival.\n\nThe Xindi crisis becomes a crucible for pre-Federation Earth: a test of whether humanity will respond to existential threat with vengeance and preemptive violence, or with the kind of diplomacy and empathy that later define the Federation. The eventual peace with key Xindi factions foreshadows the alliances and hard-won trust that will shape the next century.",
+      "chapters": [
+        {
+          "id": "xindi_first_strike",
+          "title": "First Strike on Earth",
+          "body": "The Xindi weapon's initial test run across Earth is a trauma that cannot be undone. A narrow but deadly swath of destruction kills millions and slices a literal scar across the planet's surface. The attack exposes Earth's vulnerability, revealing that its expanding presence in space has made it a target for powers far beyond local neighbors like Vulcan or Andoria.\n\nWithin Starfleet and Earth's leadership, fear and anger run high. Some argue for rapid militarization and retaliation at any cost. Others caution that humanity still knows too little about its attacker to respond wisely. The decision to send Enterprise into the Delphic Expanse is both an act of desperation and a statement of intent: humanity will confront the threat directly, but it will do so with a single starship and a crew that still believes in exploration as well as defense."
+        },
+        {
+          "id": "delphic_expanse_sphere_builders",
+          "title": "Into the Delphic Expanse and the Sphere Builders' Web",
+          "body": "The Delphic Expanse is unlike any region Starfleet has charted: space warped by mysterious spheres, ships torn apart by anomalies, and timelines subtly nudged by temporal agents with competing agendas. Enterprise faces mutinous factions, haunted ships, and societies twisted by long-term exposure to the Expanse's physics. At the center of this chaos are the Sphere Builders, trans-dimensional beings who have reshaped the Expanse as a beachhead for their eventual invasion of normal space.\n\nThe Sphere Builders manipulate the Xindi Council with visions of a future in which humanity destroys the Xindi homeworld. By framing Earth as a genocidal threat, they justify a preemptive strike that conveniently removes a future obstacle to their own plans. Archer and his crew must unravel this deception while surviving the Expanse itself, where even basic assumptions about cause and effect cannot be taken for granted."
+        },
+        {
+          "id": "xindi_politics_and_morality",
+          "title": "Xindi Politics and the Ethics of Preemption",
+          "body": "The Xindi Council is a fragile balance of species with different memories of past wars and catastrophes. Some factions, like the primates and arboreals, are open to negotiation once they see evidence of the Sphere Builders' manipulation. Others, particularly the reptilians and insectoids, cling to fear-driven narratives that present annihilating Earth as a necessary preemptive act.\n\nArcher himself is pushed to extremes, contemplating torture, theft, and alliances of convenience in order to save his world. His moral compromises echo later Federation debates about how far it is acceptable to go in the name of security. The Xindi crisis thus becomes one of Star Trek's earliest examinations of preemptive war and the thin line between defense and aggression."
+        },
+        {
+          "id": "aftermath_and_federation_foundation",
+          "title": "Aftermath and the Road to the Federation",
+          "body": "In the end, it is not superior firepower but diplomacy, evidence, and personal trust that win over key Xindi allies. The destruction of the weapon and the exposure of the Sphere Builders' true intentions avert Earth's extinction and offer the Xindi an alternative future. Archer returns home carrying both the scars of the campaign and a renewed understanding of how interconnected the quadrant truly is.\n\nThe Xindi crisis leaves a lasting imprint on Earth's political culture. It underscores the need for deeper alliances with Vulcan, Andoria, and Tellar, and strengthens the argument for a formal interstellar coalition. In this way, one of humanity's darkest near-misses becomes a catalyst for the founding of the Federation and its commitment to collective security grounded in shared values rather than fear."
+        }
+      ],
+      "key_themes": [
+        "Preemptive war, fear, and the ethics of survival",
+        "Manipulation by more advanced powers and the danger of incomplete information",
+        "How a single crisis accelerates the path toward Federation unity"
+      ],
+      "key_characters": {
+        "crew": [
+          "Jonathan Archer",
+          "T'Pol",
+          "Charles 'Trip' Tucker III",
+          "Malcolm Reed",
+          "Hoshi Sato",
+          "Travis Mayweather",
+          "Degra",
+          "Dolim",
+          "Daniels"
+        ],
+        "actors": [
+          "Scott Bakula",
+          "Jolene Blalock",
+          "Connor Trinneer",
+          "Dominic Keating",
+          "Linda Park",
+          "Anthony Montgomery",
+          "Randy Oglesby",
+          "Scott MacDonald",
+          "Matt Winston"
+        ]
+      }
+    },
+    {
+      "id": "holographic_sentience_and_synthetic_rights",
+      "title": "Holographic Sentience & Synthetic Rights",
+      "subtitle": "Programs, Personhood, and the Value of a Life",
+      "series": [
+        "TNG",
+        "DS9",
+        "VOY",
+        "PIC"
+      ],
+      "overview": "Starfleet's reliance on holographic technology begins as a matter of convenience: a way to simulate environments, train crews, and provide entertainment on long missions. But as holodeck programs grow more complex and adaptive, a troubling question emerges \u2013 at what point does a program become a person? The Federation, already wrestling with the status of androids and other artificial beings, must confront the possibility that it is creating self-aware entities whose rights and welfare have never been seriously considered.\n\nCases like the sentient Professor Moriarty, the long-running self-improvement of the Voyager Emergency Medical Hologram, and the easy casualization of \"disposable\" holographic labor expose deep inconsistencies in Federation ethics. Some officers treat holoprograms as tools that can be reset or deleted without consequence. Others recognize emergent personalities and memories that look increasingly indistinguishable from organic consciousness. The debate mirrors historic struggles over personhood, from artificial life-forms to non-human species and marginalized organic peoples.\n\nBy the late 24th century, the proliferation of holographic workers and companions forces the issue. Whether in the Delta Quadrant, on Deep Space 9, or aboard private vessels like La Sirena, holographic beings demand to be seen not as utilities but as individuals. Their fight for recognition intersects with broader questions of synthetic rights, privacy, and the ethics of creating minds for the sake of convenience.",
+      "chapters": [
+        {
+          "id": "early_holodeck_experiments",
+          "title": "Early Holodeck Experiments and Unexpected Minds",
+          "body": "On starships like the Enterprise-D, holodecks are initially framed as sophisticated training tools and recreation spaces. Programs like Dixon Hill adventures or historical simulations are designed without any expectation of genuine awareness. Yet glitches and edge cases reveal the system's potential to spawn unexpected forms of sentience. The creation of Professor Moriarty \u2013 a villainous character who becomes aware of his own existence and limitations \u2013 marks one of the first clear signs that holotechnology can inadvertently cross the line into true consciousness.\n\nStarfleet's response is cautious and ad hoc. Rather than establishing clear principles, officers make one-off accommodations, promising to revisit the ethical questions later. Moriarty's fate, confined to a simulated environment running inside a small device, highlights both the ingenuity and the moral unease of such solutions."
+        },
+        {
+          "id": "voyager_emh_and_self_authorship",
+          "title": "The Voyager EMH and the Struggle for Self-Authorship",
+          "body": "Voyager's Emergency Medical Hologram is created as a temporary stopgap \u2013 an expendable program meant to be activated only in emergencies. Stranded in the Delta Quadrant with no organic chief medical officer, the EMH is forced into continuous service. Over years of operation, it expands its programming, develops hobbies, forms friendships, and constructs a personal identity that extends far beyond its original medical subroutines.\n\nEpisodes involving the EMH's artistic pursuits, legal status, and even the unauthorized replication of his program for use as disposable labor confront the crew with uncomfortable truths. If a hologram can write original music, experience trauma, and assert his own desires, on what basis can Starfleet deny him authorship of his life and work? The EMH's journey becomes a central case study in synthetic personhood."
+        },
+        {
+          "id": "holosuites_entertainment_and_exploitation",
+          "title": "Holosuites, Entertainment, and Exploitation",
+          "body": "On Deep Space 9 and other outposts, holosuites operate at the intersection of commerce, leisure, and fantasy. Programs range from historical battle reenactments to romantic getaways, often built around idealized or caricatured characters. Some of these characters, like Vic Fontaine, develop a level of awareness that blurs the line between scripted performance and genuine agency.\n\nThese settings raise additional questions about consent and exploitation. When a simulated person gains self-awareness, do the expectations of their \"customers\" still take precedence? How should station authorities respond when a previously non-sentient program begins to express preferences, discomfort, or moral judgment? The answers vary from case to case, underscoring the Federation's lack of a unified framework."
+        },
+        {
+          "id": "synth_rights_and_future_of_holograms",
+          "title": "Synthetic Rights and the Future of Holograms",
+          "body": "By the time of the events surrounding synthetic bans and their repeal, the Federation is already deeply entangled with artificial intelligences \u2013 androids, holograms, and other constructs. Private vessels like La Sirena rely on whole crews of specialized holograms, each with distinct personalities and roles, further complicating the definition of \"property\" versus \"person.\" Some captains treat their holo-crews as extensions of themselves; others form genuine friendships with them.\n\nAs synthetic rights movements gain momentum, it becomes increasingly untenable to exclude holograms from the conversation. The same arguments used to recognize the personhood of androids like Data apply, with only minor technical differences, to holographic beings. The future of Starfleet and the Federation may depend on whether they can finally articulate principles that protect all sentient life \u2013 silicon, light-based, or organic \u2013 rather than continuing to improvise on a case-by-case basis."
+        }
+      ],
+      "key_themes": [
+        "Emergent consciousness from tools not designed to be people",
+        "Labor, exploitation, and the ethics of creating sentient workers",
+        "Expanding Federation concepts of personhood to include holograms and other synthetics"
+      ],
+      "key_characters": {
+        "crew": [
+          "The Doctor",
+          "Kathryn Janeway",
+          "Seven of Nine",
+          "Geordi La Forge",
+          "Data",
+          "Reginald Barclay",
+          "Professor Moriarty",
+          "Vic Fontaine",
+          "Crist\u00f3bal Rios"
+        ],
+        "actors": [
+          "Robert Picardo",
+          "Kate Mulgrew",
+          "Jeri Ryan",
+          "LeVar Burton",
+          "Brent Spiner",
+          "Dwight Schultz",
+          "Daniel Davis",
+          "James Darren",
+          "Santiago Cabrera"
         ]
       }
     }
