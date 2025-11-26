@@ -203,7 +203,6 @@ header::before {
       background-image 0.16s;
   }
 
-
   .series-btn.story-arcs-btn {
     width: 50%;
     margin: 0 auto;
@@ -264,7 +263,7 @@ header::before {
   }
 
   .series-btn[data-series="Voyager"]::before {
-    background: #218c4a; /* dark green */
+    background: #218c4a; 
   }
 
   .series-btn[data-series="Enterprise"]::before {
@@ -384,7 +383,6 @@ header::before {
     pointer-events: none;
   }
 
-
   .character-card::before {
     content: "";
     position: absolute;
@@ -421,7 +419,6 @@ header::before {
       0 0 22px rgba(0,0,0,0.95),
       0 0 36px rgba(0,0,0,0.85);
   }
-
 
   .card-text {
     display: flex;
@@ -594,7 +591,6 @@ header::before {
     }
   }
 
-
   #bio-overlay .bio-flex-row {
     display: flex;
     gap: 2rem;
@@ -638,7 +634,6 @@ header::before {
     pointer-events: none;
   }
 
-
   #bio-overlay::before {
     content: "";
     position: absolute;
@@ -668,7 +663,6 @@ header::before {
     pointer-events: none;
   }
 
-
   .bio-header,
   h1,
   h2,
@@ -696,7 +690,7 @@ header::before {
     <div class="series-wrapper">
       <div id="return-menu" class="return-link">Return to Main Menu</div>
 
-      <!-- MENU (8 buttons restored) -->
+      
       <div class="series-grid">
         <div class="button-row">
           <button type="button" class="series-btn" data-series="The Original Series">The Original Series</button>
@@ -718,7 +712,7 @@ header::before {
         </div>
       </div>
 
-      <!-- CARDS GRID (top-3 placeholders + static TOS extras) -->
+      
       <div class="cards-grid">
         <div class="cards-row">
           <article class="character-card" id="card-1">
@@ -734,7 +728,7 @@ header::before {
             <div id="card-3-text" class="card-text"></div>
           </article>
 
-          <!-- TOS static extras (unchanged) -->
+          
           <article class="character-card tos-only">
             <img alt="Montgomery Scott (TOS)" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Scotty%20(TOS).png"/>
             <div class="card-text">
@@ -787,12 +781,11 @@ header::before {
       </div>
     </div>
   </main>
-
-  <!-- BIO OVERLAY AREA (non-destructive) -->
+  
   <div id="bio-overlay" style="display:none; padding:2rem 7.5rem; max-width:1200px; margin:50px auto;"></div>
 
   <script type="module">
-    // ===== Helpers =====
+
     const $  = (s, r=document) => r.querySelector(s);
     const $$ = (s, r=document) => r.querySelectorAll(s);
 
@@ -807,7 +800,6 @@ header::before {
     function esc(s){ return String(s).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
     function simpleNorm(s){ return String(s||'').toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').replace(/['’`\\.\\-]/g,'').replace(/\\s+/g,'').trim(); }
 
-    // ===== Data (cards) =====
     const SERIES = {
       TOS: [
         { name:"James T. Kirk", role:"Captain",            actor:"William Shatner", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/James%20Kirk%20(TOS).png" },
@@ -1018,7 +1010,6 @@ DIS: [
       return out;
     }
 
-// ===== Aliases for bios =====
     const ALIASES = {
       TOS: {
         crew: {
@@ -1081,7 +1072,6 @@ DIS: [
       }
 };
 
-    // ===== JSON loaders =====
     async function fetchJSON(url) {
       const r = await fetch(url, { cache: "no-store" });
       if (!r.ok) throw new Error("" + r.status);
@@ -1116,7 +1106,6 @@ DIS: [
     async function loadVOY() {
       return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-VOY.json");
     }
-
 
     async function loadDIS() {
       return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-DIS.json");
@@ -1166,7 +1155,6 @@ DIS: [
       const seriesAliases = (ALIASES[seriesKey] && ALIASES[seriesKey][which]) || {};
       const aliased = seriesAliases[display] || display;
 
-      // Build robust candidate variants
       const cset = new Set();
       const straight = aliased.replace(/[’`]/g, "'");
       const curly   = straight.replace(/'/g, "’");
@@ -1183,12 +1171,10 @@ DIS: [
 
       const dicts = which==='actor' ? [ds?.Actors, ds?.actors, ds?.actorBios, ds] : [ds?.Crew, ds?.crew, ds?.characters, ds];
 
-      // Exact match pass
       for (const cand of candidates){
         for (const d of dicts){ if (d && d[cand]) return d[cand]; }
       }
 
-      // Normalized match pass
       const norm = (s)=> String(s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/['’`\.\-]/g,'').replace(/\s+/g,'').trim();
       for (const d of dicts){
         if (!d) continue;
@@ -1203,7 +1189,6 @@ DIS: [
       return null;
     }
 
-    // ===== Renderers =====
     function setTitles(key){
       if (titleEl)   titleEl.textContent = "Star Trek";
       if (subtitleEl) subtitleEl.textContent =
@@ -1284,7 +1269,7 @@ DIS: [
       showCards();
       clearTopThree();
       clearExtras();
-      // Toggle visibility of TOS-only extras
+
       const isTOS = key === "TOS";
       $$(".character-card.tos-only").forEach(c => c.style.display = isTOS ? "flex" : "none");
 
@@ -1297,7 +1282,7 @@ DIS: [
           const nameEl = card.querySelector(".character-name");
           const imgEl  = card.querySelector("img");
           if (!nameEl || !imgEl) return;
-          // Only probe if still showing the fallback placeholder
+
           const isPlaceholder = (imgEl.src || "").startsWith("data:image/svg+xml");
           if (!isPlaceholder) return;
           const n = nameEl.textContent.trim();
@@ -1306,8 +1291,6 @@ DIS: [
         });
       }
     }
-
-    // ===== Bio overlay (non-destructive to cards DOM) =====
     
     function renderBio(title, sections, imgUrl){
       const fallbackImg = imgUrl || 'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png';
@@ -1388,30 +1371,29 @@ function hideBio(){
       window.scrollTo({top:0, behavior:"instant"});
     }
 
-    // ===== Events =====
     document.addEventListener("click", async (e) => {
-      // Menu buttons
+
       const btn = e.target.closest(".series-btn");
       if (btn && btn.hasAttribute("data-series")) {
         e.preventDefault();
         applySeries(labelToKey(btn.getAttribute("data-series") || btn.textContent));
         return;
       }
-      // Return to menu
+
       if (e.target.closest("#return-menu")) {
         e.preventDefault();
         bioOverlay.style.display = "none";
         document.documentElement.classList.remove("series-non-tos");
-        // Reset titles
+
         titleEl.textContent = "Bio Trek";
         subtitleEl.textContent = "Star Trek Biographies";
-        // Show menu, hide grid
+
         seriesMenu.style.display = "flex";
         cardsGrid.style.display = "none";
         returnMenu.style.display = "none";
         return;
       }
-      // Switch between crew and actor bios
+
       if (e.target && e.target.id === "toggleBioView") {
         e.preventDefault();
         if (bioLinkState) {
@@ -1424,14 +1406,13 @@ function hideBio(){
         }
         return;
       }
-      // Return from bio
+
       if (e.target && e.target.id === "returnToCrew") {
         e.preventDefault();
         hideBio();
         return;
       }
 
-      // Card links: bios
       const nameLink  = e.target.closest("a.character-name");
       const actorLink = e.target.closest("a.character-actor");
       if (!nameLink && !actorLink) return;
@@ -1516,10 +1497,7 @@ catch (err) {
         renderBio("Error", [{header:"Biography", text:"Failed to load biography data."}], imgUrl);
       }
     });
-  
-    
-
-    // Related bios from Story Arcs (clickable names in Related Crew / Related Actors)
+      
     document.addEventListener("click", async (e) => {
       const rel = e.target.closest && e.target.closest("[data-related-bio]");
       if (!rel) return;
@@ -1556,12 +1534,11 @@ catch (err) {
       }
     });
 
-// Hardening: if inner spans or nodes are clicked inside the anchors, ensure we still catch the anchor.
     document.addEventListener("click", (e) => {
       const a = e.target.closest && e.target.closest("a");
       if (!a) return;
       if (a.classList && (a.classList.contains("character-name") || a.classList.contains("character-actor"))) {
-        // let the main handler process it (already registered above)
+
       }
     }, true);
   
