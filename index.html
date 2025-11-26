@@ -203,8 +203,9 @@ header::before {
       background-image 0.16s;
   }
 
-  .series-btn.story-arcs-btn {
-    width: 50%;
+  .series-btn.story-arcs-btn,
+  .series-btn.episode-guide-btn {
+    width: 48%;
     margin: 0 auto;
   }
 
@@ -709,6 +710,7 @@ header::before {
         </div>
         <div class="button-row">
           <button type="button" class="series-btn story-arcs-btn" data-series="Story Arcs">Story Arcs</button>
+          <button type="button" class="series-btn episode-guide-btn" data-series="Curated Episode Guide">Curated Episode Guide</button>
         </div>
       </div>
 
@@ -781,6 +783,7 @@ header::before {
       </div>
     </div>
   </main>
+
   
   <div id="bio-overlay" style="display:none; padding:2rem 7.5rem; max-width:1200px; margin:50px auto;"></div>
 
@@ -1130,6 +1133,47 @@ DIS: [
       return arcs;
     }
 
+    async function loadEPISODES() {
+      try {
+        console.log("Curated Episodes: fetching from URL");
+        const d = await fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/Curated%20Episodes.json");
+        const episodes = d && Array.isArray(d.episodes) ? d.episodes : (Array.isArray(d) ? d : []);
+        console.log("Curated Episodes: fetched from URL", episodes.length);
+        return episodes;
+      } catch (e) {
+        console.error("Curated Episodes: error fetching", e);
+        return [];
+      }
+    }
+
+    function buildEpisodeCards(episodes) {
+      if (!Array.isArray(episodes)) return [];
+      return episodes.map((ep) => {
+        const series = ep.series || "";
+        const season = ep.season;
+        const nums = Array.isArray(ep.episodes) ? ep.episodes.slice().sort((a, b) => a - b) : [];
+        let epPart = "";
+        if (season && nums.length) {
+          const first = nums[0];
+          const last = nums[nums.length - 1];
+          if (first === last) epPart = "Season " + season + ", Episode " + first;
+          else epPart = "Season " + season + ", Episodes " + first + "–" + last;
+        } else if (season) {
+          epPart = "Season " + season;
+        }
+        const rolePieces = [];
+        if (series) rolePieces.push(series);
+        if (epPart) rolePieces.push(epPart);
+        const role = rolePieces.join(" • ") || "Curated Episode";
+        return {
+          name: ep.title || "",
+          role,
+          actor: "Curated Episode",
+          img: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png"
+        };
+      });
+    }
+
     function mapDs9Alias(n) {
       return n;
     }
@@ -1200,6 +1244,7 @@ DIS: [
         key==='DIS' ? "Discovery" :
         key==='PIC' ? "Picard" :
         key==='SNW' ? "Strange New Worlds" :
+        key==='EPISODES' ? "Curated Episode Guide" :
         key==='ARCS' ? "Story Arcs" :
         key==='GUEST' ? "Guest List" : "";
     }
@@ -1258,6 +1303,7 @@ DIS: [
       if (l.includes("discovery") || l.includes("dis")) return "DIS";
       if (l.includes("picard") || l.includes("pic")) return "PIC";
       if (l.includes("strange new worlds") || l.includes("snw")) return "SNW";
+      if (l.includes("curated episode") || l.includes("episode guide")) return "EPISODES";
       if (l.includes("story arcs") || l.includes("story arc") || l.includes("arcs")) return "ARCS";
       if (l.includes("guest")) return "GUEST";
       return "";
@@ -1272,6 +1318,20 @@ DIS: [
 
       const isTOS = key === "TOS";
       $$(".character-card.tos-only").forEach(c => c.style.display = isTOS ? "flex" : "none");
+
+      if (key === "EPISODES") {
+        loadEPISODES().then((episodes) => {
+          const list = Array.isArray(episodes) ? episodes : [];
+          const people = buildEpisodeCards(list);
+          setTopThree(people);
+          renderExtras(people, key);
+        }).catch((err) => {
+          console.error("Curated Episodes load error", err);
+          setTopThree([]);
+          renderExtras([], key);
+        });
+        return;
+      }
 
       const people = SERIES[key] || [];
       setTopThree(people);
@@ -1291,18 +1351,23 @@ DIS: [
         });
       }
     }
+
     
     function renderBio(title, sections, imgUrl){
       const fallbackImg = imgUrl || 'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png';
       const blocks = Array.isArray(sections) ? sections : [{header:"Biography", text:"No biography available."}];
-      const isArc = Array.isArray(blocks) && blocks.length && blocks[0].header === "Overview";
+      const seriesSubtitle = (subtitleEl && subtitleEl.textContent) ? subtitleEl.textContent.toLowerCase() : "";
+      const isEpisodes = seriesSubtitle.includes("curated episode");
+      const isArc = !isEpisodes && Array.isArray(blocks) && blocks.length && blocks[0].header === "Overview";
 
-      const hasToggle = !isArc && !!(bioLinkState && bioLinkState.crewEl && bioLinkState.actorEl);
+      const hasToggle = !isArc && !isEpisodes && !!(bioLinkState && bioLinkState.crewEl && bioLinkState.actorEl);
       const which = bioLinkState && bioLinkState.which === "actor" ? "actor" : "crew";
       const toggleLabel = hasToggle
         ? (which === "crew" ? "View Actor Biography" : "View Character Biography")
         : "";
-      const subtitle = isArc ? "Story Arc" : (which === "crew" ? "Character Biography" : "Actor Biography");
+      const subtitle = isArc
+        ? "Story Arc"
+        : (isEpisodes ? "Episode" : (which === "crew" ? "Character Biography" : "Actor Biography"));
 
       const headerHtml = `
         <div class="bio-overlay-inner">
@@ -1429,7 +1494,8 @@ function hideBio(){
       const isPIC  = series.includes("picard") || series.includes("pic");
       const isGUEST = series.includes("guest");
       const isARCS = series.includes("story arcs");
-      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isDIS || isSNW || isPIC || isGUEST || isARCS);
+      const isEPISODES = series.includes("curated episode");
+      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isDIS || isSNW || isPIC || isGUEST || isARCS || isEPISODES);
       if (isARCS && nameLink) {
         return;
       }
@@ -1443,7 +1509,16 @@ function hideBio(){
         const crewEl = cardEl ? cardEl.querySelector("a.character-name") : null;
         const actorEl = cardEl ? cardEl.querySelector("a.character-actor") : null;
         bioLinkState = { which, crewEl, actorEl };
-        if (isARCS) {
+        if (isEPISODES) {
+          const episodes = await loadEPISODES();
+          const titleElWithinCard = cardEl ? cardEl.querySelector("a.character-name") : null;
+          const titleText = titleElWithinCard ? titleElWithinCard.textContent : text;
+          const episode = resolveArc(episodes, titleText);
+          const sections = sectionsFromArc(episode);
+          console.log("Curated Episodes: click", { clicked:titleText, hasEpisode:!!episode, sections:sections.length });
+          bioLinkState = null;
+          renderBio(episode ? episode.title : titleText, sections, imgUrl);
+        } else if (isARCS) {
           const arcs = await loadARCS();
           const titleElWithinCard = cardEl ? cardEl.querySelector("a.character-name") : null;
           const titleText = titleElWithinCard ? titleElWithinCard.textContent : text;
@@ -1497,7 +1572,9 @@ catch (err) {
         renderBio("Error", [{header:"Biography", text:"Failed to load biography data."}], imgUrl);
       }
     });
-      
+  
+    
+
     document.addEventListener("click", async (e) => {
       const rel = e.target.closest && e.target.closest("[data-related-bio]");
       if (!rel) return;
