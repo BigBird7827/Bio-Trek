@@ -96,9 +96,7 @@ header::before {
   main {
     flex: 1;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
     padding: 1.5rem 1rem 2.5rem;
   }
 
@@ -1407,7 +1405,7 @@ DIS: [
       const fallbackImg = imgUrl || 'https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png';
       const blocks = Array.isArray(sections) ? sections : [{header:"Biography", text:"No biography available."}];
       const seriesSubtitle = (subtitleEl && subtitleEl.textContent) ? subtitleEl.textContent.toLowerCase() : "";
-      const isEpisodes = seriesSubtitle.includes("curated episode");
+      const isEpisodes = seriesSubtitle.includes("hall of fame") || seriesSubtitle.includes("hall of shame") || seriesSubtitle.includes("episode");
       const isArc = !isEpisodes && Array.isArray(blocks) && blocks.length && blocks[0].header === "Overview";
 
       const hasToggle = !isArc && !isEpisodes && !!(bioLinkState && bioLinkState.crewEl && bioLinkState.actorEl);
@@ -1417,7 +1415,9 @@ DIS: [
         : "";
       const subtitle = isArc
         ? "Story Arc"
-        : (isEpisodes ? "Episode" : (which === "crew" ? "Character Biography" : "Actor Biography"));
+        : (isEpisodes
+          ? (currentEpisodeMode === "worst" ? "Hall of Shame" : "Hall of Fame")
+          : (which === "crew" ? "Character Biography" : "Actor Biography"));
 
       const headerHtml = `
         <div class="bio-overlay-inner">
