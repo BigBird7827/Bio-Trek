@@ -69,6 +69,15 @@
           "James Doohan",
           "Joan Collins"
         ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "A tragic time\u2011travel love story that defines Star Trek\u2019s moral stakes and the cost of \u2018fixing\u2019 history.",
+        "reasons": [
+          "Balances big SF ideas with an intimate character drama centered on Kirk and Edith Keeler.",
+          "Shows the strength of the Kirk\u2013Spock\u2013McCoy dynamic under impossible ethical pressure.",
+          "Delivers a clear, haunting lesson about unintended consequences when tampering with time."
+        ]
       }
     },
     {
@@ -137,6 +146,15 @@
           "Ricardo Montalb\u00e1n",
           "Madlyn Rhue"
         ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "Introduces Khan Noonien Singh and sets up one of Star Trek\u2019s most influential rivalries.",
+        "reasons": [
+          "Explores eugenics, charismatic tyranny, and how a seemingly \u2018civilized\u2019 villain can tempt a starship crew.",
+          "Creates enduring chemistry and tension between Kirk, Spock, and Khan that echoes into later stories.",
+          "Functions as both a tight bottle thriller and an origin story for Star Trek II: The Wrath of Khan."
+        ]
       }
     },
     {
@@ -203,6 +221,15 @@
           "Brent Spiner",
           "Margot Rose",
           "Richard Riehle"
+        ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "Picard lives an entire lifetime in minutes, turning a high\u2011concept premise into a deeply human story.",
+        "reasons": [
+          "Uses science fiction to explore memory, loss, and legacy through Picard\u2019s second life as Kamin.",
+          "Anchored by Patrick Stewart\u2019s performance and the recurring flute motif that symbolizes the life he remembers.",
+          "Shows how a long\u2011dead civilization preserves its culture not through weapons, but through a single lived experience."
         ]
       }
     },
@@ -275,6 +302,15 @@
           "Ronny Cox",
           "David Warner"
         ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "A grim two\u2011parter that confronts torture, obedience, and the limits of Federation ideals.",
+        "reasons": [
+          "Puts Picard through psychological and physical torture, culminating in the iconic \u2018There are four lights!\u2019 moment.",
+          "Contrasts Picard\u2019s ordeal with Jellico\u2019s hard\u2011line command style aboard the Enterprise.",
+          "Explores how far both Starfleet and its enemies will go in a covert confrontation short of open war."
+        ]
       }
     },
     {
@@ -340,6 +376,15 @@
           "Terry Farrell",
           "Aron Eisenberg",
           "Nana Visitor"
+        ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "A quiet, devastating tale of Jake Sisko\u2019s life reshaped by the loss\u2014and possible return\u2014of his father.",
+        "reasons": [
+          "Uses an unusual structure to follow Jake across decades, showing how grief can define an entire lifetime.",
+          "Features standout performances from Tony Todd and Avery Brooks that ground the time\u2011shifted story emotionally.",
+          "Reinforces DS9\u2019s focus on family and personal cost rather than just station\u2011level politics."
         ]
       }
     },
@@ -409,6 +454,15 @@
           "Colm Meaney",
           "Armin Shimerman",
           "Michael Dorn"
+        ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "Sisko dreams\u2014or remembers\u2014a 1950s SF writer\u2019s life, turning Star Trek inward to confront racism and storytelling itself.",
+        "reasons": [
+          "Recasts the DS9 ensemble as mid\u201120th\u2011century characters to examine prejudice in the era when classic SF magazines thrived.",
+          "Gives Avery Brooks a showcase both in front of and behind the camera, blending anger, hope, and exhaustion.",
+          "Connects the idea of \u2018seeing a black man in the future\u2019 with the power of speculative fiction to challenge the present."
         ]
       }
     },
@@ -480,6 +534,15 @@
           "Robert Picardo",
           "Jeri Ryan"
         ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "Voyager\u2019s high\u2011stakes Borg two\u2011parter that introduces Seven of Nine and forces an alliance with the Collective.",
+        "reasons": [
+          "Raises the danger level by pitting the Borg against Species 8472, forcing the heroes to choose the lesser of two threats.",
+          "Introduces Seven of Nine in a way that immediately ties her to Janeway\u2019s hardest command decisions.",
+          "Uses action set\u2011pieces to support, rather than replace, the central moral dilemma over cooperation with an enemy."
+        ]
       }
     },
     {
@@ -547,6 +610,15 @@
           "Roxann Dawson",
           "Jeri Ryan"
         ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "Centuries after Voyager\u2019s visit, a backup Doctor is revived into a society built on a distorted version of his crew\u2019s history.",
+        "reasons": [
+          "Shows how historical records and propaganda can warp the truth of past events into convenient myths.",
+          "Uses the Doctor as an outsider who can literally correct the historical narrative and force a society to re\u2011examine itself.",
+          "Offers one of Voyager\u2019s strongest standalone premises, with a coda that suggests history is still being rewritten."
+        ]
       }
     },
     {
@@ -610,6 +682,15 @@
           "Jolene Blalock",
           "Linda Park"
         ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "A pre\u2011Federation story that wrestles with whether Starfleet has the right to \u2018fix\u2019 another species\u2019 natural development.",
+        "reasons": [
+          "Centers on Phlox and Archer debating intervention versus non\u2011interference in a situation with no painless outcome.",
+          "Foreshadows the later Prime Directive by showing how well\u2011intentioned help can alter evolutionary and cultural paths.",
+          "Presents moral ambiguity rather than easy answers, inviting ongoing debate among viewers."
+        ]
       }
     },
     {
@@ -672,6 +753,15 @@
           "Ann Cusack",
           "J. Paul Boehmer",
           "Michael Korb"
+        ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "T\u2019Pol\u2019s tale of Vulcan visitors stranded in 1950s Pennsylvania turns into a small, character\u2011driven first contact story.",
+        "reasons": [
+          "Uses a quiet period setting to explore Vulcan\u2013human contrasts before official first contact.",
+          "Gives T\u2019Pol a personal, possibly apocryphal family story that adds texture to her relationship with Archer and Trip.",
+          "Balances humor and empathy as the Vulcans slowly adapt to small\u2011town life on Earth."
         ]
       }
     },
@@ -744,6 +834,15 @@
           "Jess Bush",
           "Celia Rose Gooding"
         ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "The series premiere reintroduces Pike\u2019s Enterprise with a confident blend of optimism, character focus, and episodic adventure.",
+        "reasons": [
+          "Re\u2011establishes Starfleet\u2019s exploratory spirit while acknowledging Pike\u2019s foreknowledge of his future fate.",
+          "Introduces the main crew quickly and cleanly, giving each a distinct voice and role on the ship.",
+          "Signals a return to classic, self\u2011contained missions while still setting up ongoing character arcs."
+        ]
       }
     },
     {
@@ -806,6 +905,15 @@
           "Paul Wesley",
           "Anson Mount",
           "Ethan Peck"
+        ]
+      },
+      "assessment": {
+        "type": "great",
+        "summary": "La\u2019an\u2019s time\u2011travel journey with an alternate James T. Kirk forces her to choose between personal happiness and the prime timeline.",
+        "reasons": [
+          "Deepens La\u2019an\u2019s character by confronting her family legacy and her guarded approach to relationships.",
+          "Presents an alternate Kirk who feels recognizably Trek while still distinct from his prime counterpart.",
+          "Uses a contemporary Earth setting to explore cause, effect, and the emotional cost of preserving history."
         ]
       }
     }
