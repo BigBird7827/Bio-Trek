@@ -96,7 +96,9 @@ header::before {
   main {
     flex: 1;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     padding: 1.5rem 1rem 2.5rem;
   }
 
@@ -151,7 +153,7 @@ header::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 140px;
+    margin-top: 40px;
   }
 
   .button-row {
@@ -710,11 +712,13 @@ header::before {
         </div>
         <div class="button-row">
           <button type="button" class="series-btn story-arcs-btn" data-series="Story Arcs">Story Arcs</button>
-          <button type="button" class="series-btn episode-guide-btn" data-series="Curated Episode Guide">Curated Episode Guide</button>
+        </div>
+        <div class="button-row">
+          <button type="button" class="series-btn episode-guide-btn" data-series="Best Episodes">Best Episodes - Hall of Fame Episodes</button>
+          <button type="button" class="series-btn episode-guide-btn" data-series="Worst Episodes">Worst Episodes - Hall of Shame Episodes</button>
         </div>
       </div>
 
-      
       <div class="cards-grid">
         <div class="cards-row">
           <article class="character-card" id="card-1">
@@ -800,6 +804,10 @@ header::before {
     const bioOverlay = $("#bio-overlay");
     const headerShip = $(".header-ship");
     let bioLinkState = null;
+    let currentSeriesKey = "";
+    let currentEpisodeMode = "best";
+    let cachedEpisodesBest = null;
+    let cachedEpisodesWorst = null;
 
     function esc(s){ return String(s).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
     function simpleNorm(s){ return String(s||'').toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').replace(/['’`\\.\\-]/g,'').replace(/\\s+/g,'').trim(); }
@@ -1134,18 +1142,29 @@ DIS: [
       return arcs;
     }
 
-    async function loadEPISODES() {
+    async function loadEPISODES(mode) {
+      const which = (mode || currentEpisodeMode || "best");
+      const cached = which === "worst" ? cachedEpisodesWorst : cachedEpisodesBest;
+      if (cached && Array.isArray(cached)) {
+        return cached;
+      }
       try {
-        console.log("Curated Episodes: fetching from URL");
-        const d = await fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/Curated%20Episodes.json");
+        const url = which === "worst"
+          ? "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/Curated%20Episodes%20-%20Worst.json"
+          : "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/Curated%20Episodes.json";
+        console.log("Curated Episodes (" + which + "): fetching from URL");
+        const d = await fetchJSON(url);
         const episodes = d && Array.isArray(d.episodes) ? d.episodes : (Array.isArray(d) ? d : []);
-        console.log("Curated Episodes: fetched from URL", episodes.length);
+        console.log("Curated Episodes (" + which + "): fetched from URL", episodes.length);
+        if (which === "worst") cachedEpisodesWorst = episodes;
+        else cachedEpisodesBest = episodes;
         return episodes;
       } catch (e) {
-        console.error("Curated Episodes: error fetching", e);
+        console.error("Curated Episodes (" + which + "): error fetching", e);
         return [];
       }
     }
+
 
     function buildEpisodeCards(episodes) {
       if (!Array.isArray(episodes)) return [];
@@ -1255,18 +1274,27 @@ DIS: [
 
     function setTitles(key){
       if (titleEl)   titleEl.textContent = "Star Trek";
-      if (subtitleEl) subtitleEl.textContent =
-        key==='TOS' ? "The Original Series" :
-        key==='TNG' ? "The Next Generation" :
-        key==='DS9' ? "Deep Space Nine" :
-        key==='VOY' ? "Voyager" :
-        key==='ENT' ? "Enterprise" :
-        key==='DIS' ? "Discovery" :
-        key==='PIC' ? "Picard" :
-        key==='SNW' ? "Strange New Worlds" :
-        key==='EPISODES' ? "Curated Episode Guide" :
-        key==='ARCS' ? "Story Arcs" :
-        key==='GUEST' ? "Guest List" : "";
+      if (subtitleEl) {
+        let subtitleText = "";
+        if (key === 'EPISODES') {
+          subtitleText = (currentEpisodeMode === "worst")
+            ? "Hall of Shame (Episodes)"
+            : "Hall of Fame (Episodes)";
+        } else {
+          subtitleText =
+            key==='TOS' ? "The Original Series" :
+            key==='TNG' ? "The Next Generation" :
+            key==='DS9' ? "Deep Space Nine" :
+            key==='VOY' ? "Voyager" :
+            key==='ENT' ? "Enterprise" :
+            key==='DIS' ? "Discovery" :
+            key==='PIC' ? "Picard" :
+            key==='SNW' ? "Strange New Worlds" :
+            key==='ARCS' ? "Story Arcs" :
+            key==='GUEST' ? "Guest List" : "";
+        }
+        subtitleEl.textContent = subtitleText;
+      }
     }
     function showCards(){
       seriesMenu.style.display = "none";
@@ -1323,7 +1351,7 @@ DIS: [
       if (l.includes("discovery") || l.includes("dis")) return "DIS";
       if (l.includes("picard") || l.includes("pic")) return "PIC";
       if (l.includes("strange new worlds") || l.includes("snw")) return "SNW";
-      if (l.includes("curated episode") || l.includes("episode guide")) return "EPISODES";
+      if (l.includes("best episodes") || l.includes("worst episodes") || l.includes("curated episode") || l.includes("episode guide") || l.includes("hall of fame") || l.includes("hall of shame")) return "EPISODES";
       if (l.includes("story arcs") || l.includes("story arc") || l.includes("arcs")) return "ARCS";
       if (l.includes("guest")) return "GUEST";
       return "";
@@ -1331,7 +1359,9 @@ DIS: [
 
     function applySeries(key){
 
+      currentSeriesKey = key;
       setTitles(key);
+
       showCards();
       clearTopThree();
       clearExtras();
@@ -1463,7 +1493,14 @@ function hideBio(){
       const btn = e.target.closest(".series-btn");
       if (btn && btn.hasAttribute("data-series")) {
         e.preventDefault();
-        applySeries(labelToKey(btn.getAttribute("data-series") || btn.textContent));
+        const rawLabel = btn.getAttribute("data-series") || btn.textContent || "";
+        const seriesLabel = rawLabel.toLowerCase();
+        if (seriesLabel.includes("best episodes")) {
+          currentEpisodeMode = "best";
+        } else if (seriesLabel.includes("worst episodes")) {
+          currentEpisodeMode = "worst";
+        }
+        applySeries(labelToKey(rawLabel));
         return;
       }
 
@@ -1517,7 +1554,7 @@ function hideBio(){
       const isPIC  = series.includes("picard") || series.includes("pic");
       const isGUEST = series.includes("guest");
       const isARCS = series.includes("story arcs");
-      const isEPISODES = series.includes("curated episode");
+      const isEPISODES = series.includes("curated episode") || series.includes("episode guide") || series.includes("hall of fame") || series.includes("hall of shame") || series.includes("episodes");
       const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isDIS || isSNW || isPIC || isGUEST || isARCS || isEPISODES);
       if (isARCS && nameLink) {
         return;
