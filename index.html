@@ -973,17 +973,33 @@ DIS: [
         }
       ]
     };    
+        const ARC_INDEX = new WeakMap();
+
     function resolveArc(arcs, title){
       if (!arcs || !Array.isArray(arcs)) return null;
       const t = (title || "").toLowerCase().trim();
-      let arc = arcs.find(a => (a.title || "").toLowerCase() === t);
-      if (!arc) {
-        arc = arcs.find(a => (a.id || "").toLowerCase() === t.replace(/\s+/g, "_"));
+      let index = ARC_INDEX.get(arcs);
+      if (!index) {
+        index = new Map();
+        for (const arc of arcs) {
+          if (!arc) continue;
+          const titleKey = String(arc.title || "").toLowerCase().trim();
+          if (titleKey && !index.has(titleKey)) index.set(titleKey, arc);
+          const rawId = String(arc.id || "");
+          if (rawId) {
+            const idKey = rawId.toLowerCase();
+            const idKeyWithUnderscore = idKey.replace(/\s+/g, "_");
+            if (idKey && !index.has(idKey)) index.set(idKey, arc);
+            if (idKeyWithUnderscore && !index.has(idKeyWithUnderscore)) index.set(idKeyWithUnderscore, arc);
+          }
+        }
+        ARC_INDEX.set(arcs, index);
       }
-      return arc || null;
+      const tUnderscore = t.replace(/\s+/g, "_");
+      return index.get(t) || index.get(tUnderscore) || null;
     }
 
-    function sectionsFromArc(arc){
+function sectionsFromArc(arc){
       if (!arc) return [{ header: "Story Arc", text: "Details not found." }];
       const out = [];
       if (arc.overview) {
@@ -1076,6 +1092,32 @@ DIS: [
       }
 };
 
+    const BIO_INDEX = {};
+
+    function normalizeBioKey(s){
+      return String(s||"").toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/['’`\.\-]/g,'').replace(/\s+/g,'').trim();
+    }
+
+    function getBioIndex(ds, which, seriesKey){
+      const key = String(seriesKey||'') + ":" + String(which||'');
+      if (BIO_INDEX[key]) return BIO_INDEX[key];
+      const dicts = which==='actor' ? [ds?.Actors, ds?.actors, ds?.actorBios, ds] : [ds?.Crew, ds?.crew, ds?.characters, ds];
+      const map = new Map();
+      for (const d of dicts){
+        if (!d) continue;
+        const keys = Object.keys(d);
+        for (const k of keys){
+          const nk = normalizeBioKey(k);
+          if (!nk) continue;
+          if (!map.has(nk)) map.set(nk, d[k]);
+        }
+      }
+      BIO_INDEX[key] = map;
+      return map;
+    }
+
+
+
     async function fetchJSON(url) {
       const r = await fetch(url, { cache: "no-store" });
       if (!r.ok) throw new Error("" + r.status);
@@ -1083,46 +1125,77 @@ DIS: [
       return (d && d.bios) ? d.bios : d;
     }
 
-    async function loadTOS() {
-      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TOS.json");
+    const biosCache = {};
+    let arcsCache = null;
+    let episodesCache = null;
+    let guestsCache = null;
+
+    
+
+    const snwImageCache = new Map();
+
+    async function findSnwImage(name){
+      const key = String(name || "").trim();
+      if (!key) return null;
+      if (snwImageCache.has(key)) return snwImageCache.get(key);
+      const images = {};
+      const url = images[key] || null;
+      snwImageCache.set(key, url);
+      return url;
+    }
+
+async function loadTOS() {
+      if (!biosCache.TOS) biosCache.TOS = fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TOS.json");
+      return biosCache.TOS;
     }
 
     async function loadDS9() {
-      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-DS9.json");
+      if (!biosCache.DS9) biosCache.DS9 = fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-DS9.json");
+      return biosCache.DS9;
     }
 
     async function loadTNG() {
-      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TNG.json");
+      if (!biosCache.TNG) biosCache.TNG = fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-TNG.json");
+      return biosCache.TNG;
     }
 
     async function loadENT() {
-      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-ENT.json");
+      if (!biosCache.ENT) biosCache.ENT = fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-ENT.json");
+      return biosCache.ENT;
     }
 
     async function loadSNW() {
-      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-SNW.json");
+      if (!biosCache.SNW) biosCache.SNW = fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-SNW.json");
+      return biosCache.SNW;
     }
 
     async function loadPIC() {
-      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-PIC.json");
+      if (!biosCache.PIC) biosCache.PIC = fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-PIC.json");
+      return biosCache.PIC;
     }
 
     async function loadVOY() {
-      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-VOY.json");
+      if (!biosCache.VOY) biosCache.VOY = fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-VOY.json");
+      return biosCache.VOY;
     }
 
     async function loadDIS() {
-      return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-DIS.json");
+      if (!biosCache.DIS) biosCache.DIS = fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-DIS.json");
+      return biosCache.DIS;
     }
 
     async function loadARCS() {
+      if (arcsCache) return arcsCache;
       try {
         const tag = document.getElementById("arcs-json");
         if (tag && tag.textContent) {
           const d = JSON.parse(tag.textContent);
           const arcs = d && d.arcs ? d.arcs : [];
           console.log("Story Arcs: loaded from embedded JSON", arcs.length);
-          if (arcs.length) return arcs;
+          if (arcs.length) {
+            arcsCache = arcs;
+            return arcsCache;
+          }
         }
       } catch (e) {
         console.log("Story Arcs: error parsing embedded JSON", e);
@@ -1131,19 +1204,25 @@ DIS: [
       const d = await fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Story%20Arcs/Story%20Arcs.json");
       const arcs = d && d.arcs ? d.arcs : [];
       console.log("Story Arcs: fetched from URL", arcs.length);
-      return arcs;
+      arcsCache = arcs;
+      return arcsCache;
     }
 
     async function loadEPISODES() {
+      if (episodesCache) return episodesCache;
       try {
         console.log("Curated Episodes: fetching from URL");
-        const d = await fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/Curated%20Episodes.json");
+        const r = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/Curated%20Episodes.json", { cache: "no-store" });
+        if (!r.ok) throw new Error("" + r.status);
+        const d = await r.json();
         const episodes = d && Array.isArray(d.episodes) ? d.episodes : (Array.isArray(d) ? d : []);
         console.log("Curated Episodes: fetched from URL", episodes.length);
-        return episodes;
+        episodesCache = episodes;
+        return episodesCache;
       } catch (e) {
         console.error("Curated Episodes: error fetching", e);
-        return [];
+        episodesCache = [];
+        return episodesCache;
       }
     }
 
@@ -1199,18 +1278,21 @@ DIS: [
     }
 
     async function loadGUEST() {
+      if (guestsCache) return guestsCache;
       try {
         const tag = document.getElementById("guests-json");
         if (tag && tag.textContent) {
           const parsed = JSON.parse(tag.textContent);
-          return (parsed && parsed.bios) ? parsed.bios : parsed;
+          guestsCache = (parsed && parsed.bios) ? parsed.bios : parsed;
+          return guestsCache;
         }
       } catch (e) {
       }
       const r = await fetch("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-Guests.json", { cache: "no-store" });
       if (!r.ok) throw new Error("" + r.status);
       const d = await r.json();
-      return (d && d.bios) ? d.bios : d;
+      guestsCache = (d && d.bios) ? d.bios : d;
+      return guestsCache;
     }
 
     function resolve(ds, name, which, seriesKey){
@@ -1239,19 +1321,14 @@ DIS: [
         for (const d of dicts){ if (d && d[cand]) return d[cand]; }
       }
 
-      const norm = (s)=> String(s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/['’`\.\-]/g,'').replace(/\s+/g,'').trim();
-      for (const d of dicts){
-        if (!d) continue;
-        const keys = Object.keys(d);
-        for (const k of keys){
-          const nk = norm(k);
-          for (const cand of candidates){
-            if (norm(cand) === nk) return d[k];
-          }
-        }
+            const index = getBioIndex(ds, which, seriesKey);
+      for (const cand of candidates){
+        const nk = normalizeBioKey(cand);
+        if (index.has(nk)) return index.get(nk);
       }
       return null;
     }
+
 
     function setTitles(key){
       if (titleEl)   titleEl.textContent = "Star Trek";
