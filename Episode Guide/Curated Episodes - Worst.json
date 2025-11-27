@@ -1,0 +1,1048 @@
+{
+  "episodes": [
+    {
+      "id": "tos_spocks_brain",
+      "series": "TOS",
+      "title": "Spock's Brain",
+      "season": 3,
+      "episodes": [
+        1
+      ],
+      "overview": "When the Enterprise is disabled by a mysterious ship, a woman beams onto the bridge, stuns the crew, and surgically removes Spock's brain before departing. McCoy is able to keep Spock's body alive with an experimental device, but they must recover his brain within hours. Tracking the raider to the Sigma Draconis system, the crew discovers that Spock's brain has been installed as the 'Controller' of an underground civilization of Eymorg women who rely on ancient technology they no longer understand.",
+      "chapters": [
+        {
+          "id": "sb_theft_of_spocks_brain",
+          "title": "The Theft of Spock's Brain",
+          "body": "While studying an unidentified vessel with unusual power signatures, the Enterprise is struck by a stunning field that renders the bridge crew unconscious. A woman materializes, examines Spock, and performs a procedure before vanishing. When the crew awakens, Spock lies on the deck, his vital functions intact but his brain missing. In sickbay, McCoy confirms that the brain has been removed with extreme surgical precision that exceeds normal Starfleet medical capabilities."
+        },
+        {
+          "id": "sb_sigma_draconis_and_the_eymorg",
+          "title": "Sigma Draconis and the Eymorg",
+          "body": "Following an ion trail, the Enterprise arrives at the Sigma Draconis system and narrows the search to Sigma Draconis VI. Kirk, McCoy, and a remote\u2011controlled Spock body beam down and encounter the Morg, aggressive men who live on the frozen surface. Evidence of advanced technology leads the landing party into an underground complex inhabited by the Eymorg, a community of women who live in comfort, guided by a central intelligence they call the Controller. They view the surface dwellers as simple laborers and have little understanding of the machinery that sustains their lives."
+        },
+        {
+          "id": "sb_the_controller_and_the_teacher",
+          "title": "The Controller and the Teacher",
+          "body": "Kirk and McCoy discover that the Controller is actually Spock's brain, surgically integrated into the city's systems. The Eymorg leader, Kara, explains that her people once possessed great knowledge but now depend entirely on the technology left by their ancestors. To attempt a restoration, McCoy submits to the Teacher, a device that temporarily uploads advanced neurosurgical knowledge into his mind. He begins the operation to reconnect Spock's brain, but the artificially acquired expertise fades as the surgery nears completion, forcing Spock\u2014whose higher functions are returning\u2014to talk McCoy through the final steps."
+        },
+        {
+          "id": "sb_aftermath_and_reputation",
+          "title": "Aftermath and Reputation",
+          "body": "With Spock fully restored, Kirk persuades Kara to abandon her dependence on the Controller and learn to share responsibility with the Morg, urging both sides to rebuild their society together. The Enterprise departs, leaving the Sigma Draconis VI cultures to begin a new chapter. The episode itself later became notorious among viewers for its implausible medical science, broad humor, and portrayal of gender\u2011segregated societies, and it is frequently cited as one of the weakest entries of the original series."
+        }
+      ],
+      "key_themes": [
+        "overreliance on technology",
+        "gender segregation",
+        "medical ethics",
+        "responsibility for inherited systems"
+      ],
+      "key_characters": {
+        "crew": [
+          "James T. Kirk",
+          "Spock",
+          "Leonard McCoy",
+          "Montgomery Scott",
+          "Hikaru Sulu",
+          "Pavel Chekov"
+        ],
+        "actors": [
+          "William Shatner",
+          "Leonard Nimoy",
+          "DeForest Kelley",
+          "James Doohan",
+          "George Takei",
+          "Walter Koenig",
+          "Marj Dusay"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "An infamous brain\u2011heist plot played almost straight, often cited as a symbol of late\u2011TOS decline.",
+        "reasons": [
+          "Relies on an implausible premise in which Spock\u2019s brain is removed and remotely controls his body.",
+          "Treats serious medical and ethical questions as broad, sometimes unintentional comedy.",
+          "Simplifies gender politics into an underground society of dependent women and primitive surface men."
+        ]
+      }
+    },
+    {
+      "id": "tos_and_the_children_shall_lead",
+      "series": "TOS",
+      "title": "And the Children Shall Lead",
+      "season": 3,
+      "episodes": [
+        4
+      ],
+      "overview": "Responding to a distress call from the scientific colony on Triacus, the Enterprise crew finds all of the adults dead, apparently by their own hands, while the children play nearby with eerie calm. The youngsters are secretly under the influence of an entity named Gorgan, who uses them as conduits to spread fear and seize control of the Enterprise in order to reach other worlds.",
+      "chapters": [
+        {
+          "id": "acsl_tragedy_on_triacus",
+          "title": "Tragedy on Triacus",
+          "body": "Kirk, Spock, and McCoy beam down to Triacus and discover the adult colonists dead in circumstances resembling mass suicide. The children, however, show almost no grief and continue to play games. McCoy is disturbed by their emotional detachment, while records from the colony's leader, Professor Starnes, hint at an undefined 'evil' that affected the settlement before contact was lost. With no clear explanation on the surface, Kirk evacuates the children to the Enterprise."
+        },
+        {
+          "id": "acsl_gorgan_the_friend",
+          "title": "Gorgan the 'Friend'",
+          "body": "Aboard the Enterprise, the children gather in a cargo area and chant a rhyme that summons Gorgan, a robed, translucent figure visible only to them. He presents himself as their friend and protector and instructs them to use a distinctive arm gesture to project powerful hallucinations into the minds of adults. Under his direction, the children begin sabotaging ship operations and influencing crew members in order to divert the Enterprise from its assigned course."
+        },
+        {
+          "id": "acsl_illusions_and_control",
+          "title": "Illusions and Control",
+          "body": "As the Enterprise changes heading, crew members attempting to intervene are overwhelmed by hallucinations generated by the children at Gorgan's command. Security officers see their weapons transform, Sulu believes the ship is flying through a region filled with deadly obstacles, and Uhura confronts an image of herself as an old woman. Spock's Vulcan discipline allows him to recognize the illusions for what they are, helping Kirk navigate the compromised ship and search for a way to break Gorgan's hold over the children."
+        },
+        {
+          "id": "acsl_breaking_the_spell",
+          "title": "Breaking the Spell",
+          "body": "Kirk realizes that Gorgan feeds on the children's fear and denial of their loss. On the bridge, he has the ship's records display images and recordings of the children's parents alive and then dead, forcing them to confront the reality of what happened on Triacus. As the children grieve, they reject Gorgan, whose form loses coherence and vanishes. With his influence gone, the illusions end and the Enterprise is freed. The episode concludes with the children receiving care aboard the ship, while its depiction of manipulation and grief has been widely criticized for its execution and tone."
+        }
+      ],
+      "key_themes": [
+        "manipulation of children",
+        "grief and denial",
+        "power of suggestion",
+        "responsibility toward vulnerable populations"
+      ],
+      "key_characters": {
+        "crew": [
+          "James T. Kirk",
+          "Spock",
+          "Leonard McCoy",
+          "Uhura",
+          "Montgomery Scott"
+        ],
+        "actors": [
+          "William Shatner",
+          "Leonard Nimoy",
+          "DeForest Kelley",
+          "Nichelle Nichols",
+          "James Doohan",
+          "Melvin Belli"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "Creepy children and a spectral villain combine into an episode widely criticized for tone and execution.",
+        "reasons": [
+          "Centers its threat on child performances that rarely feel convincing or emotionally grounded.",
+          "Presents Gorgan as a one\u2011dimensional manipulator with unpersuasive visual effects and dialogue.",
+          "Handles themes of grief and mass suicide in a superficial way that clashes with the story\u2019s pacing."
+        ]
+      }
+    },
+    {
+      "id": "tng_sub_rosa",
+      "series": "TNG",
+      "title": "Sub Rosa",
+      "season": 7,
+      "episodes": [
+        14
+      ],
+      "overview": "Beverly Crusher travels to the Caldos II colony for her grandmother's funeral and learns of an enigmatic lover named Ronin, who claims to have been with the women of her family for generations. Drawn into a passionate relationship, she gradually discovers that Ronin is a non\u2011corporeal anaphasic life\u2011form that has used a family heirloom candle to bind itself to the Howard line and manipulate successive hosts.",
+      "chapters": [
+        {
+          "id": "sr_funeral_on_caldos_ii",
+          "title": "Funeral on Caldos II",
+          "body": "The Enterprise arrives at Caldos II, a terraformed Federation colony modeled after old Scotland, where Beverly attends the funeral of her grandmother, Felisa Howard. Among Felisa's possessions, Beverly finds a distinctive plasma\u2011based candle and diary entries referring to a long\u2011standing lover named Ronin. Ned Quint, a local man who knew Felisa, warns Beverly not to light the candle, hinting that something dangerous is associated with it."
+        },
+        {
+          "id": "sr_ronin_and_possession",
+          "title": "Ronin and Possession",
+          "body": "After Beverly lights the candle, she encounters a man who identifies himself as Ronin and claims to have been with the Howard women for centuries. She experiences intense emotional and physical sensations in his presence, and her behavior aboard the Enterprise begins to change. At the same time, Caldos II's weather\u2011control system exhibits unexplained energy surges. When Ned Quint dies in a mysterious accident and an unusual anaphasic energy signature is detected around Beverly, Picard grows concerned that an alien influence is compromising a senior officer."
+        },
+        {
+          "id": "sr_exposing_the_anaphasic_entity",
+          "title": "Exposing the Anaphasic Entity",
+          "body": "Investigations reveal that Ronin is an anaphasic life\u2011form that has used the candle as a physical focus to inhabit and feed off members of Beverly's family, maintaining the illusion of a single, ageless lover. In Felisa's mausoleum, Ronin attempts to fully possess Beverly and eliminate Picard, but she momentarily breaks free of his control. Recognizing the danger he represents, she turns a phaser on the candle, severing his link to the physical world."
+        },
+        {
+          "id": "sr_ending_the_haunting",
+          "title": "Ending the Haunting",
+          "body": "With the candle destroyed, Ronin manifests as a free\u2011floating energy field, trying to escape. Beverly fires on the anaphasic form, dispersing it and ending his presence on Caldos II. The colony's systems stabilize, and Beverly returns to duty on the Enterprise. She later reflects on how profoundly the entity distorted her perceptions and emotions, acknowledging that what felt like a powerful romance was in fact an alien exploitation of her grief and family history."
+        }
+      ],
+      "key_themes": [
+        "possession and consent",
+        "family legacy",
+        "science versus superstition",
+        "grief and vulnerability"
+      ],
+      "key_characters": {
+        "crew": [
+          "Beverly Crusher",
+          "Jean-Luc Picard",
+          "Deanna Troi",
+          "Data",
+          "Geordi La Forge"
+        ],
+        "actors": [
+          "Gates McFadden",
+          "Patrick Stewart",
+          "Marina Sirtis",
+          "Brent Spiner",
+          "LeVar Burton",
+          "Duncan Regehr"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "Beverly\u2019s romance with a family \u2018ghost\u2019 blurs sci\u2011fi and gothic melodrama in ways many viewers find unintentionally campy.",
+        "reasons": [
+          "Asks the audience to accept a non\u2011corporeal lover bound to a candle as a plausible long\u2011term arrangement.",
+          "Compromises a senior officer\u2019s judgment so thoroughly that it can be hard to take her arc seriously.",
+          "Resolves the science\u2011fiction explanation in a way that still feels like supernatural possession."
+        ]
+      }
+    },
+    {
+      "id": "tng_angel_one",
+      "series": "TNG",
+      "title": "Angel One",
+      "season": 1,
+      "episodes": [
+        14
+      ],
+      "overview": "The Enterprise is sent to the planet Angel One to locate survivors of the freighter Odin. The crew finds a strongly matriarchal society in which women hold political and economic power, while men occupy a subordinate position. Riker, Troi, Data, and Tasha Yar must negotiate with the planet's leader, Mistress Beata, over the fate of the Odin survivors, whose egalitarian ideas have begun to challenge the local order.",
+      "chapters": [
+        {
+          "id": "a1_arrival_on_angel_one",
+          "title": "Arrival on Angel One",
+          "body": "Tracking the Odin's course, the Enterprise arrives at Angel One, a non\u2011aligned world whose ruling council is composed entirely of women. Mistress Beata agrees to meet a Starfleet delegation but regards the Federation with suspicion. Riker leads an away team with Troi, Data, and Tasha Yar, adapting his clothing to conform to Angel One's expectations of male appearance. They learn that the Odin survivors have been living among the underclass and have become symbols of dissent."
+        },
+        {
+          "id": "a1_survivors_and_tension",
+          "title": "Survivors and Political Tension",
+          "body": "The away team locates the Odin survivors, who have started families on Angel One and support greater equality between men and women. Beata views them as dangerous agitators and demands they be handed over for execution to preserve her society's stability. Riker argues that killing them will only create martyrs, while Troi and Data draw parallels to historical movements in Federation history. The conflict raises questions about how far Starfleet can go in influencing internal affairs on a world that has not requested membership."
+        },
+        {
+          "id": "a1_illness_and_deadlines",
+          "title": "Illness and Deadlines",
+          "body": "Meanwhile, a respiratory virus picked up from a holodeck snowball begins to incapacitate Enterprise personnel, including Picard and Worf. With a potential encounter with Romulan forces developing elsewhere, the ship faces pressure to leave orbit. As chief medical officer seeks an antidote, Picard orders the away team to reach some form of resolution that does not violate Starfleet principles yet allows the Enterprise to depart before the situation worsens."
+        },
+        {
+          "id": "a1_exile_and_uncertain_change",
+          "title": "Exile and Uncertain Change",
+          "body": "Under Riker's influence, Beata agrees to commute the Odin group\u2019s death sentences to exile, hoping to avoid turning them into symbols of resistance. She acknowledges that social change on Angel One may be inevitable, though she remains determined to slow it. After the away team returns, the Enterprise successfully counters the virus and heads off to face the looming strategic concern. Angel One is left in a state of unresolved tension between tradition and reform, with the long\u2011term outcome left open."
+        }
+      ],
+      "key_themes": [
+        "gender role inversion",
+        "authoritarian stability versus reform",
+        "limits of Federation intervention",
+        "social change"
+      ],
+      "key_characters": {
+        "crew": [
+          "William Riker",
+          "Jean-Luc Picard",
+          "Deanna Troi",
+          "Tasha Yar",
+          "Data"
+        ],
+        "actors": [
+          "Jonathan Frakes",
+          "Patrick Stewart",
+          "Marina Sirtis",
+          "Denise Crosby",
+          "Brent Spiner",
+          "Karen Montgomery"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "A gender\u2011reversal allegory whose execution feels dated and shallow even by early TNG standards.",
+        "reasons": [
+          "Portrays a matriarchal society through stereotypes rather than a nuanced exploration of power and culture.",
+          "Splits focus between planetary politics and a shipboard virus plot that undercuts the main story\u2019s stakes.",
+          "Leans on costuming and role reversal for impact instead of fully developing its allegorical intent."
+        ]
+      }
+    },
+    {
+      "id": "ds9_let_he_who_is_without_sin",
+      "series": "DS9",
+      "title": "Let He Who Is Without Sin...",
+      "season": 5,
+      "episodes": [
+        7
+      ],
+      "overview": "On a shore\u2011leave trip to the pleasure planet Risa, Worf and Jadzia Dax attempt to relax with Julian Bashir and Leeta, but Worf is unsettled by the planet's hedonistic atmosphere and his own unresolved frustrations. He becomes involved with the New Essentialists, a group led by Pascal Fullerton that argues the Federation has grown soft through leisure and must embrace discipline to survive ongoing threats.",
+      "chapters": [
+        {
+          "id": "lhw_arrival_on_risa",
+          "title": "Arrival on Risa",
+          "body": "Worf reluctantly agrees to accompany Jadzia Dax to Risa, a world renowned for its open sexuality and recreational climate programming. They are joined by Bashir and Leeta, who view the trip as an opportunity for rest and romance. Worf, however, struggles with the planet's values and the way Jadzia embraces the Risian custom of pleasure without apparent restraint, which clashes with his sense of Klingon honor and privacy."
+        },
+        {
+          "id": "lhw_the_new_essentialists",
+          "title": "The New Essentialists",
+          "body": "On Risa, Worf encounters Pascal Fullerton and the New Essentialists, who stage small protests against the planet's practices. Fullerton argues that constant leisure has made Federation citizens complacent and unprepared for dangers such as the Dominion. He appeals to Worf's feelings of being an outsider and his discomfort with Risian culture, convincing him that disrupting the comfort people take for granted will remind them of the need for vigilance and sacrifice."
+        },
+        {
+          "id": "lhw_sabotage_and_confrontation",
+          "title": "Sabotage and Confrontation",
+          "body": "Influenced by Fullerton, Worf helps tamper with Risa's weather\u2011control systems and planetary shields, causing storms and disrupting the carefully maintained climate. The chaos frightens visitors and threatens local infrastructure. As conditions deteriorate, Jadzia confronts Worf about his choices and the deeper issues driving his anger, including childhood isolation and a fear of losing control. Worf begins to see that the New Essentialists' tactics are harming innocents rather than encouraging genuine responsibility."
+        },
+        {
+          "id": "lhw_resolving_the_crisis",
+          "title": "Resolving the Crisis",
+          "body": "Realizing the damage he has caused, Worf turns against Fullerton and helps restore Risa's systems. He publicly rejects the New Essentialists' methods, acknowledging that discipline cannot be imposed by terrorizing civilians. The group loses its momentum, and Risa returns to normal operations. Worf and Jadzia reach a tentative understanding, recognizing that their relationship must balance differing cultural expectations. The episode concludes with the crisis averted but leaves Worf to reflect on how his rigidity nearly led him to endorse extremism."
+        }
+      ],
+      "key_themes": [
+        "extremism born of fear",
+        "cultural conflict",
+        "leisure versus vigilance",
+        "relationship tensions"
+      ],
+      "key_characters": {
+        "crew": [
+          "Worf",
+          "Jadzia Dax",
+          "Julian Bashir",
+          "Leeta",
+          "Quark"
+        ],
+        "actors": [
+          "Michael Dorn",
+          "Terry Farrell",
+          "Alexander Siddig",
+          "Chase Masterson",
+          "Monte Markham"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "A Risa vacation story that sidelines DS9\u2019s usual complexity in favor of a clumsy morality play.",
+        "reasons": [
+          "Reduces Worf to a jealous, rigid antagonist in ways many fans feel contradict his broader character growth.",
+          "Introduces the New Essentialists as thinly sketched extremists whose philosophy is argued rather than dramatized.",
+          "Relies on sabotaging a leisure planet\u2019s weather grid to make a point about decadence versus vigilance."
+        ]
+      }
+    },
+    {
+      "id": "ds9_move_along_home",
+      "series": "DS9",
+      "title": "Move Along Home",
+      "season": 1,
+      "episodes": [
+        10
+      ],
+      "overview": "First contact with the Wadi from the Gamma Quadrant leads to an evening at Quark's, where the visitors become fascinated with games of chance. When they catch Quark cheating, they insist on playing their own game, Chula. Unbeknownst to the station staff at first, Sisko, Kira, Dax, and Bashir are drawn into a life\u2011size version of the game, forced to navigate dangerous scenarios as Quark rolls the dice on the Promenade.",
+      "chapters": [
+        {
+          "id": "mah_first_contact_with_the_wadi",
+          "title": "First Contact with the Wadi",
+          "body": "The Wadi arrive at Deep Space 9 as one of the first officially recognized species from the Gamma Quadrant. While Sisko and his officers prepare for formal talks, the Wadi quickly gravitate toward Quark's bar, drawn by the prospect of games of chance. Quark, seeing an opportunity for profit, encourages their enthusiasm but is caught manipulating the odds in his favor."
+        },
+        {
+          "id": "mah_the_game_of_chula",
+          "title": "The Game of Chula",
+          "body": "After exposing Quark's cheating, the Wadi leader, Falow, insists on playing their own game, Chula, using an elaborate board and pieces. As Quark moves the tokens, the station senior staff discover that Sisko, Kira, Dax, and Bashir have vanished and are experiencing a series of challenges in a surreal environment that mirrors the moves on the board. The catchphrase 'Allamaraine' accompanies a hopscotch\u2011like sequence that becomes one of the episode's most memorable images."
+        },
+        {
+          "id": "mah_stakes_and_illusions",
+          "title": "Stakes and Illusions",
+          "body": "Believing that his colleagues' lives are at risk with each move, Quark agonizes over whether to continue the game, especially when the rules dictate that he must sacrifice pieces to advance. Inside the game, the trapped officers face traps, riddles, and disorienting environments, unsure of whether injury or death will be permanent. The line between simulation and reality appears blurred, raising questions about the Wadi's intentions and the nature of Chula."
+        },
+        {
+          "id": "mah_resolution_and_lesson",
+          "title": "Resolution and Lesson",
+          "body": "When the game concludes, Sisko and the others reappear on the station unharmed. Falow reveals that Chula was never truly lethal and that the experience was meant as entertainment rather than an attack. The Wadi depart, satisfied with their evening, while Sisko expresses frustration that his crew's ordeal was treated as a diversion. Quark is left chastened by the realization that his cheating triggered a dangerous encounter with an unfamiliar culture."
+        }
+      ],
+      "key_themes": [
+        "first contact misunderstandings",
+        "gambling and risk",
+        "perception of reality",
+        "responsibility in diplomacy"
+      ],
+      "key_characters": {
+        "crew": [
+          "Benjamin Sisko",
+          "Kira Nerys",
+          "Jadzia Dax",
+          "Julian Bashir",
+          "Quark",
+          "Odo"
+        ],
+        "actors": [
+          "Avery Brooks",
+          "Nana Visitor",
+          "Terry Farrell",
+          "Alexander Siddig",
+          "Armin Shimerman",
+          "Rene Auberjonois",
+          "Joel Brooks"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "DS9\u2019s early \u2018game episode\u2019 that became notorious for its hopscotch rhyme and unclear stakes.",
+        "reasons": [
+          "Places key characters in life\u2011or\u2011death scenarios that ultimately turn out to be non\u2011lethal, deflating tension.",
+          "Centers on the Chula game, whose rules and objectives never feel coherent to the viewer.",
+          "The repeated \u2018Allamaraine\u2019 sequence reads as awkward rather than entertaining for many fans."
+        ]
+      }
+    },
+    {
+      "id": "voy_threshold",
+      "series": "VOY",
+      "title": "Threshold",
+      "season": 2,
+      "episodes": [
+        15
+      ],
+      "overview": "Tom Paris becomes the first human to break the theoretical warp 10 barrier, achieving infinite velocity in an experimental shuttlecraft. The success is short\u2011lived when he begins to undergo drastic physiological changes that threaten his life and raise questions about the consequences of exceeding known warp limits.",
+      "chapters": [
+        {
+          "id": "th_experimental_warp_flight",
+          "title": "Experimental Warp Flight",
+          "body": "Voyager's crew refines a new form of dilithium and nacelle configuration intended to reach warp 10, a velocity at which a vessel would exist at all points in space simultaneously. Despite the extreme risk, Paris volunteers to pilot the experimental shuttle Cochrane. During the test, he successfully jumps to warp 10 and briefly experiences being everywhere at once before the ship disappears from sensors."
+        },
+        {
+          "id": "th_return_and_decline",
+          "title": "Return and Decline",
+          "body": "The Cochrane is later found adrift, and Paris is recovered unconscious. At first, he appears to have survived the historic flight, but he soon begins to experience severe physiological distress, including intolerance to normal atmospheric conditions and rapid internal changes. The Doctor and Kes work to stabilize him as his body mutates, suggesting that the warp 10 flight has triggered accelerated evolution along an unknown path."
+        },
+        {
+          "id": "th_abduction_and_transformation",
+          "title": "Abduction and Transformation",
+          "body": "As Paris's transformation progresses, he escapes confinement, kidnaps Captain Janeway, and steals a shuttle. Voyager tracks the vessel to a nearby planet, where they discover that Paris and Janeway have further mutated into amphibious\u2011like life\u2011forms and produced offspring. The away team recovers the two altered officers and returns them to Voyager, leaving the offspring behind in the planet's ecosystem."
+        },
+        {
+          "id": "th_reversal_and_aftermath",
+          "title": "Reversal and Aftermath",
+          "body": "The Doctor devises a treatment that reverses the mutations and restores Paris and Janeway to their original forms, though they retain no conscious memory of their transformed state. The episode ends with Paris coping with the emotional impact of his experience and Janeway considering the ethical implications of having left the mutated offspring behind, even as the crew shelves further attempts to cross the warp 10 threshold."
+        }
+      ],
+      "key_themes": [
+        "limits of scientific experimentation",
+        "unintended consequences",
+        "identity and transformation",
+        "ethical responsibility"
+      ],
+      "key_characters": {
+        "crew": [
+          "Kathryn Janeway",
+          "Tom Paris",
+          "Chakotay",
+          "B'Elanna Torres",
+          "The Doctor",
+          "Kes"
+        ],
+        "actors": [
+          "Kate Mulgrew",
+          "Robert Duncan McNeill",
+          "Robert Beltran",
+          "Roxann Dawson",
+          "Robert Picardo",
+          "Jennifer Lien"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "Paris\u2019s warp\u201110 experiment spirals into salamander evolution and lizard offspring, often cited as Voyager\u2019s low point.",
+        "reasons": [
+          "Pushes its central scientific idea beyond plausibility into outright biological absurdity.",
+          "Uses extreme body horror and transformation without lasting character consequences due to a reset ending.",
+          "Leaves Janeway and Paris\u2019s mutated offspring on a planet with almost no follow\u2011up or emotional processing."
+        ]
+      }
+    },
+    {
+      "id": "voy_favorite_son",
+      "series": "VOY",
+      "title": "Favorite Son",
+      "season": 3,
+      "episodes": [
+        20
+      ],
+      "overview": "Ensign Harry Kim begins experiencing vivid flashes and instincts that suggest he belongs on a distant planet inhabited mostly by women. Drawn to the world of Taresia, he is told that he may be genetically connected to its people, but the welcoming fa\u00e7ade conceals a deadly truth about how the society sustains itself.",
+      "chapters": [
+        {
+          "id": "fs_unsettling_instincts",
+          "title": "Unsettling Instincts",
+          "body": "During a confrontation with alien ships, Harry Kim suddenly acts on impulses that contradict Voyager's standard tactics, yet prove unexpectedly effective. He begins to experience recurring images and a sense of familiarity with star coordinates he has never visited. Medical scans show unusual readings in his DNA, suggesting a dormant element reacting to an external stimulus."
+        },
+        {
+          "id": "fs_world_of_taresia",
+          "title": "The World of Taresia",
+          "body": "Following Harry's instincts, Voyager discovers Taresia, a planet whose population is predominantly female. The Taresians claim that Harry's mother was from their world and that he was sent away as an embryo, only now returning to his true home. He is treated as an honored guest and encouraged to consider remaining on Taresia, where he is assured his presence is crucial to the world's future."
+        },
+        {
+          "id": "fs_hidden_motives",
+          "title": "Hidden Motives",
+          "body": "As Harry becomes more immersed in Taresian culture, he notices inconsistencies in the stories he is told and learns that other males have arrived under similar circumstances. Voyager uncovers evidence that the Taresians infect passing ships with a retrovirus that rewrites male DNA to appear native, luring them back. The planet's women then use these men in a reproductive process that ultimately kills them."
+        },
+        {
+          "id": "fs_escape_and_truth",
+          "title": "Escape and Truth",
+          "body": "After the Taresians try to prevent Harry from leaving and prepare him for a ritual that would be fatal, Voyager mounts a rescue. The crew retrieves him and fights off pursuing ships. Back aboard Voyager, the Doctor reverses the genetic alterations, confirming that Harry was born on Earth and that the Taresian retrovirus created the illusion of a deeper origin. The experience leaves him shaken but more certain of his place among the crew."
+        }
+      ],
+      "key_themes": [
+        "manipulation through identity",
+        "reproductive ethics",
+        "belonging and self\u2011definition",
+        "deceptive hospitality"
+      ],
+      "key_characters": {
+        "crew": [
+          "Harry Kim",
+          "Kathryn Janeway",
+          "Chakotay",
+          "Tuvok",
+          "The Doctor"
+        ],
+        "actors": [
+          "Garrett Wang",
+          "Kate Mulgrew",
+          "Robert Beltran",
+          "Tim Russ",
+          "Robert Picardo"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "Harry Kim\u2019s apparent \u2018true homeworld\u2019 turns into a deceptive femme\u2011fatale trap with familiar genre beats.",
+        "reasons": [
+          "Leans on a seductive, predominantly female society luring unsuspecting men to their deaths as its core premise.",
+          "Retcons Harry\u2019s origins only to reverse them by the end, blunting any long\u2011term character impact.",
+          "Resembles a weak TOS\u2011style pulp plot without Voyager\u2019s usual thematic focus."
+        ]
+      }
+    },
+    {
+      "id": "ent_these_are_the_voyages",
+      "series": "ENT",
+      "title": "These Are the Voyages...",
+      "season": 4,
+      "episodes": [
+        22
+      ],
+      "overview": "A holodeck program aboard the Enterprise\u2011D is used by Commander William Riker and Counselor Deanna Troi to study a pivotal mission from the final year of Captain Jonathan Archer's service aboard the first starship Enterprise. The simulation focuses on a rescue operation involving Shran and a critical moment in the lead\u2011up to the formation of the United Federation of Planets.",
+      "chapters": [
+        {
+          "id": "tav_holodeck_framing",
+          "title": "Holodeck Framing Story",
+          "body": "During the events of the Enterprise\u2011D's mission in 'The Pegasus', William Riker accesses a classified holodeck simulation based on historic records from the 22nd century Enterprise. Seeking guidance on a difficult decision, he immerses himself in a recreation of Captain Archer's crew, observing their interactions and the ethical choices they face. The framing device positions the events of the NX\u201101's final mission as a program Riker can pause, adjust, and revisit."
+        },
+        {
+          "id": "tav_shran_and_the_hostage_crisis",
+          "title": "Shran and the Hostage Crisis",
+          "body": "In the simulated year 2161, Archer is preparing to sign the charter that will create the United Federation of Planets when he receives a plea from Shran, the Andorian ally once believed dead. Shran's daughter has been kidnapped by criminals seeking revenge over a disputed treasure. Archer takes Enterprise on an unsanctioned mission to rescue the child, reflecting the ongoing ties and obligations that have formed among the crew and their allies after years of exploration and conflict."
+        },
+        {
+          "id": "tav_trip_tuckers_sacrifice",
+          "title": "Trip Tucker's Sacrifice",
+          "body": "During the rescue operation, intruders board Enterprise and threaten Archer's life. Chief engineer Trip Tucker devises a plan to save his captain by luring the attackers into an isolated section of the ship and triggering an overload that kills them and fatally injures him. His death shocks the crew, especially T'Pol, and removes a central figure from the series' core ensemble just as Enterprise reaches the culmination of its historic mission."
+        },
+        {
+          "id": "tav_founding_the_federation",
+          "title": "Founding the Federation",
+          "body": "Despite the loss, Archer proceeds to Earth to deliver a speech at the signing of the Federation charter, though the speech itself is not shown in full. In the holodeck, Riker ends the program after gaining insight into Archer's choices and the value of trust and sacrifice. The episode closes with a montage of the Enterprise starships from three eras as their captains recite variations of the 'Space, the final frontier' monologue, linking the NX\u201101 to later Federation history."
+        }
+      ],
+      "key_themes": [
+        "sacrifice and legacy",
+        "historical perspective",
+        "formation of the Federation",
+        "ethics under pressure"
+      ],
+      "key_characters": {
+        "crew": [
+          "Jonathan Archer",
+          "Trip Tucker",
+          "T'Pol",
+          "Malcolm Reed",
+          "Hoshi Sato",
+          "Travis Mayweather",
+          "William Riker",
+          "Deanna Troi"
+        ],
+        "actors": [
+          "Scott Bakula",
+          "Connor Trinneer",
+          "Jolene Blalock",
+          "Dominic Keating",
+          "Linda Park",
+          "Anthony Montgomery",
+          "Jonathan Frakes",
+          "Marina Sirtis",
+          "Jeffrey Combs"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "Enterprise\u2019s series finale is framed as a TNG holodeck side story, sidelining its own cast at a crucial moment.",
+        "reasons": [
+          "Uses Riker and Troi\u2019s perspective in a way that turns the NX\u201101 crew into background figures in their own finale.",
+          "Kills Trip Tucker in a sudden, arguably gratuitous incident that many viewers found unsatisfying.",
+          "Rushes through the founding\u2011of\u2011the\u2011Federation moment without giving it the emotional weight the series had earned."
+        ]
+      }
+    },
+    {
+      "id": "ent_daedalus",
+      "series": "ENT",
+      "title": "Daedalus",
+      "season": 4,
+      "episodes": [
+        10
+      ],
+      "overview": "Enterprise hosts Dr. Emory Erickson, celebrated as the inventor of the transporter, who boards the ship to conduct an experimental upgrade in a region of space known for dangerous subspace anomalies. As the tests proceed, it becomes clear that Erickson has a hidden agenda involving a personal tragedy from his past.",
+      "chapters": [
+        {
+          "id": "dd_arrival_of_emory_erickson",
+          "title": "Arrival of Emory Erickson",
+          "body": "Captain Archer welcomes Dr. Emory Erickson and his daughter Danica aboard Enterprise, honoring Erickson's contributions to transporter technology. Erickson proposes using the ship to test an advanced form of transporter that could extend the range of matter transmission, potentially changing deep\u2011space travel. Archer, whose father knew Erickson, is eager to assist in the experiment and positions Enterprise within a volatile test region."
+        },
+        {
+          "id": "dd_experiments_and_anomalies",
+          "title": "Experiments and Anomalies",
+          "body": "As Erickson's modifications are implemented, transporter tests encounter unexpected interference from spatial anomalies. Strange energy signatures and drifting figures appear on the ship's sensors and in the corridors. Crew members report sightings of a distorted humanoid shape, and one officer is killed during a transporter malfunction, raising concerns about the safety and purpose of the ongoing trials."
+        },
+        {
+          "id": "dd_truth_about_quinn",
+          "title": "Truth About Quinn",
+          "body": "T'Pol and Archer investigate and discover that Erickson has falsified aspects of his proposal. The anomalies and sightings are connected to a failed early experiment that stranded his son, Quinn, in a degraded state within subspace. Erickson has manipulated Enterprise's mission to position the ship where he believes he can retrieve Quinn using the modified transporter, regardless of the risk to Archer's crew."
+        },
+        {
+          "id": "dd_attempt_and_consequences",
+          "title": "Attempt and Consequences",
+          "body": "Despite Archer's objections, Erickson pushes ahead with one final attempt to recover Quinn. The effort briefly restores Quinn's form, but he cannot be saved, and the strain of the process forces Enterprise to withdraw from the anomaly\u2011filled region. Quinn dies after a brief reunion with his father. Erickson is left to confront the cost of his obsession, while Archer reflects on the limits of how far individuals can go to correct past mistakes."
+        }
+      ],
+      "key_themes": [
+        "scientific responsibility",
+        "grief and obsession",
+        "limits of technology",
+        "parental guilt"
+      ],
+      "key_characters": {
+        "crew": [
+          "Jonathan Archer",
+          "T'Pol",
+          "Trip Tucker",
+          "Malcolm Reed",
+          "Hoshi Sato",
+          "Travis Mayweather"
+        ],
+        "actors": [
+          "Scott Bakula",
+          "Jolene Blalock",
+          "Connor Trinneer",
+          "Dominic Keating",
+          "Linda Park",
+          "Anthony Montgomery",
+          "Bill Cobbs",
+          "Leslie Silva"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "A late\u2011series bottle episode about the transporter\u2019s inventor that many viewers regard as slow and underpowered.",
+        "reasons": [
+          "Centers on a guest character\u2019s backstory rather than advancing Enterprise\u2019s larger arcs in its final season.",
+          "Relies heavily on subspace anomaly visuals and corridor hauntings that feel repetitive.",
+          "Resolves its central father\u2011son tragedy with limited time, leaving the emotional payoff muted."
+        ]
+      }
+    },
+    {
+      "id": "dis_sukal",
+      "series": "DIS",
+      "title": "Su'Kal",
+      "season": 3,
+      "episodes": [
+        11
+      ],
+      "overview": "Discovery locates the source of the Burn, a cataclysmic event that shattered dilithium supplies across the galaxy more than a century earlier. The trail leads to a crashed Kelpien starship embedded in a dilithium\u2011rich planet inside the Verubin Nebula, where a single survivor, Su'Kal, has lived his entire life in a holoprogram environment.",
+      "chapters": [
+        {
+          "id": "sk_verubin_nebula_and_kelpiens",
+          "title": "The Verubin Nebula and the Kelpiens",
+          "body": "Burnham and the crew analyze the Burn's origin point and trace it to the Verubin Nebula, where they detect a Kelpien ship that sent a distress signal decades earlier. The vessel is fused with a planet composed largely of dilithium. Because of intense radiation, a small away team\u2014including Burnham, Saru, and Dr. Culber\u2014beams into the ship's interior, only to find themselves transformed in appearance by a pervasive holographic system."
+        },
+        {
+          "id": "sk_meeting_sukal",
+          "title": "Meeting Su'Kal",
+          "body": "Within the layered holoprogram, the team discovers Su'Kal, a Kelpien who has grown to adulthood in isolation after the deaths of the ship's crew. The program has been structured as a protective environment that adapts his surroundings into storybook\u2011like scenarios. Su'Kal is fearful of leaving the constructed world and reacts strongly to perceived threats, causing instability both in the simulation and in the surrounding radiation\u2011filled region."
+        },
+        {
+          "id": "sk_the_burns_origin",
+          "title": "The Burn's Origin",
+          "body": "Through investigation, Burnham and her companions realize that Su'Kal's unique physiology, combined with the massive dilithium deposits around the ship, is linked to the Burn. A traumatic moment in his past, when he witnessed his mother's death, triggered a powerful telepathic\u2011like outburst that resonated through subspace and destabilized dilithium across the galaxy. Subsequent episodes of fear and distress threaten to cause further shockwaves if he remains in danger."
+        },
+        {
+          "id": "sk_guiding_sukal_forward",
+          "title": "Guiding Su'Kal Forward",
+          "body": "Recognizing that Su'Kal is both victim and source of immense destruction, Saru and Burnham focus on helping him accept the truth of his situation and leave the failing holoprogram. They offer him the chance to start a new life among his people, who have changed significantly since his ship crashed. As he confronts his past and agrees to depart, the immediate threat of another catastrophic event diminishes, providing the Federation critical answers about the Burn's origin."
+        }
+      ],
+      "key_themes": [
+        "trauma and unintended consequences",
+        "isolation and development",
+        "responsibility for galactic events",
+        "compassion in first contact"
+      ],
+      "key_characters": {
+        "crew": [
+          "Michael Burnham",
+          "Saru",
+          "Hugh Culber",
+          "Paul Stamets",
+          "Sylvia Tilly"
+        ],
+        "actors": [
+          "Sonequa Martin-Green",
+          "Doug Jones",
+          "Wilson Cruz",
+          "Anthony Rapp",
+          "Mary Wiseman",
+          "Bill Irwin"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "Reveals the Burn as the unintended outburst of a single traumatized Kelpien, a solution many felt undercut the season\u2019s mystery.",
+        "reasons": [
+          "Connects a galaxy\u2011wide catastrophe to one individual\u2019s emotional reaction, which some viewers found anticlimactic.",
+          "Places much of the episode inside a holoprogram, softening the sense of real\u2011world stakes.",
+          "Introduces a powerful, unique character whose long\u2011term impact on the broader setting remains limited on screen."
+        ]
+      }
+    },
+    {
+      "id": "dis_the_red_angel",
+      "series": "DIS",
+      "title": "The Red Angel",
+      "season": 2,
+      "episodes": [
+        10
+      ],
+      "overview": "After multiple encounters with a mysterious time\u2011traveling figure known as the Red Angel, the Discovery crew devises a plan to capture it. The effort reveals that the Angel's technology is connected to Section 31 research and to Michael Burnham's family, forcing her to confront painful memories and the consequences of temporal intervention.",
+      "chapters": [
+        {
+          "id": "tra_section_31_and_the_suit",
+          "title": "Section 31 and the Suit",
+          "body": "Analysis of sensor data and a bio\u2011neural imprint from Spock indicates that the Red Angel is a humanoid wearing an advanced time\u2011travel suit. Section 31 files obtained by Discovery show that the suit was part of a classified project led by Dr. Gabrielle Burnham, Michael's mother, designed to counter a potential catastrophic future. The revelation links the Angel directly to Burnham's past on Doctari Alpha."
+        },
+        {
+          "id": "tra_plan_to_lure_the_angel",
+          "title": "Plan to Lure the Angel",
+          "body": "Believing that the Red Angel responds to threats to Michael's life, the crew proposes a risky plan: place Burnham in lethal danger on a barren planet, then use containment fields to trap the Angel when it intervenes. Michael agrees to participate, aware that the success of the strategy could determine the fate of the galaxy against the artificial intelligence known as Control."
+        },
+        {
+          "id": "tra_capture_and_revelation",
+          "title": "Capture and Revelation",
+          "body": "On the surface, Michael is exposed to a hostile atmosphere until she nears death, drawing the Red Angel out of a temporal rift. Discovery's team activates their devices and successfully immobilizes the suit. When the pilot is extracted, they discover that it is Gabrielle Burnham, not Michael as initial data suggested. Gabrielle explains that she has been repeatedly pulled through time, trying to prevent a future in which Control eradicates all sentient life."
+        },
+        {
+          "id": "tra_temporal_consequences",
+          "title": "Temporal Consequences",
+          "body": "Gabrielle's unstable connection to her original moment in time limits how long she can remain with the crew. She urges Michael and the others to destroy Control's access to data that would allow it to evolve further. The episode sets the stage for Discovery's subsequent choices about time travel, sacrifice, and the need to remove critical information from the reach of hostile artificial intelligence."
+        }
+      ],
+      "key_themes": [
+        "time travel ethics",
+        "family and sacrifice",
+        "predestination and choice",
+        "threat of artificial intelligence"
+      ],
+      "key_characters": {
+        "crew": [
+          "Michael Burnham",
+          "Spock",
+          "Christopher Pike",
+          "Philippa Georgiou",
+          "Paul Stamets",
+          "Sylvia Tilly"
+        ],
+        "actors": [
+          "Sonequa Martin-Green",
+          "Ethan Peck",
+          "Anson Mount",
+          "Michelle Yeoh",
+          "Anthony Rapp",
+          "Mary Wiseman",
+          "Sonja Sohn"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "The long\u2011teased Red Angel reveal leans on family twists and exposition that divided audience opinion.",
+        "reasons": [
+          "Relies on a complex web of Section 31 backstory and temporal mechanics explained largely through dialogue.",
+          "Centers an emotional climax on a lethal trap for Burnham that is difficult to justify within Starfleet ethics.",
+          "Positions the Red Angel mystery as a pivot point but still leaves Control\u2019s threat to be resolved elsewhere."
+        ]
+      }
+    },
+    {
+      "id": "pic_stardust_city_rag",
+      "series": "PIC",
+      "title": "Stardust City Rag",
+      "season": 1,
+      "episodes": [
+        5
+      ],
+      "overview": "Jean\u2011Luc Picard and the crew of La Sirena travel to the lawless world of Freecloud in search of Bruce Maddox. Their mission requires them to navigate underworld dealings, disguise themselves to blend into the local scene, and confront painful histories connected to characters such as Seven of Nine and Raffi Musiker.",
+      "chapters": [
+        {
+          "id": "scr_freecloud_and_vup",
+          "title": "Freecloud and Bjayzl",
+          "body": "La Sirena arrives at Freecloud, a commercial hub where corporate messaging and criminal enterprises intertwine. The crew learns that Maddox is being held by Bjayzl, a trafficker in Borg implants who runs a nightclub. To get close to him, Picard and his allies must arrange a transaction that Bjayzl will accept, while navigating the planet's invasive advertising systems and convoluted underworld protocols."
+        },
+        {
+          "id": "scr_seven_of_nine_and_revenge",
+          "title": "Seven of Nine and Revenge",
+          "body": "Seven of Nine joins the mission, revealing that she has a personal history with Bjayzl, who lured her friend and fellow former Borg, Icheb, into a trap and brutally harvested his implants. Seven's trauma and desire for vengeance collide with Picard's insistence on Starfleet principles, illustrating their differing responses to the aftermath of assimilation and loss."
+        },
+        {
+          "id": "scr_heist_and_confrontation",
+          "title": "Heist and Confrontation",
+          "body": "Disguised in exaggerated personas, Picard, Rios, and Jurati stage a performance to convince Bjayzl that they are selling Seven as a valuable asset. The negotiation unravels when Seven confronts Bjayzl directly and the crew's charade collapses. Tensions escalate as Picard tries to secure Maddox's release without allowing Seven to execute Bjayzl in cold blood, forcing everyone involved to weigh justice against survival."
+        },
+        {
+          "id": "scr_maddox_and_aftershocks",
+          "title": "Maddox and Aftershocks",
+          "body": "The group manages to escape Freecloud with Maddox, while Seven returns to exact her own form of justice on Bjayzl. Aboard La Sirena, Maddox provides crucial information about Soji and the synth conspiracy before dying. His death and Seven's actions have lasting effects on Picard's mission and on the personal journeys of the ship's crew, highlighting the fragmented legacy of past Starfleet decisions and the Borg trauma that continues to shape their lives."
+        }
+      ],
+      "key_themes": [
+        "revenge versus justice",
+        "post\u2011Borg trauma",
+        "organized crime in the Federation era",
+        "ethics under lawless conditions"
+      ],
+      "key_characters": {
+        "crew": [
+          "Jean-Luc Picard",
+          "Seven of Nine",
+          "Raffi Musiker",
+          "Crist\u00f3bal Rios",
+          "Agnes Jurati",
+          "Bruce Maddox"
+        ],
+        "actors": [
+          "Patrick Stewart",
+          "Jeri Ryan",
+          "Michelle Hurd",
+          "Santiago Cabrera",
+          "Alison Pill",
+          "John Ales",
+          "Necar Zadegan"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "Tonally jarring mix of graphic violence and caper\u2011style disguises on Freecloud, controversial even among fans of the season.",
+        "reasons": [
+          "Opens with a brutal sequence involving Icheb that many viewers found unnecessarily graphic.",
+          "Jumps between dark revenge drama and broad, costume\u2011heavy comedy in ways that clash tonally.",
+          "Handles legacy characters\u2019 trauma in a compressed space, leaving some arcs feeling rushed or grim for shock value."
+        ]
+      }
+    },
+    {
+      "id": "pic_hide_and_seek",
+      "series": "PIC",
+      "title": "Hide and Seek",
+      "season": 2,
+      "episodes": [
+        9
+      ],
+      "overview": "As an alternate timeline continues to threaten the future, Picard and his allies confront a Borg\u2011controlled La Sirena in 21st\u2011century France. The episode intercuts present\u2011day combat with explorations of Picard's childhood trauma in the chateau, revealing long\u2011buried memories of his mother and the origins of some of his emotional distance.",
+      "chapters": [
+        {
+          "id": "has_boarding_la_sirena",
+          "title": "Boarding La Sirena",
+          "body": "The Borg Queen, having allied with Agnes Jurati, seizes control of La Sirena and creates a group of Borgified mercenaries. Picard's team\u2014including Seven, Raffi, and Rios\u2014must board the ship and fight through its corridors in an attempt to regain control and prevent the Queen from using the vessel to reshape the timeline on a galactic scale."
+        },
+        {
+          "id": "has_picards_childhood_maze",
+          "title": "Picard's Childhood Maze",
+          "body": "Inside the chateau, Picard is confronted with literal and symbolic remnants of his childhood. Memories of playing hide\u2011and\u2011seek with his mother Yvette, and of his father's attempts to manage her mental illness, surface as he navigates sealed rooms and underground passages. These recollections provide context for his long\u2011standing reluctance to form intimate emotional bonds."
+        },
+        {
+          "id": "has_conflict_with_the_borg_queen",
+          "title": "Conflict with the Borg Queen",
+          "body": "On La Sirena, Seven and Raffi struggle against the Queen's control of the ship's systems. Seven, once a Borg drone, is wounded in the fighting and faces the possibility of death. Jurati's remaining consciousness inside the Queen's mind attempts to influence the Queen's decisions, advocating for a path that could redefine the Borg rather than simply seeking domination."
+        },
+        {
+          "id": "has_choice_and_transformation",
+          "title": "Choice and Transformation",
+          "body": "Jurati convinces the Borg Queen to consider cooperation with the Federation as an alternative to endless assimilation. The Queen uses Borg technology to save Seven's life by restoring her implants, and a tentative new alliance is formed that will have implications for the future. Picard, meanwhile, makes peace with his memories of his mother, recognizing that his father's actions were shaped by circumstances he did not fully understand as a child."
+        }
+      ],
+      "key_themes": [
+        "childhood trauma",
+        "identity and transformation",
+        "redefining the Borg",
+        "forgiveness and understanding"
+      ],
+      "key_characters": {
+        "crew": [
+          "Jean-Luc Picard",
+          "Seven of Nine",
+          "Raffi Musiker",
+          "Crist\u00f3bal Rios",
+          "Agnes Jurati",
+          "The Borg Queen"
+        ],
+        "actors": [
+          "Patrick Stewart",
+          "Jeri Ryan",
+          "Michelle Hurd",
+          "Santiago Cabrera",
+          "Alison Pill",
+          "Annie Wersching"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "An action\u2011heavy climax that intercuts Borg combat with a dense download of Picard\u2019s childhood trauma.",
+        "reasons": [
+          "Relies on extended firefights aboard La Sirena that can overshadow quieter character moments.",
+          "Compresses key revelations about Picard\u2019s family and his mother\u2019s struggles into a single episode.",
+          "Uses the chateau as both a literal battlefield and a psychological maze, which some viewers found muddled."
+        ]
+      }
+    },
+    {
+      "id": "snw_the_elysian_kingdom",
+      "series": "SNW",
+      "title": "The Elysian Kingdom",
+      "season": 1,
+      "episodes": [
+        8
+      ],
+      "overview": "While surveying a nebula, the USS Enterprise becomes trapped in an energy field that transforms the ship into a fantasy landscape based on a children's story that Doctor M'Benga often reads to his daughter. The crew are recast as characters from the book, leaving M'Benga as one of the few who remembers their true identities.",
+      "chapters": [
+        {
+          "id": "tek_trapped_in_the_nebula",
+          "title": "Trapped in the Nebula",
+          "body": "The Enterprise studies a mysterious nebula when it is suddenly immobilized by an unknown force. The ship's systems behave erratically, and sensors report an energy presence with unusual properties. Doctor M'Benga is in sickbay, reading from the fairy\u2011tale 'The Kingdom of Elysian' to his daughter Rukiya, who is being kept in the transporter pattern buffer due to a terminal illness."
+        },
+        {
+          "id": "tek_fantasy_transformation",
+          "title": "Fantasy Transformation",
+          "body": "In an instant, the ship is altered to resemble the world of the storybook. Corridors and sets take on medieval and magical d\u00e9cor, and crew members' memories are overwritten so that they believe themselves to be characters from the tale: Pike as a nervous courtier, La'an as a fierce princess, and others in similarly transformed roles. M'Benga discovers that he alone retains awareness of their real situation, with Hemmer partially resistant due to his telepathic abilities."
+        },
+        {
+          "id": "tek_search_for_the_source",
+          "title": "Search for the Source",
+          "body": "M'Benga and Hemmer navigate the altered Enterprise, playing along with the fantasy narrative while searching for the entity responsible for the changes. They realize that the nebula's consciousness has connected with Rukiya's pattern in the buffer, using her favorite story as a framework. The entity's power reshapes reality on the ship, but its intentions appear less hostile than playful, centered on Rukiya's imagination."
+        },
+        {
+          "id": "tek_a_fathers_choice",
+          "title": "A Father's Choice",
+          "body": "The nebula entity, communicating through Rukiya, offers M'Benga a choice: allow his daughter to join it and be cured, living a life of limitless adventure within its energy field, or restore the ship while keeping her in the buffer with no guarantee of a medical solution. M'Benga ultimately chooses his daughter's happiness and health, allowing her to leave with the entity. The ship and crew are returned to normal, with only M'Benga retaining a clear memory of the experience and of the farewell to his now\u2011healed child."
+        }
+      ],
+      "key_themes": [
+        "parental sacrifice",
+        "imagination and reality",
+        "coping with terminal illness",
+        "first contact with non\u2011corporeal life"
+      ],
+      "key_characters": {
+        "crew": [
+          "Joseph M'Benga",
+          "Christopher Pike",
+          "Spock",
+          "La'an Noonien-Singh",
+          "Erica Ortegas",
+          "Hemmer"
+        ],
+        "actors": [
+          "Babs Olusanmokun",
+          "Anson Mount",
+          "Ethan Peck",
+          "Christina Chong",
+          "Melissa Navia",
+          "Bruce Horak"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "A fantasy romp that, for some viewers, undercuts ongoing arcs even as it delivers a heartfelt M\u2019Benga story.",
+        "reasons": [
+          "Turns the crew into fairy\u2011tale caricatures, which can feel like filler if the humor does not land.",
+          "Shifts tone sharply from the surrounding episodes\u2019 more grounded stories of exploration and conflict.",
+          "Places a major character decision about M\u2019Benga\u2019s daughter inside a whimsical framework that not everyone felt suited the stakes."
+        ]
+      }
+    },
+    {
+      "id": "snw_the_serene_squall",
+      "series": "SNW",
+      "title": "The Serene Squall",
+      "season": 1,
+      "episodes": [
+        7
+      ],
+      "overview": "The Enterprise responds to a distress call near the edge of Federation space and encounters the Serene Squall, a pirate ship that preys on vessels along the border. What begins as a rescue mission turns into a struggle for control of the Enterprise itself, with a charismatic pirate leader targeting Spock and questioning his loyalties.",
+      "chapters": [
+        {
+          "id": "tss_rescue_mission",
+          "title": "Rescue Mission",
+          "body": "Pike and the Enterprise are dispatched to investigate a colony ship that has gone missing in a lawless region. They bring aboard Dr. Aspen, a former Starfleet counselor turned aid worker, who claims to have experience dealing with raiders in the area. The mission appears to be a straightforward search and rescue effort, but subspace chatter hints at pirate activity associated with a vessel called the Serene Squall."
+        },
+        {
+          "id": "tss_boarding_and_betrayal",
+          "title": "Boarding and Betrayal",
+          "body": "A landing party led by Pike is captured when they attempt to investigate wreckage that appears to belong to the missing colonists. Meanwhile, the Serene Squall ambushes the Enterprise. Dr. Aspen reveals themself to be Captain Angel, the pirate leader, and seizes control of the bridge. Angel's crew forces Starfleet officers into confinement while Angel confronts Spock, recognizing the strategic and personal value of his hybrid identity."
+        },
+        {
+          "id": "tss_spocks_gambit",
+          "title": "Spock's Gambit",
+          "body": "Angel reveals a plan to trade control of the Enterprise for the release of a prisoner connected to Spock's family. To prevent this, Spock and Christine Chapel execute a bluff, pretending that Spock's romantic commitments and loyalties are divided in ways that complicate Angel's leverage. The performance buys time and sows doubt, even as Angel attempts to play on Spock's feelings about his Vulcan and human heritage."
+        },
+        {
+          "id": "tss_retaking_the_ship",
+          "title": "Retaking the Ship",
+          "body": "Pike and the captured away team persuade some of the pirates to turn against Angel by offering them more secure prospects than a life on the fringes. Coordinating with Spock's efforts aboard the Enterprise, they trigger a counter\u2011attack that allows the crew to regain control of the ship. Angel escapes in a smaller vessel, leaving behind unresolved threads related to the prisoner they sought. The incident underscores the vulnerabilities that can arise when Starfleet vessels operate near regions where Federation law has limited reach."
+        }
+      ],
+      "key_themes": [
+        "identity and manipulation",
+        "lawlessness at the frontier",
+        "loyalty and family",
+        "tactics against asymmetric threats"
+      ],
+      "key_characters": {
+        "crew": [
+          "Christopher Pike",
+          "Spock",
+          "Christine Chapel",
+          "La'an Noonien-Singh",
+          "Erica Ortegas",
+          "Una Chin-Riley"
+        ],
+        "actors": [
+          "Anson Mount",
+          "Ethan Peck",
+          "Jess Bush",
+          "Christina Chong",
+          "Melissa Navia",
+          "Rebecca Romijn",
+          "Jesse James Keitel"
+        ]
+      },
+      "assessment": {
+        "type": "terrible",
+        "summary": "A pirate\u2011centric episode whose big twist and tone are fun for some, but land as lightweight or uneven for others.",
+        "reasons": [
+          "Builds to a surprise reveal about Captain Angel that not all viewers found fully supported by prior setup.",
+          "Mixes campy space\u2011pirate energy with serious material about Spock\u2019s identity and family, creating tonal whiplash.",
+          "Leaves several introduced elements and characters open\u2011ended, which can make the conclusion feel abrupt."
+        ]
+      }
+    }
+  ]
+}
