@@ -48,7 +48,7 @@
 
   header {
     position: relative;
-    padding: 1rem 1rem 0.5rem;
+    padding: 0.6rem 1rem 0.15rem;
     text-align: center;
     overflow: hidden;
   }
@@ -97,7 +97,7 @@ header::before {
     flex: 1;
     display: flex;
     justify-content: center;
-    padding: 1.5rem 1rem 2.5rem;
+    padding: 0.75rem 1rem 0.75rem;
   }
 
   .series-wrapper {
@@ -108,10 +108,9 @@ header::before {
 
   .title-main {
     font-family: "Orbitron", sans-serif;
-    font-size: 38pt;
-    margin: 0 0 0.3rem;
+    font-size: 36pt;
+    margin: 0 0 0.2rem;
     letter-spacing: 0.2em;
-    text-transform: uppercase;
     background: linear-gradient(120deg, #fffef5, #ffe977, #ffcF2a);
     -webkit-background-clip: text;
     background-clip: text;
@@ -126,7 +125,7 @@ header::before {
 
   .subtitle-main {
     font-family: "Orbitron", sans-serif;
-    font-size: 18pt;
+    font-size: 17pt;
     margin: 0;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -139,9 +138,9 @@ header::before {
   h1.title-main::after {
     content: "";
     display: block;
-    width: 280px;
-    height: 3px;
-    margin: 14px auto 0;
+    width: 260px;
+    height: 2px;
+    margin: 8px auto 0;
     border-radius: 999px;
     background: linear-gradient(90deg, transparent, #f6e27a, #f2c14f, transparent);
     box-shadow: 0 0 12px rgba(242, 193, 79, 0.9);
@@ -151,40 +150,66 @@ header::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
+    justify-content: flex-start;
+    margin-top: 8px;
+    height: calc(100vh - 210px);
   }
+
+  .series-grid .button-row:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .series-grid .button-row:nth-child(2),
+  .series-grid .button-row:nth-child(3) {
+    margin-top: 18px;
+  }
+
+  .series-grid .button-row:nth-child(4) {
+    margin-top: 18px;
+  }
+
+  .series-grid .button-row:nth-child(5) {
+    margin-top: auto;
+  }
+  .series-grid .button-row:nth-child(1),
+  .series-grid .button-row:nth-child(2),
+  .series-grid .button-row:nth-child(3),
+  .series-grid .button-row:nth-child(4) {
+    transform: translateY(20px);
+  }
+
 
   .button-row {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     justify-content: center;
     width: 100%;
     max-width: 1100px;
   }
 
   .button-row + .button-row {
-    margin-top: 40px;
+    margin-top: 0;
   }
 
   .series-btn {
     position: relative;
     overflow: hidden;
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 1rem 1.5rem;
+    padding: 0.8rem 1.4rem;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     font-size: 12pt;
     font-weight: 700;
     letter-spacing: 0.03em;
-    text-transform: uppercase;
-    background-image: linear-gradient(145deg, #020b18 0%, #05304a 38%, #04719c 52%, #011522 100%);
+    background-image: none;
+    background-color: #020819;
     color: #f6e27a;
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
-    background-color: rgba(10, 15, 40, 0.55);
     transform: perspective(600px) translateY(0);
     box-shadow:
       0 8px 0 #000000,
@@ -192,16 +217,14 @@ header::before {
       inset 0 1px 0 rgba(255, 255, 255, 0.35),
       inset 0 -4px 14px rgba(0, 0, 0, 0.9);
     cursor: pointer;
-    text-shadow:
-      0 0 2px #000000,
-      0 0 6px rgba(0, 0, 0, 0.9),
-      0 0 10px rgba(255, 215, 0, 0.9);
+    text-shadow: none;
     transition:
       transform 0.16s,
       box-shadow 0.16s,
       border-color 0.16s,
-      background-image 0.16s;
+      background-color 0.16s;
   }
+
 
   .series-btn.story-arcs-btn,
   .series-btn.episode-guide-btn {
@@ -678,6 +701,165 @@ header::before {
   a[data-related-bio] {
     color: #D97A2B;
   }
+
+  .btn-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+
+  .btn-subtitle {
+    margin-top: 0.3rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: none;
+    line-height: 1.25;
+    opacity: 0.98;
+  }
+
+  .series-btn-people .btn-title {
+    color: #f6e27a;
+  }
+
+  .series-btn-people .btn-subtitle {
+    color: #fdf6c9;
+  }
+
+  .series-btn-stories .btn-title {
+    color: #f4d03f;
+  }
+
+  .series-btn-stories .btn-subtitle {
+    color: #ffffff;
+  }
+
+  .series-btn-episodes .btn-title {
+    color: #f4d03f;
+  }
+
+  .series-btn-episodes .btn-subtitle {
+    color: #ffffff;
+  }
+
+  .series-btn-people {
+    background-color: #020b23;
+    border-color: rgba(244, 208, 63, 0.85);
+    box-shadow:
+      0 10px 0 #000000,
+      0 26px 46px rgba(0, 0, 0, 0.98),
+      inset 0 1px 0 rgba(255, 255, 255, 0.32),
+      inset 0 -6px 16px rgba(0, 0, 0, 0.95);
+  }
+
+  .series-btn-people::after {
+    content: "";
+    position: absolute;
+    inset: 4px 10px;
+    top: 4px;
+    height: 54%;
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 50% 0, rgba(180, 230, 255, 0.4), transparent 62%);
+    opacity: 0.65;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+
+  
+  .series-btn-stories::after {
+    content: "";
+    position: absolute;
+    inset: 4px 10px;
+    top: 4px;
+    height: 54%;
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 50% 0, rgba(180, 230, 255, 0.4), transparent 62%);
+    opacity: 0.65;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+  .series-btn-episodes::after {
+    content: "";
+    position: absolute;
+    inset: 4px 10px;
+    top: 4px;
+    height: 54%;
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 50% 0, rgba(180, 230, 255, 0.4), transparent 62%);
+    opacity: 0.65;
+    pointer-events: none;
+    mix-blend-mode: screen;
+  }
+
+.series-btn-people::before {
+    background: #f4d03f;
+  }
+
+  .series-btn-stories {
+    background-color: #8b5a2b;
+    border-color: rgba(255, 204, 128, 0.95);
+    text-shadow: none;
+  }
+
+  .series-btn-stories::before {
+    background: #ff9b3c;
+  }
+
+  .series-btn-episodes {
+    background-color: #1d4f33;
+    border-color: rgba(196, 255, 156, 0.95);
+  }
+
+  .series-btn-episodes::before {
+    background: #3dd8ff;
+  }
+
+
+
+  
+  .series-btn-people[data-series="The Original Series"] {
+    background-color: #04152b;
+  }
+
+  .series-btn-people[data-series="The Next Generation"] {
+    background-color: #05203c;
+  }
+
+  .series-btn-people[data-series="Deep Space Nine"] {
+    background-color: #03172b;
+  }
+
+  .series-btn-people[data-series="Voyager"] {
+    background-color: #041b32;
+  }
+
+  .series-btn-people[data-series="Enterprise"] {
+    background-color: #031426;
+  }
+
+  .series-btn-people[data-series="Discovery"] {
+    background-color: #02192f;
+  }
+
+  .series-btn-people[data-series="Picard"] {
+    background-color: #031c30;
+  }
+
+  .series-btn-people[data-series="Strange New Worlds"] {
+    background-color: #021a35;
+  }
+
+  .series-btn-people[data-series="Guest List"] {
+    background-color: #020f22;
+  }
+
 </style>
 
 </head>
@@ -692,30 +874,68 @@ header::before {
       <div id="return-menu" class="return-link">Return to Main Menu</div>
 
       
+      
       <div class="series-grid">
         <div class="button-row">
-          <button type="button" class="series-btn" data-series="The Original Series">The Original Series</button>
-          <button type="button" class="series-btn" data-series="The Next Generation">The Next Generation</button>
-          <button type="button" class="series-btn" data-series="Deep Space Nine">Deep Space Nine</button>
+          <button type="button" class="series-btn series-btn-people" data-series="The Original Series">
+            <span class="btn-title">The Original Series</span>
+            <span class="btn-subtitle">Crew &amp; actor bios</span>
+          </button>
+          <button type="button" class="series-btn series-btn-people" data-series="The Next Generation">
+            <span class="btn-title">The Next Generation</span>
+            <span class="btn-subtitle">Crew &amp; actor bios</span>
+          </button>
+          <button type="button" class="series-btn series-btn-people" data-series="Deep Space Nine">
+            <span class="btn-title">Deep Space Nine</span>
+            <span class="btn-subtitle">Crew &amp; actor bios</span>
+          </button>
         </div>
         <div class="button-row">
-          <button type="button" class="series-btn" data-series="Voyager">Voyager</button>
-          <button type="button" class="series-btn" data-series="Enterprise">Enterprise</button>
-          <button type="button" class="series-btn" data-series="Discovery">Discovery</button>
+          <button type="button" class="series-btn series-btn-people" data-series="Voyager">
+            <span class="btn-title">Voyager</span>
+            <span class="btn-subtitle">Crew &amp; actor bios</span>
+          </button>
+          <button type="button" class="series-btn series-btn-people" data-series="Enterprise">
+            <span class="btn-title">Enterprise</span>
+            <span class="btn-subtitle">Crew &amp; actor bios</span>
+          </button>
+          <button type="button" class="series-btn series-btn-people" data-series="Discovery">
+            <span class="btn-title">Discovery</span>
+            <span class="btn-subtitle">Crew &amp; actor bios</span>
+          </button>
         </div>
         <div class="button-row">
-          <button type="button" class="series-btn" data-series="Picard">Picard</button>
-          <button type="button" class="series-btn" data-series="Strange New Worlds">Strange New Worlds</button>
-                    <button type="button" class="series-btn" data-series="Guest List">Guest List</button>
+          <button type="button" class="series-btn series-btn-people" data-series="Picard">
+            <span class="btn-title">Picard</span>
+            <span class="btn-subtitle">Crew &amp; actor bios</span>
+          </button>
+          <button type="button" class="series-btn series-btn-people" data-series="Strange New Worlds">
+            <span class="btn-title">Strange New Worlds</span>
+            <span class="btn-subtitle">Crew &amp; actor bios</span>
+          </button>
+          <button type="button" class="series-btn series-btn-people" data-series="Guest List">
+            <span class="btn-title">Guest List</span>
+            <span class="btn-subtitle">Recurring &amp; guest characters</span>
+          </button>
         </div>
         <div class="button-row">
-          <button type="button" class="series-btn story-arcs-btn" data-series="Story Arcs">Story Arcs</button>
+          <button type="button" class="series-btn series-btn-stories story-arcs-btn" data-series="Story Arcs">
+            <span class="btn-title">Story Arcs</span>
+            <span class="btn-subtitle">Multi-episode narrative threads</span>
+          </button>
         </div>
         <div class="button-row">
-          <button type="button" class="series-btn episode-guide-btn" data-series="Best Episodes">Best Episodes - Hall of Fame Episodes</button>
-          <button type="button" class="series-btn episode-guide-btn" data-series="Worst Episodes">Worst Episodes - Hall of Shame Episodes</button>
+          <button type="button" class="series-btn series-btn-episodes episode-guide-btn" data-series="Best Episodes">
+            <span class="btn-title">Best Episodes</span>
+            <span class="btn-subtitle">Hall of Fame episodes</span>
+          </button>
+          <button type="button" class="series-btn series-btn-episodes episode-guide-btn" data-series="Worst Episodes">
+            <span class="btn-title">Worst Episodes</span>
+            <span class="btn-subtitle">Hall of Shame episodes</span>
+          </button>
         </div>
       </div>
+
 
       <div class="cards-grid">
         <div class="cards-row">
@@ -1169,7 +1389,7 @@ DIS: [
       const episodeImgMap = {
         "The City on the Edge of Forever": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/TOS%20Episode%20(The%20City%20on%20the%20Edge%20of%20Forever).png",
         "Space Seed": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/TOS%20Episode%20(Space%20Seed).png",
-        "The Inner Light": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/TNG%20Episode%20(The%20Inner%20LIght).png",
+        "The Inner Light": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/TNG%20Episode%20(The%20Inner%20Light).png",
         "Chain of Command": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/TNG%20Episode%20(Chain%20of%20Command).png",
         "Chain of Command, Parts I–II": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/TNG%20Episode%20(Chain%20of%20Command).png",
         "The Visitor": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/DS9%20Episode%20(The%20Visitor).png",
@@ -1181,7 +1401,11 @@ DIS: [
         "Carbon Creek": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/ENT%20Episode%20(Carbon%20Creek).png",
         "Strange New Worlds": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/SNW%20Episode%20(Strange%20New%20Worlds).png",
         "Tomorrow and Tomorrow and Tomorrow": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/SNW%20Episode%20(Tomorrow%2C%20and%20Tomorrow%20and%20Tomorrow).png",
-        "Tomorrow, and Tomorrow and Tomorrow": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/SNW%20Episode%20(Tomorrow%2C%20and%20Tomorrow%20and%20Tomorrow).png"
+        "Tomorrow, and Tomorrow and Tomorrow": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/SNW%20Episode%20(Tomorrow%2C%20and%20Tomorrow%20and%20Tomorrow).png",
+        "Magic to Make the Sanest Man Go Mad": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/DIS%20Episode%20(Magic%20to%20Make%20the%20Sanest%20Man%20Go%20Mad).png",
+        "An Obol for Charon": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/DIS%20Episode%20(An%20Obol%20for%20Charon).png",
+        "Nepenthe": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/PIC%20Episode%20(Nepenthe).png",
+        "No Win Scenario": "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Episode%20Guide/PIC%20Episode%20(No%20Win%20Scenario).png"
       };
       return episodes.map((ep) => {
         const series = ep.series || "";
@@ -1680,4 +1904,35 @@ catch (err) {
     }, true);
   
 
-    </script>
+    
+    function positionStoryArcsRow() {
+      const grid = document.querySelector(".series-grid");
+      if (!grid) return;
+      const rows = grid.querySelectorAll(".button-row");
+      if (rows.length < 5) return;
+
+      const biosRow = rows[2];
+      const arcsRow = rows[3];
+      const fameRow = rows[4];
+
+      arcsRow.style.marginTop = "";
+
+      const biosRect = biosRow.getBoundingClientRect();
+      const fameRect = fameRow.getBoundingClientRect();
+      const arcsRect = arcsRow.getBoundingClientRect();
+
+      const gap = fameRect.top - biosRect.bottom;
+      if (gap <= 0) return;
+
+      const targetTop = biosRect.bottom + gap / 2 - arcsRect.height / 2;
+      const currentTop = arcsRect.top;
+      const computedMargin = parseFloat(window.getComputedStyle(arcsRow).marginTop) || 0;
+      const neededMargin = computedMargin + (targetTop - currentTop);
+
+      arcsRow.style.marginTop = neededMargin + "px";
+    }
+
+    window.addEventListener("load", positionStoryArcsRow);
+    window.addEventListener("resize", positionStoryArcsRow);
+
+</script>
