@@ -1066,11 +1066,15 @@ header::before {
     const returnMenu = $("#return-menu");
     const bioOverlay = $("#bio-overlay");
     const headerShip = $(".header-ship");
+    const headerNavLeft = $(".header-nav-btn-left");
+    const headerNavRight = $(".header-nav-btn-right");
     let bioLinkState = null;
     let currentSeriesKey = "";
     let currentEpisodeMode = "best";
     let cachedEpisodesBest = null;
     let cachedEpisodesWorst = null;
+    let cachedProdStunts = null;
+    const PROD_STUNTS_URL = "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Production%20and%20Stunts.json";
 
     function esc(s){ return String(s).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
     function simpleNorm(s){ return String(s||'').toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').replace(/['’`\\.\\-]/g,'').replace(/\\s+/g,'').trim(); }
@@ -1386,7 +1390,14 @@ DIS: [
       return fetchJSON("https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Biographies/Bios-DIS.json");
     }
 
-    async function loadARCS() {
+        async function loadProdStunts() {
+      if (cachedProdStunts) return cachedProdStunts;
+      const data = await fetchJSON(PROD_STUNTS_URL);
+      cachedProdStunts = data || {};
+      return cachedProdStunts;
+    }
+
+async function loadARCS() {
       try {
         const tag = document.getElementById("arcs-json");
         if (tag && tag.textContent) {
@@ -1558,7 +1569,9 @@ DIS: [
             key==='PIC' ? "Picard" :
             key==='SNW' ? "Strange New Worlds" :
             key==='ARCS' ? "Story Arcs" :
-            key==='GUEST' ? "Guest List" : "";
+            key==='GUEST' ? "Guest List" :
+            key==='PROD' ? "Production & Behind-the-Scenes" :
+            key==='STUNTS' ? "Stunts & Stand-Ins" : "";
         }
         subtitleEl.textContent = subtitleText;
       }
@@ -1624,7 +1637,57 @@ DIS: [
       return "";
     }
 
-    function applySeries(key){
+        async function showProduction() {
+      currentSeriesKey = "PROD";
+      setTitles("PROD");
+      showCards();
+      clearTopThree();
+      clearExtras();
+      try {
+        const data = await loadProdStunts();
+        const section = (data && data.Production) ? data.Production : {};
+        const names = Object.keys(section).sort((a, b) => a.localeCompare(b));
+        const people = names.map((name) => ({
+          name,
+          role: "Production",
+          actor: "",
+          img: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png"
+        }));
+        setTopThree(people);
+        renderExtras(people, "PROD");
+      } catch (e) {
+        console.error("Production load error", e);
+        setTopThree([]);
+        renderExtras([], "PROD");
+      }
+    }
+
+    async function showStunts() {
+      currentSeriesKey = "STUNTS";
+      setTitles("STUNTS");
+      showCards();
+      clearTopThree();
+      clearExtras();
+      try {
+        const data = await loadProdStunts();
+        const section = (data && data.Stunts) ? data.Stunts : {};
+        const names = Object.keys(section).sort((a, b) => a.localeCompare(b));
+        const people = names.map((name) => ({
+          name,
+          role: "Stunts & Stand-Ins",
+          actor: "",
+          img: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png"
+        }));
+        setTopThree(people);
+        renderExtras(people, "STUNTS");
+      } catch (e) {
+        console.error("Stunts load error", e);
+        setTopThree([]);
+        renderExtras([], "STUNTS");
+      }
+    }
+
+function applySeries(key){
 
       currentSeriesKey = key;
       setTitles(key);
@@ -1822,9 +1885,11 @@ function hideBio(){
       const isSNW  = series.includes("strange new worlds") || series.includes("snw");
       const isPIC  = series.includes("picard") || series.includes("pic");
       const isGUEST = series.includes("guest");
+      const isPROD = series.includes("production") || series.includes("behind the") || series.includes("behind-the-scenes") || series.includes("behind the camera");
+      const isSTUNTS = series.includes("stunts") || series.includes("stand-ins") || series.includes("stand in");
       const isARCS = series.includes("story arcs");
       const isEPISODES = series.includes("curated episode") || series.includes("episode guide") || series.includes("hall of fame") || series.includes("hall of shame") || series.includes("episodes");
-      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isDIS || isSNW || isPIC || isGUEST || isARCS || isEPISODES);
+      const isOther = !(isTOS || isDS9 || isTNG || isENT || isVOY || isDIS || isSNW || isPIC || isGUEST || isARCS || isEPISODES || isPROD || isSTUNTS);
       if (isARCS && nameLink) {
         return;
       }
@@ -1891,6 +1956,16 @@ function hideBio(){
         } else if (isGUEST) {
           const ds = await loadGUEST();
           const sections = resolve(ds, text, which, "GUEST") || [{header:"Biography", text:"Not found."}];
+          renderBio(text, sections, imgUrl);
+        } else if (isPROD) {
+          const data = await loadProdStunts();
+          const section = data && data.Production ? data.Production[text] : null;
+          const sections = Array.isArray(section) ? section : [{header:"Biography", text:"Not found."}];
+          renderBio(text, sections, imgUrl);
+        } else if (isSTUNTS) {
+          const data = await loadProdStunts();
+          const section = data && data.Stunts ? data.Stunts[text] : null;
+          const sections = Array.isArray(section) ? section : [{header:"Biography", text:"Not found."}];
           renderBio(text, sections, imgUrl);
         } else {
           renderBio(text, [{header:"Biography", text:"This series is not wired to bios yet."}], imgUrl);
@@ -1977,7 +2052,20 @@ catch (err) {
       arcsRow.style.marginTop = neededMargin + "px";
     }
 
-    positionStoryArcsRow();
+        if (headerNavLeft) {
+      headerNavLeft.addEventListener("click", (e) => {
+        e.preventDefault();
+        showStunts();
+      });
+    }
+    if (headerNavRight) {
+      headerNavRight.addEventListener("click", (e) => {
+        e.preventDefault();
+        showProduction();
+      });
+    }
+
+positionStoryArcsRow();
     window.addEventListener("resize", positionStoryArcsRow);
 
 </script>
