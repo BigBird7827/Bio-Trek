@@ -465,6 +465,17 @@ header::before {
     text-decoration: none;
   }
 
+  a:hover,
+  a:focus-visible {
+    text-decoration: underline;
+  }
+
+  .card-text .character-name,
+  .card-text .character-actor,
+  .bio-overlay-main a {
+    cursor: pointer;
+  }
+
   .card-text .character-name {
     position: relative;
     display: inline-flex;
@@ -863,16 +874,35 @@ header::before {
 
   .header-nav-btn {
     position: absolute;
-    top: 0.85rem;
-    padding: 0.25rem 0.9rem;
+    top: 0.65rem;
+    padding: 0.5rem 1.8rem;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    font-size: 10pt;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 14pt;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
     white-space: nowrap;
+    background-color: #020819;
+    background-image:
+      radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.35) 0, rgba(255, 255, 255, 0) 52%),
+      radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.12) 0, rgba(0, 0, 0, 0.85) 55%);
+    color: #f6e27a;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transform: perspective(600px) translateY(0);
+    box-shadow:
+      0 6px 0 #000000,
+      0 18px 32px rgba(0, 0, 0, 0.95),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -4px 14px rgba(0, 0, 0, 0.9);
+    text-shadow: none;
+    transition:
+      transform 0.16s,
+      box-shadow 0.16s,
+      border-color 0.16s,
+      background-color 0.16s;
   }
 
   
@@ -895,11 +925,23 @@ header::before {
   }
 
   .header-nav-btn:hover {
-    filter: brightness(1.05);
+    filter: brightness(1.08);
+    transform: perspective(600px) translateY(-1px);
+    box-shadow:
+      0 7px 0 #000000,
+      0 20px 36px rgba(0, 0, 0, 0.97),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      inset 0 -4px 16px rgba(0, 0, 0, 0.95);
   }
 
   .header-nav-btn:active {
-    filter: brightness(0.97);
+    filter: brightness(0.95);
+    transform: perspective(600px) translateY(1px);
+    box-shadow:
+      0 3px 0 #000000,
+      0 10px 20px rgba(0, 0, 0, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -2px 8px rgba(0, 0, 0, 0.9);
   }
 
 </style>
@@ -1079,7 +1121,39 @@ header::before {
     function esc(s){ return String(s).replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m])); }
     function simpleNorm(s){ return String(s||'').toLowerCase().normalize('NFKD').replace(/[\\u0300-\\u036f]/g,'').replace(/['’`\\.\\-]/g,'').replace(/\\s+/g,'').trim(); }
 
-    const SERIES = {
+    
+    const PROD_TITLES = {
+      "Gene Roddenberry": "Creator",
+      "Lucille Ball": "Studio Head",
+      "D.C. Fontana": "Writer/Producer",
+      "Nicholas Meyer": "Director/Co-Writer",
+      "Michael Piller": "Writer/Exec Producer",
+      "Ira Steven Behr": "Exec Producer",
+      "Jeri Taylor": "Writer/Producer",
+      "Brannon Braga": "Writer/Exec Producer",
+      "Ronald D. Moore": "Writer/Producer",
+      "Rick Berman": "Exec Producer/Franchise Head",
+      "Andre Bormanis": "Science Consultant/Writer",
+      "Marc Okrand": "Linguist (Klingon)",
+      "Michael Okuda": "Scenic/Graphic Designer",
+      "Alex Kurtzman": "Co-Writer/Exec Producer"
+    };
+
+    const STUNT_TITLES = {
+      "Paul Baxley": "Stunt Coordinator/Stunt Performer",
+      "Bob Herron": "Stuntman/Stunt Double",
+      "B. J. Davis": "Stunt Performer",
+      "Chuck Borden": "Stunt Performer",
+      "Dennis \"Danger\" Madalone": "Lead Stuntman",
+      "Leslie Hoffman": "Stuntwoman/Stunt Double",
+      "Tom Morga": "Stunt Performer/Stunt Double",
+      "Leon \"Rusty\" McClennon": "Stunt Performer/Stunt Double",
+      "William \"Bill\" Blackburn": "Stand-In/Background Extra",
+      "Eddie Paskey": "Stand-In/Body Double",
+      "David Keith Anderson": "Stand-In/Photo Double",
+      "Guy Vardaman": "Stand-In"
+    };
+const SERIES = {
       TOS: [
         { name:"James T. Kirk", role:"Captain",            actor:"William Shatner", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/James%20Kirk%20(TOS).png" },
         { name:"Spock",         role:"Lt. Commander",      actor:"Leonard Nimoy",   img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Spock%20(TOS).png" },
@@ -1580,6 +1654,8 @@ async function loadARCS() {
       seriesMenu.style.display = "none";
       cardsGrid.style.display  = "flex";
       returnMenu.style.display = "inline-flex";
+      if (headerNavLeft) headerNavLeft.style.display = "none";
+      if (headerNavRight) headerNavRight.style.display = "none";
       document.documentElement.classList.toggle("series-non-tos", subtitleEl.textContent !== "The Original Series");
       window.scrollTo({top:0, behavior:"instant"});
     }
@@ -1649,7 +1725,7 @@ async function loadARCS() {
         const names = Object.keys(section).sort((a, b) => a.localeCompare(b));
         const people = names.map((name) => ({
           name,
-          role: "Production",
+          role: PROD_TITLES[name] || "Production",
           actor: "",
           img: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png"
         }));
@@ -1661,6 +1737,7 @@ async function loadARCS() {
         renderExtras([], "PROD");
       }
     }
+
 
     async function showStunts() {
       currentSeriesKey = "STUNTS";
@@ -1674,7 +1751,7 @@ async function loadARCS() {
         const names = Object.keys(section).sort((a, b) => a.localeCompare(b));
         const people = names.map((name) => ({
           name,
-          role: "Stunts & Stand-Ins",
+          role: STUNT_TITLES[name] || "Stunts & Stand-Ins",
           actor: "",
           img: "https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Default.png"
         }));
@@ -1686,6 +1763,7 @@ async function loadARCS() {
         renderExtras([], "STUNTS");
       }
     }
+
 
 function applySeries(key){
 
@@ -1740,7 +1818,10 @@ function applySeries(key){
       const isEpisodes = seriesSubtitle.includes("hall of fame") || seriesSubtitle.includes("hall of shame") || seriesSubtitle.includes("episode");
       const isArc = !isEpisodes && Array.isArray(blocks) && blocks.length && blocks[0].header === "Overview";
 
-      const hasToggle = !isArc && !isEpisodes && !!(bioLinkState && bioLinkState.crewEl && bioLinkState.actorEl);
+            const isProd = seriesSubtitle.includes("production") || seriesSubtitle.includes("behind-the-scenes") || seriesSubtitle.includes("behind the scenes") || seriesSubtitle.includes("behind the camera");
+      const isStunts = seriesSubtitle.includes("stunts") || seriesSubtitle.includes("stand-ins") || seriesSubtitle.includes("stand in");
+      const isProdStunts = isProd || isStunts;
+      const hasToggle = !isArc && !isEpisodes && !isProdStunts && !!(bioLinkState && bioLinkState.crewEl && bioLinkState.actorEl);
       const which = bioLinkState && bioLinkState.which === "actor" ? "actor" : "crew";
       const toggleLabel = hasToggle
         ? (which === "crew" ? "View Actor Biography" : "View Character Biography")
@@ -1749,7 +1830,11 @@ function applySeries(key){
         ? "Story Arc"
         : (isEpisodes
           ? (currentEpisodeMode === "worst" ? "Hall of Shame" : "Hall of Fame")
-          : (which === "crew" ? "Character Biography" : "Actor Biography"));
+          : (isProd
+            ? "Production Crew"
+            : (isStunts
+              ? "Stunts/Stand-Ins"
+              : (which === "crew" ? "Character Biography" : "Actor Biography"))));
 
       const headerHtml = `
         <div class="bio-overlay-inner">
@@ -1848,6 +1933,10 @@ function hideBio(){
         seriesMenu.style.display = "flex";
         cardsGrid.style.display = "none";
         returnMenu.style.display = "none";
+
+        if (headerNavLeft) headerNavLeft.style.display = "inline-flex";
+        if (headerNavRight) headerNavRight.style.display = "inline-flex";
+
         return;
       }
 
@@ -2064,6 +2153,9 @@ catch (err) {
         showProduction();
       });
     }
+
+    if (headerNavLeft) headerNavLeft.style.display = "inline-flex";
+    if (headerNavRight) headerNavRight.style.display = "inline-flex";
 
 positionStoryArcsRow();
     window.addEventListener("resize", positionStoryArcsRow);
