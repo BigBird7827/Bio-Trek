@@ -860,11 +860,56 @@ header::before {
     background-color: #020f22;
   }
 
+
+  .header-nav-btn {
+    position: absolute;
+    top: 0.85rem;
+    padding: 0.25rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    font-size: 10pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  
+  
+  
+  
+  
+  
+  .header-nav-btn-left {
+    left: 1rem;
+    background: #333333;
+    color: #e7b82c;
+  }
+
+  
+  .header-nav-btn-right {
+    right: 1rem;
+    background: #a68164;
+    color: #fdfdfd;
+  }
+
+  .header-nav-btn:hover {
+    filter: brightness(1.05);
+  }
+
+  .header-nav-btn:active {
+    filter: brightness(0.97);
+  }
+
 </style>
 
 </head>
 <body>
   <header>
+    <button class="header-nav-btn header-nav-btn-left">Stunts &amp; Stand-Ins</button>
+    <button class="header-nav-btn header-nav-btn-right">Behind the Camera</button>
+
     <h1 class="title-main">Bio Trek</h1>
     <h2 class="subtitle-main">Star Trek Biographies</h2>
     <img class="header-ship" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Enterprise%20NCC-1701.png" alt="USS Enterprise silhouette">
