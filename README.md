@@ -1,32 +1,23 @@
 # Bio-Trek
 
-Bio-Trek is a single-page, front-end **Star Trek** biography browser. It lets you explore character and actor bios, major story arcs, and curated “Hall of Fame / Hall of Shame” episodes from across the Star Trek franchise using an interactive, card-based UI.
+Bio-Trek is a single-page, front-end **Star Trek** biography browser. It lets you explore character and actor bios, major story arcs, behind-the-camera contributors, and curated “Hall of Fame / Hall of Shame” episodes from across the Star Trek franchise using an interactive, card-based UI.
 
 ## What it does
 
 - Provides **series hubs** for:
   - TOS, TNG, DS9, VOY, ENT, DIS, PIC, SNW, plus a Guest List
-- Displays **crew and actor biographies** loaded from external JSON files
+- Displays **crew and actor biographies**
+- Adds dedicated **behind-the-camera sections** via:
+  - A **Stunts & Stand-Ins** button for stunt performers and stand-ins
+  - A **Behind the Camera** button for production and creative contributors
 - Shows **story arcs** with overviews, chapter breakdowns, and key characters
 - Includes **curated episode lists** (best and worst) with detailed writeups
-- Runs as a **pure front-end app** (single `index.html` + JSON + images, no backend)
-
-## How it works
-
-- `index.html` contains:
-  - Main layout and navigation buttons
-  - Card grid for series, arcs, and curated episodes
-  - Overlay panels for detailed views
-- Embedded JavaScript:
-  - Fetches biography, story arc, and episode JSON from the repo
-  - Dynamically builds cards and overlays
-  - Handles navigation between series, arcs, and episode views
 
 ## Getting started
 
 1. Clone or download the repository.
 2. Open `index.html` in a modern desktop browser.
-3. Use the main menu buttons to browse series, story arcs, and curated episodes.
+3. Use the main menu buttons to browse series, Stunts & Stand-Ins, Behind the Camera, story arcs, and curated episodes.
 
 No build step, database, or server is required—everything runs locally in the browser.
 
