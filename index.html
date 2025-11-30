@@ -160,23 +160,24 @@ header::before {
   }
 
   .series-grid .button-row:nth-child(2),
-  .series-grid .button-row:nth-child(3) {
-    margin-top: 18px;
-  }
-
-  .series-grid .button-row:nth-child(4) {
-    margin-top: 18px;
-  }
-
+  .series-grid .button-row:nth-child(3),
+  .series-grid .button-row:nth-child(4),
   .series-grid .button-row:nth-child(5) {
+    margin-top: 18px;
+  }
+
+  .series-grid .button-row:nth-child(6) {
     margin-top: auto;
   }
+
   .series-grid .button-row:nth-child(1),
   .series-grid .button-row:nth-child(2),
   .series-grid .button-row:nth-child(3),
-  .series-grid .button-row:nth-child(4) {
+  .series-grid .button-row:nth-child(4),
+  .series-grid .button-row:nth-child(5) {
     transform: translateY(20px);
   }
+
 
 
   .button-row {
@@ -228,6 +229,12 @@ header::before {
 
   .series-btn.story-arcs-btn,
   .series-btn.episode-guide-btn {
+    width: 48%;
+    margin: 0 auto;
+  }
+
+  .series-btn.stunts-btn,
+  .series-btn.production-btn {
     width: 48%;
     margin: 0 auto;
   }
@@ -871,6 +878,13 @@ header::before {
     background-color: #020f22;
   }
 
+  .series-btn-people[data-series="Behind the Camera"] {
+    background-color: #3a3a3a;
+  }
+
+  .series-btn-people[data-series="Stunts & Stand-Ins"] {
+    background-color: #4a4a4a;
+  }
 
   .header-nav-btn {
     position: absolute;
@@ -948,15 +962,11 @@ header::before {
 
 </head>
 <body>
-  <header>
-    <button class="header-nav-btn header-nav-btn-left">Stunts &amp; Stand-Ins</button>
-    <button class="header-nav-btn header-nav-btn-right">Behind the Camera</button>
-
+    <header>
     <h1 class="title-main">Bio Trek</h1>
     <h2 class="subtitle-main">Star Trek Biographies</h2>
     <img class="header-ship" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Enterprise%20NCC-1701.png" alt="USS Enterprise silhouette">
-  </header>
-  <main>
+  </header>  <main>
     <div class="series-wrapper">
       <div id="return-menu" class="return-link">Return to Main Menu</div>
 
@@ -1003,6 +1013,16 @@ header::before {
           <button type="button" class="series-btn series-btn-people" data-series="Guest List">
             <span class="btn-title">Guest List</span>
             <span class="btn-subtitle">Recurring &amp; guest characters</span>
+          </button>
+        </div>
+        <div class="button-row">
+          <button type="button" class="series-btn series-btn-people stunts-btn" data-series="Stunts &amp; Stand-Ins">
+            <span class="btn-title">Stunts &amp; Stand-Ins</span>
+            <span class="btn-subtitle">Stunt performers &amp; stand-ins</span>
+          </button>
+          <button type="button" class="series-btn series-btn-people production-btn" data-series="Behind the Camera">
+            <span class="btn-title">Behind the Camera</span>
+            <span class="btn-subtitle">Writers, producers &amp; creatives</span>
           </button>
         </div>
         <div class="button-row">
@@ -1912,6 +1932,17 @@ function hideBio(){
         e.preventDefault();
         const rawLabel = btn.getAttribute("data-series") || btn.textContent || "";
         const seriesLabel = rawLabel.toLowerCase();
+
+        if (seriesLabel.includes("stunts") || seriesLabel.includes("stand-ins") || seriesLabel.includes("stand ins")) {
+          await showStunts();
+          return;
+        }
+
+        if (seriesLabel.includes("behind the camera")) {
+          await showProduction();
+          return;
+        }
+
         if (seriesLabel.includes("best episodes")) {
           currentEpisodeMode = "best";
         } else if (seriesLabel.includes("worst episodes")) {
@@ -2118,22 +2149,22 @@ catch (err) {
       const grid = document.querySelector(".series-grid");
       if (!grid) return;
       const rows = grid.querySelectorAll(".button-row");
-      if (rows.length < 5) return;
+      if (rows.length < 6) return;
 
-      const biosRow = rows[2];
-      const arcsRow = rows[3];
-      const fameRow = rows[4];
+      const aboveRow = rows[3];
+      const arcsRow = rows[4];
+      const fameRow = rows[5];
 
       arcsRow.style.marginTop = "";
 
-      const biosRect = biosRow.getBoundingClientRect();
+      const aboveRect = aboveRow.getBoundingClientRect();
       const fameRect = fameRow.getBoundingClientRect();
       const arcsRect = arcsRow.getBoundingClientRect();
 
-      const gap = fameRect.top - biosRect.bottom;
+      const gap = fameRect.top - aboveRect.bottom;
       if (gap <= 0) return;
 
-      const targetTop = biosRect.bottom + gap / 2 - arcsRect.height / 2;
+      const targetTop = aboveRect.bottom + gap / 2 - arcsRect.height / 2;
       const currentTop = arcsRect.top;
       const computedMargin = parseFloat(window.getComputedStyle(arcsRow).marginTop) || 0;
       const neededMargin = computedMargin + (targetTop - currentTop);
