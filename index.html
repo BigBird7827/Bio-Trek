@@ -2144,9 +2144,7 @@ function applySeries(key){
         const rawText = s.text || "";
         const body = s.html
           ? s.html
-          : (isArc ? esc(rawText).replace(/
-
-+/g, "<br><br>") : esc(rawText));
+          : (isArc ? esc(rawText).replace(/\n\n+/g, "<br><br>") : esc(rawText));
         return [
           `<h3 style="color:gold;font-weight:bold;font-family:Orbitron, 'Eurostile', system-ui, sans-serif;font-size:1.05rem;margin:1.1rem auto 0.35rem;max-width:85%;">${header}</h3>`,
           `<p style="color:#e3f1ff;line-height:1.55;font-size:calc(0.95rem + 2pt);max-width:85%;margin:0.35rem auto 0;">${body}</p>`
