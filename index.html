@@ -2141,7 +2141,12 @@ function applySeries(key){
 
       const bodyHtml = blocks.map((s) => {
         const header = esc(s.header || "");
-        const body = s.html ? s.html : esc(s.text || "");
+        const rawText = s.text || "";
+        const body = s.html
+          ? s.html
+          : (isArc ? esc(rawText).replace(/
+
++/g, "<br><br>") : esc(rawText));
         return [
           `<h3 style="color:gold;font-weight:bold;font-family:Orbitron, 'Eurostile', system-ui, sans-serif;font-size:1.05rem;margin:1.1rem auto 0.35rem;max-width:85%;">${header}</h3>`,
           `<p style="color:#e3f1ff;line-height:1.55;font-size:calc(0.95rem + 2pt);max-width:85%;margin:0.35rem auto 0;">${body}</p>`
@@ -2161,7 +2166,7 @@ function applySeries(key){
         hasToggle
           ? `<button type="button" id="toggleBioView" style="margin-right:0.75rem;padding:0.4rem 1.2rem;border-radius:999px;border:1px solid rgba(255,255,255,0.6);background:rgba(4,20,40,0.9);color:#e3f1ff;font-family:Orbitron,sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 6px rgba(0,0,0,0.7);">${esc(toggleLabel)}</button>`
           : "",
-        `<button type="button" id="returnToCrew" style="padding:0.4rem 1.4rem;border-radius:999px;border:1px solid rgba(255,255,255,0.8);background:linear-gradient(135deg,#0b2a3f,#04101d);color:#e3f1ff;font-family:Orbitron,sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 10px rgba(0,0,0,0.85);">Return to Crew</button>`
+        `<button type="button" id="returnToCrew" style="padding:0.4rem 1.4rem;border-radius:999px;border:1px solid rgba(255,255,255,0.8);background:linear-gradient(135deg,#0b2a3f,#04101d);color:#e3f1ff;font-family:Orbitron,sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;box-shadow:0 0 10px rgba(0,0,0,0.85);">${isArc ? "Return to Story Arcs" : "Return to Crew"}</button>`
       ].join("");
 
       const footerHtml = `
