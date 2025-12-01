@@ -958,6 +958,236 @@ header::before {
       inset 0 -2px 8px rgba(0, 0, 0, 0.9);
   }
 
+
+
+  /* Badge 1 LCARS gold styling override */
+  .character-card {
+    background-color: #d4af37;
+    background-image: none;
+  }
+
+  .character-card:hover {
+    transform: none;
+  }
+
+  .card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 72px;
+    text-align: left;
+    align-items: flex-start;
+    padding: 1.6rem 1.1rem 1.0rem 2.5rem;
+    border-radius: 18px;
+    background: #050814;
+    box-shadow:
+      0 0 0 1px #b8911f,
+      0 10px 18px rgba(0,0,0,0.65),
+      inset 0 1px 0 rgba(255,255,255,0.12);
+    width: calc(100% - 10px);
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .card-text::before {
+    content: "";
+    position: absolute;
+    left: 0.8rem;
+    top: 0.7rem;
+    bottom: 0.7rem;
+    width: 11px;
+    border-radius: 999px;
+    background: linear-gradient(
+      to bottom,
+      #ff9b1a 0%,
+      #ff9b1a 32%,
+      #ff6ec7 32%,
+      #ff6ec7 60%,
+      #6ec1ff 60%,
+      #6ec1ff 100%
+    );
+  }
+
+  .card-text::after {
+    content: "";
+    position: absolute;
+    left: 2.3rem;
+    right: 1.0rem;
+    top: 0.7rem;
+    height: 8px;
+    border-radius: 999px;
+    background: #ff9b1a;
+  }
+
+  .character-card::before {
+    content: none;
+  }
+
+  .character-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.12) 0%,
+      rgba(255,255,255,0.02) 45%,
+      rgba(0,0,0,0) 100%
+    );
+    pointer-events: none;
+  }
+
+  .card-text .character-name {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: #fffdf4;
+    font-weight: 800;
+    font-size: 1.08rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-shadow:
+      0 0 4px rgba(0,0,0,0.9);
+  }
+
+  .card-text .character-title {
+    color: #ffd67f;
+    font-size: 0.95rem;
+    margin: 0;
+    text-transform: uppercase;
+    -webkit-text-stroke: 0.4px #000000;
+    text-shadow:
+      0 0 1px #000000,
+      0 0 2px rgba(0,0,0,0.7);
+  }
+
+  .card-text .character-actor {
+    color: #e0f3ff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-shadow:
+      0 0 3px rgba(0,0,0,0.9);
+  }
+
+  /* Badge 2 styling mirroring Badge 1 */
+  .badge-2 {
+    width: 260px;
+    height: var(--card-img-h);
+    border-radius: 22px;
+    background-color: #d4af37;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    margin: 0 auto;
+    position: relative;
+    box-shadow:
+      0 10px 0 #000000,
+      0 26px 50px rgba(0, 0, 0, 1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    overflow: hidden;
+  }
+
+  .badge-2::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 9px;
+    right: 9px;
+    bottom: 10px;
+    border-radius: 18px;
+    background-color: #050814;
+    box-shadow:
+      0 0 0 1px #b8911f,
+      0 10px 18px rgba(0,0,0,0.65),
+      inset 0 1px 0 rgba(255,255,255,0.12);
+    background-image:
+      linear-gradient(
+        to bottom,
+        #ff9b1a 0%,
+        #ff9b1a 32%,
+        #ff6ec7 32%,
+        #ff6ec7 60%,
+        #6ec1ff 60%,
+        #6ec1ff 100%
+      ),
+      linear-gradient(
+        to right,
+        #ff9b1a 0%,
+        #ff9b1a 100%
+      );
+    background-repeat: no-repeat;
+    background-size:
+      11px calc(100% - 1.4rem),
+      calc(100% - 3.3rem) 8px;
+    background-position:
+      0.8rem 0.7rem,
+      2.3rem 0.7rem;
+  }
+
+  .badge-2::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.12) 0%,
+      rgba(255,255,255,0.02) 45%,
+      rgba(0,0,0,0) 100%
+    );
+    pointer-events: none;
+  }
+
+  .badge-2-text {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    text-align: left;
+  }
+
+  .badge-2-name {
+    position: absolute;
+    left: 58px;
+    top: 56px;
+    display: block;
+    color: #fffdf4;
+    font-weight: 800;
+    font-size: 1.08rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-shadow:
+      0 0 4px rgba(0,0,0,0.9);
+    margin: 0;
+    max-width: 170px;
+    padding-right: 4px;
+    word-wrap: break-word;
+  }
+
+  .badge-2-role {
+    position: absolute;
+    left: 58px;
+    bottom: 30px;
+    color: #ffd67f;
+    font-size: 0.95rem;
+    margin: 0;
+    text-transform: uppercase;
+    -webkit-text-stroke: 0.4px #000000;
+    text-shadow:
+      0 0 1px #000000,
+      0 0 2px rgba(0,0,0,0.7);
+  }
+
+  .badge-2-actor {
+    position: absolute;
+    left: 58px;
+    top: 156px;
+    color: #e0f3ff;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-shadow:
+      0 0 3px rgba(0,0,0,0.9);
+  }
+
 </style>
 
 </head>
@@ -1047,21 +1277,17 @@ header::before {
       <div class="cards-grid">
         <div class="cards-row">
           <article class="character-card" id="card-1">
-            <img id="card-1-img" alt=""/>
             <div id="card-1-text" class="card-text"></div>
           </article>
           <article class="character-card" id="card-2">
-            <img id="card-2-img" alt=""/>
             <div id="card-2-text" class="card-text"></div>
           </article>
           <article class="character-card" id="card-3">
-            <img id="card-3-img" alt=""/>
             <div id="card-3-text" class="card-text"></div>
           </article>
 
           
           <article class="character-card tos-only">
-            <img alt="Montgomery Scott (TOS)" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Scotty%20(TOS).png"/>
             <div class="card-text">
               <a class="character-name" href="#">Montgomery Scott</a>
               <p class="character-title">Chief Engineer</p>
@@ -1069,7 +1295,6 @@ header::before {
             </div>
           </article>
           <article class="character-card tos-only">
-            <img alt="Nyota Uhura (TOS)" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Uhura%20(TOS).png"/>
             <div class="card-text">
               <a class="character-name" href="#">Nyota Uhura</a>
               <p class="character-title">Communications Officer</p>
@@ -1077,7 +1302,6 @@ header::before {
             </div>
           </article>
           <article class="character-card tos-only">
-            <img alt="Hikaru Sulu (TOS)" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Sulu%20(TOS).png"/>
             <div class="card-text">
               <a class="character-name" href="#">Hikaru Sulu</a>
               <p class="character-title">Helmsman</p>
@@ -1085,7 +1309,6 @@ header::before {
             </div>
           </article>
           <article class="character-card tos-only">
-            <img alt="Pavel Chekov (TOS)" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Chekov%20(TOS).png"/>
             <div class="card-text">
               <a class="character-name" href="#">Pavel Chekov</a>
               <p class="character-title">Navigator</p>
@@ -1093,7 +1316,6 @@ header::before {
             </div>
           </article>
           <article class="character-card tos-only">
-            <img alt="Yeoman Janice Rand (TOS)" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Yeoman%20Rand%20(TOS).png"/>
             <div class="card-text">
               <a class="character-name" href="#">Yeoman Janice Rand</a>
               <p class="character-title">Yeoman</p>
@@ -1101,7 +1323,6 @@ header::before {
             </div>
           </article>
           <article class="character-card tos-only">
-            <img alt="Nurse Christine Chapel (TOS)" src="https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Christine%20Chapel%20(TOS).png"/>
             <div class="card-text">
               <a class="character-name" href="#">Nurse Christine Chapel</a>
               <p class="character-title">Nurse</p>
@@ -1175,9 +1396,15 @@ header::before {
     };
 const SERIES = {
       TOS: [
-        { name:"James T. Kirk", role:"Captain",            actor:"William Shatner", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/James%20Kirk%20(TOS).png" },
-        { name:"Spock",         role:"Lt. Commander",      actor:"Leonard Nimoy",   img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Spock%20(TOS).png" },
-        { name:"Leonard (Bones) McCoy", role:"Doctor",     actor:"DeForest Kelley", img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20McCoy%20(TOS).png" }
+        { name:"James T. Kirk",           role:"Captain",              actor:"William Shatner",               img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/James%20Kirk%20(TOS).png" },
+        { name:"Spock",   role:"First Officer",        actor:"Leonard Nimoy",                 img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Spock%20(TOS).png" },
+        { name:"Leonard (Bones) McCoy",   role:"Chief Medical Officer",               actor:"DeForest Kelley",               img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Doctor%20McCoy%20(TOS).png" },
+        { name:"Montgomery Scott",        role:"Chief Engineer",       actor:"James Doohan",                  img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Scotty%20(TOS).png" },
+        { name:"Nyota Uhura",             role:"Communications Officer",actor:"Nichelle Nichols",             img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Uhura%20(TOS).png" },
+        { name:"Hikaru Sulu",             role:"Helmsman",             actor:"George Takei",                  img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Sulu%20(TOS).png" },
+        { name:"Pavel Chekov",            role:"Navigator",            actor:"Walter Koenig",                 img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Chekov%20(TOS).png" },
+        { name:"Yeoman Janice Rand",   role:"Captain's Yeoman",               actor:"Grace Lee Whitney",             img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Yeoman%20Rand%20(TOS).png" },
+        { name:"Nurse Christine Chapel",   role:"Head Nurse",                actor:"Majel Barett Roddenberry",      img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Christine%20Chapel%20(TOS).png" }
       ],
       TNG: [
         { name:"Jean-Luc Picard",    role:"Captain",             actor:"Patrick Stewart",        img:"https://raw.githubusercontent.com/BigBird7827/Bio-Trek/main/Images/Jean-Luc%20Picard%20(TNG).png" },
@@ -1680,40 +1907,37 @@ async function loadARCS() {
       window.scrollTo({top:0, behavior:"instant"});
     }
     function clearTopThree(){
-      ["1","2","3"].forEach(n => {
-        const img = $("#card-"+n+"-img"); const txt = $("#card-"+n+"-text");
-        if (img) { img.src = ""; img.removeAttribute("src"); img.alt=""; }
-        if (txt) txt.innerHTML = "";
-      });
+      const host = $(".cards-row");
+      if (host) {
+        host.innerHTML = "";
+      }
     }
     function setTopThree(people){
-      const top = people.slice(0,3);
-      top.forEach((p,i)=>{
-        const img = $("#card-"+(i+1)+"-img"); const txt = $("#card-"+(i+1)+"-text");
-        if (!img || !txt) return;
-        if (p && p.img) { img.src = p.img; img.alt = p.name; }
-        txt.innerHTML = p ? (`
-          <a href="#" class="character-name">${p.name}</a>
-          <p class="character-title">${p.role||""}</p>
-          <a href="#" class="character-actor">${p.actor||""}</a>
-        `) : "";
-      });
     }
     function clearExtras(){
-      $$(".series-dynamic").forEach(el => el.remove());
     }
     function renderExtras(people, key){
       const host = $(".cards-row");
-      people.slice(3).forEach(p => {
+      if (!host) return;
+      host.innerHTML = "";
+      const list = Array.isArray(people) ? people : [];
+      list.forEach((p) => {
         const card = document.createElement("article");
-        card.className = `character-card series-dynamic ${key.toLowerCase()}-only`;
-        const img = document.createElement("img"); img.alt = p.name; if (p.img) img.src = p.img;
-        const text = document.createElement("div"); text.className = "card-text";
+        card.className = "character-card series-dynamic";
+        if (key && typeof key === "string") {
+          card.className += " " + key.toLowerCase() + "-only";
+        }
+        const text = document.createElement("div");
+        text.className = "card-text";
+        const name  = p && p.name  ? p.name  : "";
+        const role  = p && p.role  ? p.role  : "";
+        const actor = p && p.actor ? p.actor : "";
         text.innerHTML = `
-          <a href="#" class="character-name">${p.name}</a>
-          <p class="character-title">${p.role||""}</p>
-          <a href="#" class="character-actor">${p.actor||""}</a>`;
-        card.appendChild(img); card.appendChild(text); host.appendChild(card);
+          <a href="#" class="character-name">${name}</a>
+          <p class="character-title">${role}</p>
+          <a href="#" class="character-actor">${actor}</a>`;
+        card.appendChild(text);
+        host.appendChild(card);
       });
     }
 
@@ -1866,13 +2090,48 @@ function applySeries(key){
           </header>
       `;
 
-      const imageHtml = fallbackImg
-        ? [
-            `<div class="bio-image-col">`,
-            `<img src="${esc(fallbackImg)}" alt="${esc(title)}" style="display:block;max-width:260px;height:auto;border-radius:10px;border:2px solid #b29433;box-shadow:0 0 12px rgba(0,0,0,0.85);" />`,
-            `</div>`
-          ].join("")
+      const crewEl = bioLinkState && bioLinkState.crewEl ? bioLinkState.crewEl : null;
+      const actorEl = bioLinkState && bioLinkState.actorEl ? bioLinkState.actorEl : null;
+      const roleEl = crewEl && crewEl.parentElement
+        ? crewEl.parentElement.querySelector(".character-title")
+        : null;
+
+      const crewName = crewEl ? crewEl.textContent.trim() : title;
+      const actorName = actorEl ? actorEl.textContent.trim() : "";
+      const roleText = roleEl
+        ? roleEl.textContent.trim()
+        : (isArc
+          ? "Story Arc"
+          : (isEpisodes
+            ? (currentEpisodeMode === "worst" ? "Hall of Shame" : "Hall of Fame")
+            : subtitle));
+
+      const topIsActor = which === "actor";
+
+      const topName = topIsActor ? (actorName || crewName) : crewName;
+      const bottomName = topIsActor ? crewName : actorName;
+
+      const nameHtml = topName
+        ? `<div class="badge-2-name">${esc(topName)}</div>`
         : "";
+      const roleHtml = roleText
+        ? `<div class="badge-2-role">${esc(roleText)}</div>`
+        : "";
+      const actorHtml = bottomName
+        ? `<div class="badge-2-actor">${esc(bottomName)}</div>`
+        : "";
+
+      const imageHtml = [
+            `<div class="bio-image-col">`,
+            `<div class="badge-2">`,
+            `<div class="badge-2-text">`,
+            nameHtml,
+            roleHtml,
+            actorHtml,
+            `</div>`,
+            `</div>`,
+            `</div>`
+          ].join("");
 
       const bodyHtml = blocks.map((s) => {
         const header = esc(s.header || "");
@@ -2187,6 +2446,11 @@ catch (err) {
 
     if (headerNavLeft) headerNavLeft.style.display = "inline-flex";
     if (headerNavRight) headerNavRight.style.display = "inline-flex";
+
+positionStoryArcsRow();
+    window.addEventListener("resize", positionStoryArcsRow);
+
+display = "inline-flex";
 
 positionStoryArcsRow();
     window.addEventListener("resize", positionStoryArcsRow);
