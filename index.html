@@ -154,6 +154,33 @@ header::before {
     margin-top: 8px;
     height: calc(100vh - 210px);
   }
+  .epi-console-btn {
+    margin-top: 10px;
+    padding: 7px 20px 9px;
+    border-radius: 999px;
+    border: 1px solid rgba(248, 198, 106, 0.95);
+    background:
+      radial-gradient(circle at 10% 0%, rgba(255,255,255,0.18), transparent 55%),
+      linear-gradient(145deg, #1b223a, #090f24);
+    color: #fdf7e3;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow:
+      0 4px 12px rgba(0,0,0,0.9),
+      0 0 16px rgba(246, 226, 122, 0.7);
+  }
+  .epi-console-btn:hover {
+    background:
+      radial-gradient(circle at 10% 0%, rgba(255,255,255,0.26), transparent 55%),
+      linear-gradient(145deg, #252f52, #0d1630);
+    box-shadow:
+      0 6px 16px rgba(0,0,0,0.95),
+      0 0 22px rgba(246, 226, 122, 0.9);
+  }
+
+
 
   .series-grid .button-row:nth-child(1) {
     margin-top: 0;
@@ -232,6 +259,29 @@ header::before {
     width: 48%;
     margin: 0 auto;
   }
+  .button-row-epi-console {
+    justify-content: flex-end;
+    margin-top: 0;
+    height: 0;
+    overflow: visible;
+  }
+  .button-row-epi-console .series-btn {
+    position: fixed;
+    top: 14px;
+    right: 18px;
+    width: 22%;
+    padding: 0.35rem 0.75rem;
+    background-color: #2b060b;
+    z-index: 60;
+  }
+  .button-row-epi-console .btn-title {
+    font-size: 0.8rem;
+  }
+  .button-row-epi-console .btn-subtitle {
+    font-size: 0.7rem;
+  }
+
+
 
   .series-btn.stunts-btn,
   .series-btn.production-btn {
@@ -299,6 +349,10 @@ header::before {
 
   .series-btn[data-series="Enterprise"]::before {
     background: #998209;
+  }
+
+  .series-btn[data-series="Episode Console"]::before {
+    background: #ff4b4b;
   }
 
   .series-btn[data-series="Discovery"]::before {
@@ -1188,6 +1242,8 @@ header::before {
       0 0 3px rgba(0,0,0,0.9);
   }
 
+
+  
 </style>
 
 </head>
@@ -1271,6 +1327,11 @@ header::before {
             <span class="btn-subtitle">Hall of Shame episodes</span>
           </button>
         </div>
+        <div class="button-row button-row-epi-console">
+          <button type="button" class="series-btn series-btn-episodes episode-guide-btn epi-console-btn" data-series="Episode Console" onclick="window.open('https://bigbird7827.github.io/Epi-Trek/', '_blank', 'noopener')">
+            <span class="btn-title">Episode Console</span>
+          </button>
+        </div>
       </div>
 
 
@@ -1345,6 +1406,14 @@ header::before {
     const titleEl = $(".title-main");
     const subtitleEl = $(".subtitle-main");
     const seriesMenu = $(".series-grid");
+
+    const epiBtn = document.getElementById("go-to-epi-page");
+    if (epiBtn) {
+      epiBtn.addEventListener("click", () => {
+        window.open("https://bigbird7827.github.io/Epi-Trek/", "_blank", "noopener");
+      });
+    }
+
     const cardsGrid  = $(".cards-grid");
     const returnMenu = $("#return-menu");
     const bioOverlay = $("#bio-overlay");
@@ -2465,3 +2534,4 @@ positionStoryArcsRow();
     window.addEventListener("resize", positionStoryArcsRow);
 
 </script>
+
