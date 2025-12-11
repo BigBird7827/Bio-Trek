@@ -265,13 +265,22 @@ header::before {
     height: 0;
     overflow: visible;
   }
-  .button-row-epi-console .series-btn {
+  .button-row-epi-console .epi-console-btn {
     position: fixed;
     top: 14px;
     right: 18px;
     width: 22%;
     padding: 0.35rem 0.75rem;
     background-color: #2b060b;
+    z-index: 60;
+  }
+  .button-row-epi-console .rel-console-btn {
+    position: fixed;
+    top: 48px;
+    right: 18px;
+    width: 22%;
+    padding: 0.35rem 0.75rem;
+    background-color: #071b3a;
     z-index: 60;
   }
   .button-row-epi-console .btn-title {
@@ -353,6 +362,9 @@ header::before {
 
   .series-btn[data-series="Episode Console"]::before {
     background: #ff4b4b;
+  }
+  .series-btn[data-series="Relationships Console"]::before {
+    background: #3dd8ff;
   }
 
   .series-btn[data-series="Discovery"]::before {
@@ -1330,6 +1342,9 @@ header::before {
         <div class="button-row button-row-epi-console">
           <button type="button" class="series-btn series-btn-episodes episode-guide-btn epi-console-btn" data-series="Episode Console" onclick="window.open('https://bigbird7827.github.io/Epi-Trek/', '_blank', 'noopener')">
             <span class="btn-title">Episode Console</span>
+          </button>
+          <button type="button" class="series-btn series-btn-episodes episode-guide-btn rel-console-btn" data-series="Relationships Console" onclick="window.open('https://bigbird7827.github.io/Rel-Trek/', '_blank', 'noopener')">
+            <span class="btn-title">Relationships Console</span>
           </button>
         </div>
       </div>
